@@ -1,0 +1,6 @@
+framework module Pods_BICTests {
+  umbrella header "Pods-BICTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
