@@ -70,6 +70,61 @@
             </objects>
             <point key="canvasLocation" x="1166" y="-408"/>
         </scene>
+        <!--Main View Controller-->
+        <scene sceneID="6OF-za-PXx">
+            <objects>
+                <viewController id="KSw-6k-RQ1" customClass="mainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wlV-Hy-peP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yi0-sX-iy4">
+                                <rect key="frame" x="0.0" y="0.0" width="435" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0F-Hf-W3U">
+                                        <rect key="frame" x="8" y="33" width="31" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="icons8-menu-26"/>
+                                        <connections>
+                                            <action selector="menuBtnn:" destination="KSw-6k-RQ1" eventType="touchUpInside" id="AH8-Nm-ICx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ak5-GJ-ENH">
+                                <rect key="frame" x="0.0" y="0.0" width="451" height="926"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvA-7r-ECe">
+                                <rect key="frame" x="-258" y="0.0" width="262" height="1104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhB-3R-g8L">
+                                        <rect key="frame" x="20" y="337" width="214" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="l3H-mm-eMF"/>
+                    </view>
+                    <connections>
+                        <outlet property="menuBtn" destination="Q0F-Hf-W3U" id="dBw-b9-0dB"/>
+                        <outlet property="sidePanel" destination="BvA-7r-ECe" id="oDr-ec-aUc"/>
+                        <outlet property="transV" destination="ak5-GJ-ENH" id="ofb-2I-Cy1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8a8-Iy-2pe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2597.5999999999999" y="-13.043478260869566"/>
+        </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="fzP-ba-NTs">
             <objects>
@@ -138,6 +193,7 @@
                                 </state>
                                 <connections>
                                     <action selector="registerButton:" destination="H0v-1I-eBH" eventType="touchUpInside" id="UQy-QJ-hY6"/>
+                                    <segue destination="KSw-6k-RQ1" kind="show" identifier="registerToMain" id="YhG-eo-igJ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mkt-Wp-PLb" customClass="ACFloatingTextField">
@@ -207,5 +263,6 @@
     </scenes>
     <resources>
         <image name="bcelOne.png" width="300" height="301"/>
+        <image name="icons8-menu-26" width="26" height="26"/>
     </resources>
 </document>
