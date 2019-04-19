@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)logoutButton:(UIButton *)sender;
 
+-(void)printIT;
 
 @end
 

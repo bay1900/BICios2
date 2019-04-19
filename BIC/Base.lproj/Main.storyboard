@@ -64,6 +64,7 @@
                     <connections>
                         <outlet property="loginEmail" destination="ncp-xv-xll" id="QYW-nL-ozX"/>
                         <outlet property="loginPassword" destination="TdC-iY-KLx" id="7Z3-ji-uCK"/>
+                        <segue destination="KSw-6k-RQ1" kind="show" identifier="loginTomain" id="u4L-xQ-dGc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -73,7 +74,7 @@
         <!--Main View Controller-->
         <scene sceneID="6OF-za-PXx">
             <objects>
-                <viewController id="KSw-6k-RQ1" customClass="mainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registerToMain" id="KSw-6k-RQ1" customClass="mainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wlV-Hy-peP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,14 +100,41 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvA-7r-ECe">
-                                <rect key="frame" x="-258" y="0.0" width="262" height="1104"/>
+                                <rect key="frame" x="-217" y="0.0" width="214" height="1104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhB-3R-g8L">
-                                        <rect key="frame" x="20" y="337" width="214" height="41"/>
+                                        <rect key="frame" x="0.0" y="217" width="214" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOl-Ck-jGt">
+                                        <rect key="frame" x="0.0" y="266" width="214" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsL-gH-j12">
+                                        <rect key="frame" x="0.0" y="315" width="214" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-Q8-TTN">
+                                        <rect key="frame" x="0.0" y="364" width="214" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8h-ao-jjM">
+                                        <rect key="frame" x="0.0" y="413" width="214" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Log out "/>
+                                        <connections>
+                                            <action selector="logoutButton:" destination="KSw-6k-RQ1" eventType="touchUpInside" id="uGS-jj-sQj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8a8-Iy-2pe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2597.5999999999999" y="-13.043478260869566"/>
+            <point key="canvasLocation" x="2328.8000000000002" y="-13.943028485757123"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="fzP-ba-NTs">
@@ -180,7 +208,7 @@
         <!--Register View Controller-->
         <scene sceneID="Bl7-M2-mHx">
             <objects>
-                <viewController id="H0v-1I-eBH" customClass="registerViewController" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="H0v-1I-eBH" customClass="registerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Jf-vl-20w" colorLabel="IBBuiltInLabel-Yellow">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,7 +221,6 @@
                                 </state>
                                 <connections>
                                     <action selector="registerButton:" destination="H0v-1I-eBH" eventType="touchUpInside" id="UQy-QJ-hY6"/>
-                                    <segue destination="KSw-6k-RQ1" kind="show" identifier="registerToMain" id="YhG-eo-igJ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mkt-Wp-PLb" customClass="ACFloatingTextField">
@@ -233,11 +260,12 @@
                     <connections>
                         <outlet property="registerEmail" destination="Mkt-Wp-PLb" id="Xi0-0B-bv6"/>
                         <outlet property="registerPassword" destination="AYD-ck-Cva" id="DJ8-5P-Iv3"/>
+                        <segue destination="KSw-6k-RQ1" kind="show" identifier="registerToMain" id="FjX-WP-m2G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYp-1d-ms7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="253"/>
+            <point key="canvasLocation" x="1143" y="303"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xcx-7u-2Sx">
@@ -265,4 +293,7 @@
         <image name="bcelOne.png" width="300" height="301"/>
         <image name="icons8-menu-26" width="26" height="26"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="u4L-xQ-dGc"/>
+    </inferredMetricsTieBreakers>
 </document>

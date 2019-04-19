@@ -7,6 +7,7 @@
 //
 
 #import "mainViewController.h"
+#import "registerViewController.h"
 
 @interface mainViewController ()
 
@@ -29,6 +30,10 @@
     
     tapper.numberOfTapsRequired = 1 ;
     [transV addGestureRecognizer: tapper ];
+    
+    registerViewController *r = [[ registerViewController alloc ] init ];
+    [ r printIT ]; 
+    
 }
 
 -(void)hideSidePanel: (UIGestureRecognizer *) gesture {
@@ -98,5 +103,19 @@
         
         
     }
+}
+
+- (IBAction)logoutButton:(id)sender {
+    
+        // Log out firebase session
+        NSError *signOutError;
+        BOOL status = [[FIRAuth auth] signOut:&signOutError];
+        if (!status) {
+            NSLog(@"Error signing out: %@", signOutError);
+            return;
+        }else{
+            NSLog(@"Successfully Signout");
+        }
+    
 }
 @end
