@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     
     // hide the navigation bar that inherit from landing page !
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+ //   [self.navigationController setNavigationBarHidden:YES animated:YES];
 
     
     // use the Gesture recognizer for hidding the sidebar !
@@ -105,6 +105,15 @@
     }
 }
 
+- (IBAction)accelerateButton:(id)sender {
+    
+    // trigger segue if register success
+    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
+    UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"mainToAccelerate"];
+    [ self presentViewController: vc animated: YES completion: nil ];
+    
+}
+
 - (IBAction)logoutButton:(id)sender {
     
         // Log out firebase session
@@ -116,6 +125,13 @@
         }else{
             NSLog(@"Successfully Signout");
         }
+    
+    // after log out redirect to landing page 
+    // perform segue
+    // trigger segue if register success
+    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
+    UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"landingPage"];
+    [ self presentViewController: vc animated: YES completion: nil ];
     
 }
 @end

@@ -14,6 +14,8 @@
 
 @implementation loginViewController
 
+@synthesize loginValidateText;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -23,9 +25,23 @@
             // they have already signed in // token still alive
             if ( [ FIRAuth auth ].currentUser ) {
                 NSLog( @"Currently signed in");
+                
             }else {
                 NSLog( @"Not signed in yet !" );
             }
+    
+    
+    
+            // Log out firebase session
+            NSError *signOutError;
+            BOOL status = [[FIRAuth auth] signOut:&signOutError];
+            if (!status) {
+                NSLog(@"Error signing out: %@", signOutError);
+                return;
+            }else{
+                NSLog(@"Successfully Signout");
+            }
+    
 }
 
 /*
@@ -63,12 +79,13 @@
                 
             
         
-    }
-    else {
+                }
+                else {
+                    
+                            loginValidateText.text = @"Unsuccessful login please check your email and password .. ! ";
+                            NSLog( @"Unsuccessful login please check your email and password .. ! ");
         
-        NSLog( @"Unsuccessful login please check your email and password .. ! ");
-        
-    }
+               }
    // validate email and password
     [ self validEmail: _loginEmail.text ];
     

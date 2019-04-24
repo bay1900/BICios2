@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)menuBtnn:(UIButton *)sender;
 
 
+// side buttons 
+- (IBAction)accelerateButton:(id)sender;
+
 - (IBAction)logoutButton:(id)sender;
 
 

@@ -21,6 +21,10 @@
 		61618673225F49CA00A5BC67 /* LandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61618672225F49CA00A5BC67 /* LandingPageViewController.m */; };
 		61618676225F4E6900A5BC67 /* bcelOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 61618675225F4E6900A5BC67 /* bcelOne.png */; };
 		618DEF91226800510098BC8A /* mainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 618DEF90226800510098BC8A /* mainViewController.m */; };
+		61E3A151226ED3A200C49798 /* exchange.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E3A150226ED3A100C49798 /* exchange.html */; };
+		61E3A155226ED63500C49798 /* exchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E3A154226ED63500C49798 /* exchangeViewController.m */; };
+		61E3A158226EE38000C49798 /* accelerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E3A157226EE38000C49798 /* accelerateViewController.m */; };
+		61E3A15B226F1FAE00C49798 /* exchangeWebviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E3A15A226F1FAE00C49798 /* exchangeWebviewViewController.m */; };
 		61EA59D02255C06C001216EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61EA59CF2255C06C001216EE /* GoogleService-Info.plist */; };
 		61EA59D12255C06C001216EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61EA59CF2255C06C001216EE /* GoogleService-Info.plist */; };
 		61EA59D22255C06C001216EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61EA59CF2255C06C001216EE /* GoogleService-Info.plist */; };
@@ -70,6 +74,13 @@
 		61618675225F4E6900A5BC67 /* bcelOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bcelOne.png; sourceTree = "<group>"; };
 		618DEF8F226800510098BC8A /* mainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainViewController.h; sourceTree = "<group>"; };
 		618DEF90226800510098BC8A /* mainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mainViewController.m; sourceTree = "<group>"; };
+		61E3A150226ED3A100C49798 /* exchange.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exchange.html; sourceTree = "<group>"; };
+		61E3A153226ED63500C49798 /* exchangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exchangeViewController.h; sourceTree = "<group>"; };
+		61E3A154226ED63500C49798 /* exchangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exchangeViewController.m; sourceTree = "<group>"; };
+		61E3A156226EE38000C49798 /* accelerateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accelerateViewController.h; sourceTree = "<group>"; };
+		61E3A157226EE38000C49798 /* accelerateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = accelerateViewController.m; sourceTree = "<group>"; };
+		61E3A159226F1FAE00C49798 /* exchangeWebviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exchangeWebviewViewController.h; sourceTree = "<group>"; };
+		61E3A15A226F1FAE00C49798 /* exchangeWebviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exchangeWebviewViewController.m; sourceTree = "<group>"; };
 		61EA59CF2255C06C001216EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		61EA59D42255C0B7001216EE /* registerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		61EA59D52255C0B7001216EE /* registerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
@@ -152,6 +163,7 @@
 		61278D5622558B280037C071 /* BIC */ = {
 			isa = PBXGroup;
 			children = (
+				61E3A152226ED61900C49798 /* pdf */,
 				618DEF8E226800380098BC8A /* main */,
 				61618674225F4E4A00A5BC67 /* Photo */,
 				61EA59D32255C096001216EE /* authentication */,
@@ -204,8 +216,22 @@
 			children = (
 				618DEF8F226800510098BC8A /* mainViewController.h */,
 				618DEF90226800510098BC8A /* mainViewController.m */,
+				61E3A156226EE38000C49798 /* accelerateViewController.h */,
+				61E3A157226EE38000C49798 /* accelerateViewController.m */,
 			);
 			name = main;
+			sourceTree = "<group>";
+		};
+		61E3A152226ED61900C49798 /* pdf */ = {
+			isa = PBXGroup;
+			children = (
+				61E3A150226ED3A100C49798 /* exchange.html */,
+				61E3A153226ED63500C49798 /* exchangeViewController.h */,
+				61E3A154226ED63500C49798 /* exchangeViewController.m */,
+				61E3A159226F1FAE00C49798 /* exchangeWebviewViewController.h */,
+				61E3A15A226F1FAE00C49798 /* exchangeWebviewViewController.m */,
+			);
+			path = pdf;
 			sourceTree = "<group>";
 		};
 		61EA59D32255C096001216EE /* authentication */ = {
@@ -346,6 +372,7 @@
 				61618676225F4E6900A5BC67 /* bcelOne.png in Resources */,
 				61278D6422558B290037C071 /* Assets.xcassets in Resources */,
 				61278D5F22558B280037C071 /* Main.storyboard in Resources */,
+				61E3A151226ED3A200C49798 /* exchange.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,9 +497,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				61618673225F49CA00A5BC67 /* LandingPageViewController.m in Sources */,
+				61E3A15B226F1FAE00C49798 /* exchangeWebviewViewController.m in Sources */,
 				61278D6222558B280037C071 /* BIC.xcdatamodeld in Sources */,
 				61278D5C22558B280037C071 /* ViewController.m in Sources */,
+				61E3A155226ED63500C49798 /* exchangeViewController.m in Sources */,
 				618DEF91226800510098BC8A /* mainViewController.m in Sources */,
+				61E3A158226EE38000C49798 /* accelerateViewController.m in Sources */,
 				61278D6A22558B290037C071 /* main.m in Sources */,
 				61EA59D62255C0B7001216EE /* registerViewController.m in Sources */,
 				61EA59D92255C0C2001216EE /* loginViewController.m in Sources */,

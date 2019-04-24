@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *registerEmail;
 @property (weak, nonatomic) IBOutlet UITextField *registerPassword;
 
+// register Validation label
+@property (weak, nonatomic) IBOutlet UILabel *registerValidateText;
+
 
 - (IBAction)registerButton:(id)sender;
 

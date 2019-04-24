@@ -19,7 +19,7 @@
 @implementation registerViewController
 
 
-@synthesize  registerEmail, registerPassword; 
+@synthesize  registerEmail, registerPassword, registerValidateText;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,6 +81,7 @@
                 }
                 else {
                     
+                    registerValidateText.text = @"Incorrect email or password !"; 
                     NSLog( @"Incorrect email or password ......");
                     
                 }
