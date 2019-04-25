@@ -59,30 +59,30 @@
                 // logical login
                 if ( emailAuth && passwordAuth ) {
                     
-                    // SIGN IN
-                    [[FIRAuth auth] createUserWithEmail: registerEmail.text
-                                               password: registerPassword.text
-                                             completion:^(FIRAuthDataResult * _Nullable authResult,
-                                                          NSError * _Nullable error) {
-                                                 // ...
-                                             }];
+                            // SIGN IN
+                            [[FIRAuth auth] createUserWithEmail: registerEmail.text
+                                                       password: registerPassword.text
+                                                     completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                                  NSError * _Nullable error) {
+                                                         // ...
+                                                     }];
                     
-                    registerEmail.text = @"";
-                    registerPassword.text = @"";
+                            registerEmail.text = @"";
+                            registerPassword.text = @"";
                     
-                    NSLog( @"Registering... ");
+                            NSLog( @"Registering... ");
                     
-                    // trigger segue if register success
-                    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
-                    UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"registerToMain"];
-                    [ self presentViewController: vc animated: YES completion: nil ];
+                            // trigger segue if register success
+                           // UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
+                           // UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"registerToMain"];
+                           // [ self presentViewController: vc animated: YES completion: nil ];
                     
                     
                 }
                 else {
                     
-                    registerValidateText.text = @"Incorrect email or password !"; 
-                    NSLog( @"Incorrect email or password ......");
+                            registerValidateText.text = @"Incorrect email or password !";
+                            NSLog( @"Incorrect email or password ......");
                     
                 }
 

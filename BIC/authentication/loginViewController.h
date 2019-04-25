@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "registerViewController.h"
+
 @import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)loginButton:(id)sender;
 
 
+// this method imported from registerVC
+- ( BOOL ) validEmail:(NSString*) emailString;
+- ( BOOL ) validPassword: (NSString *) passwordString;
 @end
 
 NS_ASSUME_NONNULL_END

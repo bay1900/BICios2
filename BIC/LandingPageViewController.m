@@ -41,8 +41,8 @@
 - (IBAction)loginLand:(id)sender {
     
    // UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
-   // UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"loginLandingPageToLoginPage"];
-  //  [ self presentViewController: vc animated: YES completion: nil ];
+   //UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"loginPage"];
+   //[ self presentViewController: vc animated: YES completion: nil ];
     
 }
 @end

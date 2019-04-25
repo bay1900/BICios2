@@ -16,7 +16,7 @@
 @implementation exchangeViewController
 
 
-@synthesize nameTF, ageTF;
+@synthesize loginNameTF, loginPasswordTF;
 
 
 - (void)viewDidLoad {
@@ -39,15 +39,19 @@
   
     
            // trigger segue if register success
-            UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
+            UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
             exchangeWebviewViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"exchangePDF"];
     
     
     
             NSMutableDictionary *dict = [[ NSMutableDictionary alloc ] init ];
     
-            [ dict setObject: self.nameTF.text forKey:@"nameKey"];
-            [ dict setObject: self.ageTF.text forKey:@"ageKey"];
+            [ dict setObject: loginNameTF.text forKey:@"nameKey"];
+            [ dict setObject: loginPasswordTF.text forKey:@"ageKey"];
+    
+    
+      //[ dict setObject: @"A" forKey:@"nameKey"];
+      //[ dict setObject: @"B" forKey:@"ageKey"];
     
             // pass data `
             vc.dictData = dict;

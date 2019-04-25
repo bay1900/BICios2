@@ -59,40 +59,38 @@
 
     BOOL user = [FIRAuth auth].currentUser.uid;
     
-            if ( !user ) {
+    
+    // validate email
+    BOOL correctEmail =  [ self validEmail: _loginEmail.text ];
+    
+    // validate password
+   // BOOL correctPassword = [ self validPassword: _loginPassword.text ];
+
+    
+    
+              // if user not currently log in and email textfield is in correct format
+               if ( !user && correctEmail  ) {
                 
-                    [[FIRAuth auth] signInWithEmail:  _loginEmail.text
-                                           password:  _loginPassword.text
-                                         completion:^(FIRAuthDataResult * _Nullable authResult,
-                                                      NSError * _Nullable error) {
-                                             // ...
-                                         }];
+                            [[FIRAuth auth] signInWithEmail:  _loginEmail.text
+                                                   password:  _loginPassword.text
+                                                 completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                              NSError * _Nullable error) {
+                                                     // ...
+                                                 }];
+
+                            // perform segue
+                            // trigger segue if register success
+                            UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
+                            UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarPage"];
+                            [ self presentViewController: vc animated: YES completion: nil ];
                 
-                    NSLog( @"Logging in ... !");
-                
-                
-                    // perform segue
-                    // trigger segue if register success
-                    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
-                    UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"registerToMain"];
-                    [ self presentViewController: vc animated: YES completion: nil ];
-                
-            
+                             NSLog( @"Logging in ... !");
         
                 }
                 else {
-                    
                             loginValidateText.text = @"Unsuccessful login please check your email and password .. ! ";
                             NSLog( @"Unsuccessful login please check your email and password .. ! ");
-        
                }
-   // validate email and password
-    [ self validEmail: _loginEmail.text ];
-    
-    
-    
-    
-    
 }
 
 

@@ -23,6 +23,8 @@
     
     // hide the navigation bar that inherit from landing page !
  //   [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    
 
     
     // use the Gesture recognizer for hidding the sidebar !
@@ -108,7 +110,7 @@
 - (IBAction)accelerateButton:(id)sender {
     
     // trigger segue if register success
-    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Main" bundle: nil ];
+    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
     UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"mainToAccelerate"];
     [ self presentViewController: vc animated: YES completion: nil ];
     

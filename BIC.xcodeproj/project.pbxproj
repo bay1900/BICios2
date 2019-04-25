@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		127C94E1EB90AB478391076D /* Pods_BIC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF62EF2546D6DCEB8907EE2C /* Pods_BIC.framework */; };
 		242B0892E7812667763EE256 /* Pods_BICTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFBD5D10F8364DA095DE592 /* Pods_BICTests.framework */; };
+		6105AD3F22708673005C4C7F /* Sidebar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6105AD3E22708673005C4C7F /* Sidebar.storyboard */; };
 		61278D5922558B280037C071 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61278D5822558B280037C071 /* AppDelegate.m */; };
 		61278D5C22558B280037C071 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61278D5B22558B280037C071 /* ViewController.m */; };
 		61278D5F22558B280037C071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61278D5D22558B280037C071 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		3ED2F85C2BC4B4CCA6E2DDFC /* Pods_BICUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BICUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6105AD3E22708673005C4C7F /* Sidebar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidebar.storyboard; sourceTree = "<group>"; };
 		61278D5422558B280037C071 /* BIC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BIC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61278D5722558B280037C071 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		61278D5822558B280037C071 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -138,6 +140,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6105AD3D22708613005C4C7F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				61278D6522558B290037C071 /* LaunchScreen.storyboard */,
+				61278D5D22558B280037C071 /* Main.storyboard */,
+				6105AD3E22708673005C4C7F /* Sidebar.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		61278D4B22558B280037C071 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +175,7 @@
 		61278D5622558B280037C071 /* BIC */ = {
 			isa = PBXGroup;
 			children = (
+				6105AD3D22708613005C4C7F /* Storyboards */,
 				61E3A152226ED61900C49798 /* pdf */,
 				618DEF8E226800380098BC8A /* main */,
 				61618674225F4E4A00A5BC67 /* Photo */,
@@ -172,9 +185,7 @@
 				61278D5822558B280037C071 /* AppDelegate.m */,
 				61278D5A22558B280037C071 /* ViewController.h */,
 				61278D5B22558B280037C071 /* ViewController.m */,
-				61278D5D22558B280037C071 /* Main.storyboard */,
 				61278D6322558B290037C071 /* Assets.xcassets */,
-				61278D6522558B290037C071 /* LaunchScreen.storyboard */,
 				61278D6822558B290037C071 /* Info.plist */,
 				61278D6922558B290037C071 /* main.m */,
 				61278D6022558B280037C071 /* BIC.xcdatamodeld */,
@@ -368,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61278D6722558B290037C071 /* LaunchScreen.storyboard in Resources */,
+				6105AD3F22708673005C4C7F /* Sidebar.storyboard in Resources */,
 				61EA59D02255C06C001216EE /* GoogleService-Info.plist in Resources */,
 				61618676225F4E6900A5BC67 /* bcelOne.png in Resources */,
 				61278D6422558B290037C071 /* Assets.xcassets in Resources */,

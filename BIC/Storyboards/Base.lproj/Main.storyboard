@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginLandingPageToLoginPage" id="BYZ-38-t0r" customClass="loginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginPage" id="BYZ-38-t0r" customClass="loginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="loginViewController" id="8bC-Xf-vdC" colorLabel="IBBuiltInLabel-Orange">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,210 +74,20 @@
                         <outlet property="loginEmail" destination="ncp-xv-xll" id="QYW-nL-ozX"/>
                         <outlet property="loginPassword" destination="TdC-iY-KLx" id="7Z3-ji-uCK"/>
                         <outlet property="loginValidateText" destination="yrg-9h-Ywr" id="uer-kp-eYq"/>
-                        <segue destination="KSw-6k-RQ1" kind="show" identifier="loginTomain" id="u4L-xQ-dGc"/>
+                        <segue destination="8Ys-zs-xpS" kind="show" id="lpu-2t-ojw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1165.5999999999999" y="-408.84557721139436"/>
         </scene>
-        <!--Main View Controller-->
-        <scene sceneID="6OF-za-PXx">
+        <!--sidebarPage-->
+        <scene sceneID="ClQ-9W-9y0">
             <objects>
-                <viewController storyboardIdentifier="registerToMain" id="KSw-6k-RQ1" customClass="mainViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wlV-Hy-peP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yi0-sX-iy4">
-                                <rect key="frame" x="0.0" y="0.0" width="435" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0F-Hf-W3U">
-                                        <rect key="frame" x="8" y="33" width="31" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="icons8-menu-26"/>
-                                        <connections>
-                                            <action selector="menuBtnn:" destination="KSw-6k-RQ1" eventType="touchUpInside" id="AH8-Nm-ICx"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ak5-GJ-ENH">
-                                <rect key="frame" x="0.0" y="0.0" width="451" height="926"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvA-7r-ECe">
-                                <rect key="frame" x="-218" y="0.0" width="214" height="1104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhB-3R-g8L">
-                                        <rect key="frame" x="0.0" y="217" width="214" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="accelerate"/>
-                                        <connections>
-                                            <action selector="accelerateButton:" destination="KSw-6k-RQ1" eventType="touchUpInside" id="EO3-SC-Gf9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOl-Ck-jGt">
-                                        <rect key="frame" x="0.0" y="266" width="214" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsL-gH-j12">
-                                        <rect key="frame" x="0.0" y="315" width="214" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-Q8-TTN">
-                                        <rect key="frame" x="0.0" y="364" width="214" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8h-ao-jjM">
-                                        <rect key="frame" x="0.0" y="413" width="214" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Log out "/>
-                                        <connections>
-                                            <action selector="logoutButton:" destination="KSw-6k-RQ1" eventType="touchUpInside" id="uGS-jj-sQj"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="l3H-mm-eMF"/>
-                    </view>
-                    <connections>
-                        <outlet property="menuBtn" destination="Q0F-Hf-W3U" id="dBw-b9-0dB"/>
-                        <outlet property="sidePanel" destination="BvA-7r-ECe" id="oDr-ec-aUc"/>
-                        <outlet property="transV" destination="ak5-GJ-ENH" id="ofb-2I-Cy1"/>
-                        <segue destination="vTE-MA-8Jd" kind="show" identifier="mainToAccelerate" id="Cyd-JM-7r5"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8a8-Iy-2pe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Sidebar" referencedIdentifier="sidebarPage" id="8Ys-zs-xpS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6W-Fe-eC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2328.8000000000002" y="-13.943028485757123"/>
-        </scene>
-        <!--Accelerate View Controller-->
-        <scene sceneID="iG0-Mf-CQo">
-            <objects>
-                <viewController storyboardIdentifier="mainToAccelerate" id="vTE-MA-8Jd" customClass="accelerateViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gol-zj-vau">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyM-z1-Kci">
-                                <rect key="frame" x="64" y="264" width="247" height="30"/>
-                                <state key="normal" title="MONEY EXCHANGE">
-                                    <color key="titleShadowColor" red="0.34351501480000002" green="0.72820191059999995" blue="0.70600500830000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="exchangeButton:" destination="vTE-MA-8Jd" eventType="touchUpInside" id="jQ2-yE-uHF"/>
-                                    <segue destination="PVr-aT-uma" kind="show" identifier="accelerateToExchange" id="vRn-cv-1QN"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="8K2-56-SKw" firstAttribute="trailing" secondItem="tyM-z1-Kci" secondAttribute="trailing" constant="64" id="Ays-yr-7wz"/>
-                            <constraint firstItem="8K2-56-SKw" firstAttribute="bottom" secondItem="tyM-z1-Kci" secondAttribute="bottom" constant="373" id="SZF-Zw-ERJ"/>
-                            <constraint firstItem="tyM-z1-Kci" firstAttribute="leading" secondItem="8K2-56-SKw" secondAttribute="leading" constant="64" id="Xod-de-hri"/>
-                            <constraint firstItem="tyM-z1-Kci" firstAttribute="top" secondItem="8K2-56-SKw" secondAttribute="top" constant="200" id="mdZ-mg-PC6"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="8K2-56-SKw"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gK8-wX-9Ar" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3054" y="-14"/>
-        </scene>
-        <!--Exchange View Controller-->
-        <scene sceneID="EMq-hc-e1z">
-            <objects>
-                <viewController storyboardIdentifier="exchange" id="PVr-aT-uma" customClass="exchangeViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mVY-fL-Jwl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3s-mr-NCy">
-                                <rect key="frame" x="76" y="228" width="222" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lqr-fT-8Qq">
-                                <rect key="frame" x="76" y="277" width="222" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBC-Cg-t3M">
-                                <rect key="frame" x="164" y="375" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="openHTML:" destination="PVr-aT-uma" eventType="touchUpInside" id="sh3-7D-NOd"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="H3s-mr-NCy" firstAttribute="top" secondItem="z81-pC-7g7" secondAttribute="top" constant="164" id="S6f-VX-i3s"/>
-                            <constraint firstItem="H3s-mr-NCy" firstAttribute="leading" secondItem="z81-pC-7g7" secondAttribute="leading" constant="76" id="T9F-5T-AEJ"/>
-                            <constraint firstItem="z81-pC-7g7" firstAttribute="trailing" secondItem="H3s-mr-NCy" secondAttribute="trailing" constant="77" id="Th5-jt-qoS"/>
-                            <constraint firstItem="z81-pC-7g7" firstAttribute="trailing" secondItem="lqr-fT-8Qq" secondAttribute="trailing" constant="77" id="Yhq-JQ-bDt"/>
-                            <constraint firstItem="lqr-fT-8Qq" firstAttribute="leading" secondItem="z81-pC-7g7" secondAttribute="leading" constant="76" id="a72-jt-LPK"/>
-                            <constraint firstItem="DBC-Cg-t3M" firstAttribute="top" secondItem="lqr-fT-8Qq" secondAttribute="bottom" constant="68" id="cfO-UO-fNv"/>
-                            <constraint firstItem="DBC-Cg-t3M" firstAttribute="leading" secondItem="z81-pC-7g7" secondAttribute="leading" constant="164" id="hMg-nV-wR8"/>
-                            <constraint firstItem="lqr-fT-8Qq" firstAttribute="top" secondItem="H3s-mr-NCy" secondAttribute="bottom" constant="19" id="unU-L5-gNQ"/>
-                            <constraint firstItem="z81-pC-7g7" firstAttribute="trailing" secondItem="DBC-Cg-t3M" secondAttribute="trailing" constant="165" id="zBV-Ga-3Ou"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="z81-pC-7g7"/>
-                    </view>
-                    <connections>
-                        <segue destination="Q6H-cK-c3Z" kind="show" identifier="exchangeToExchangePDF" id="szw-G4-hDy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sur-k4-iYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3813.5999999999999" y="-15.742128935532236"/>
-        </scene>
-        <!--Exchange Webview View Controller-->
-        <scene sceneID="BRc-Wc-F4x">
-            <objects>
-                <viewController storyboardIdentifier="exchangePDF" id="Q6H-cK-c3Z" customClass="exchangeWebviewViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ALp-uR-gM2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vq6-89-zPL">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="lR0-sU-EUt"/>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="Vq6-89-zPL" id="kUC-zu-zxs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="swj-OF-TMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4573.6000000000004" y="-13.943028485757123"/>
+            <point key="canvasLocation" x="2302" y="-121"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="fzP-ba-NTs">
@@ -307,7 +117,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginLand:" destination="3hK-Ut-Eaj" eventType="touchUpInside" id="Ysj-yF-UZw"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="TWZ-mr-mZp"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="toI-J9-H0R"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -396,7 +206,7 @@
                         <outlet property="registerEmail" destination="Mkt-Wp-PLb" id="Xi0-0B-bv6"/>
                         <outlet property="registerPassword" destination="AYD-ck-Cva" id="DJ8-5P-Iv3"/>
                         <outlet property="registerValidateText" destination="HFq-pv-nTw" id="SAt-kS-dDb"/>
-                        <segue destination="KSw-6k-RQ1" kind="show" identifier="registerToMain" id="FjX-WP-m2G"/>
+                        <segue destination="8Ys-zs-xpS" kind="show" id="z3D-hh-klR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYp-1d-ms7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -427,9 +237,8 @@
     </scenes>
     <resources>
         <image name="bcelOne.png" width="300" height="301"/>
-        <image name="icons8-menu-26" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u4L-xQ-dGc"/>
+        <segue reference="z3D-hh-klR"/>
     </inferredMetricsTieBreakers>
 </document>
