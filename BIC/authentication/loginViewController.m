@@ -7,6 +7,8 @@
 //
 
 #import "loginViewController.h"
+@import Firebase; //  firebase class connection
+
 
 @interface loginViewController ()
 
@@ -14,7 +16,7 @@
 
 @implementation loginViewController
 
-@synthesize loginValidateText;
+@synthesize loginValidateText, loginPasswordTF, loginEmailTF;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,7 +63,7 @@
     
     
     // validate email
-    BOOL correctEmail =  [ self validEmail: _loginEmail.text ];
+    BOOL correctEmail =  [ self validEmail: loginEmailTF.text ];
     
     // validate password
    // BOOL correctPassword = [ self validPassword: _loginPassword.text ];
@@ -69,28 +71,37 @@
     
     
               // if user not currently log in and email textfield is in correct format
-               if ( !user && correctEmail  ) {
+    
                 
-                            [[FIRAuth auth] signInWithEmail:  _loginEmail.text
-                                                   password:  _loginPassword.text
-                                                 completion:^(FIRAuthDataResult * _Nullable authResult,
-                                                              NSError * _Nullable error) {
-                                                     // ...
-                                                 }];
+                   [[FIRAuth auth] createUserWithEmail: loginEmailTF.text
+                                              password: loginPasswordTF.text
+                                            completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                         NSError * _Nullable error) {
+                                                // ...
+                                                    }];
+                   
+                   
+                   /////
+                   if ( [ FIRAuth auth ].currentUser.uid ) {
+                       NSLog( @"Currently signed ingfgfgfgfgfgffg");
+                       
+                   }else {
+                       NSLog( @"Not signed in yet !fvxcvcxvxcvxccxv" );
+                   }
+                   
+                   
 
                             // perform segue
                             // trigger segue if register success
-                            UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
-                            UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarPage"];
-                            [ self presentViewController: vc animated: YES completion: nil ];
+                         //   UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
+                           // UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarPage"];
+                          //  [ self presentViewController: vc animated: YES completion: nil ];
                 
-                             NSLog( @"Logging in ... !");
-        
-                }
-                else {
-                            loginValidateText.text = @"Unsuccessful login please check your email and password .. ! ";
-                            NSLog( @"Unsuccessful login please check your email and password .. ! ");
-               }
+                          //   NSLog( @"Logging in ... !");
+                   
+                
+                   
+             
 }
 
 

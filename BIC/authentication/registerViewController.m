@@ -85,6 +85,18 @@
                             NSLog( @"Incorrect email or password ......");
                     
                 }
+    
+    
+    
+    // check if user hasn't log out redirect them somewhere
+    // they have already signed in // token still alive
+    if ( [ FIRAuth auth ].currentUser ) {
+        NSLog( @"Currently signed in");
+        
+    }else {
+        NSLog( @"Not signed in yet !" );
+    }
+    
 
 }
 
@@ -149,9 +161,9 @@
     }
 
 
-- (void)printIT {
-    
+   - (void)printIT {
+        
     NSLog (@"Try to print itttttttttttttttttt ........!");
-}
+  }
 
 @end

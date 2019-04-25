@@ -15,8 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface loginViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *loginEmail;
-@property (weak, nonatomic) IBOutlet UITextField *loginPassword;
+//@property (weak, nonatomic) IBOutlet UITextField *loginEmail;
+//@property (weak, nonatomic) IBOutlet UITextField *loginPassword;
+@property (strong, nonatomic) IBOutlet UITextField *loginPasswordTF;
+@property (strong, nonatomic) IBOutlet UITextField *loginEmailTF;
 
 // log in validate rebel 
 @property (weak, nonatomic) IBOutlet UILabel *loginValidateText;
@@ -26,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // this method imported from registerVC
 - ( BOOL ) validEmail:(NSString*) emailString;
-- ( BOOL ) validPassword: (NSString *) passwordString;
+//- ( BOOL ) validPassword: (NSString *) passwordString;
 @end
 
 NS_ASSUME_NONNULL_END

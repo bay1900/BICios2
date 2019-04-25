@@ -71,8 +71,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="loginEmail" destination="ncp-xv-xll" id="QYW-nL-ozX"/>
-                        <outlet property="loginPassword" destination="TdC-iY-KLx" id="7Z3-ji-uCK"/>
+                        <outlet property="loginEmailTF" destination="ncp-xv-xll" id="FM1-a1-Bic"/>
+                        <outlet property="loginPasswordTF" destination="TdC-iY-KLx" id="WmP-zz-Atl"/>
                         <outlet property="loginValidateText" destination="yrg-9h-Ywr" id="uer-kp-eYq"/>
                         <segue destination="8Ys-zs-xpS" kind="show" id="lpu-2t-ojw"/>
                     </connections>
@@ -239,6 +239,6 @@
         <image name="bcelOne.png" width="300" height="301"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="z3D-hh-klR"/>
+        <segue reference="lpu-2t-ojw"/>
     </inferredMetricsTieBreakers>
 </document>

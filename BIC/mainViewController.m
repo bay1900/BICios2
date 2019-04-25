@@ -33,8 +33,18 @@
     tapper.numberOfTapsRequired = 1 ;
     [transV addGestureRecognizer: tapper ];
     
+    
     registerViewController *r = [[ registerViewController alloc ] init ];
-    [ r printIT ]; 
+    [ r printIT ];
+    
+    
+    if ( [ FIRAuth auth ].currentUser ) {
+        NSLog( @"Currently signed ingfgfgfgfgfgffg");
+        
+    }else {
+        NSLog( @"Not signed in yet !fvxcvcxvxcvxccxv" );
+    }
+    
     
 }
 
