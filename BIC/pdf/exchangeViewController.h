@@ -25,12 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 //- (IBAction)btnOpenHTML:(id)sender;
 
+// origin currency properties
 @property (weak, nonatomic) IBOutlet UIButton *btnOutlet;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableViewO;
+
 @property (strong, nonatomic) NSArray *data;
-
-
 - (IBAction)btnAction:(id)sender;
+
+// covert currency properties
+
+@property (strong, nonatomic) IBOutlet UIButton *buttonCovert;
+@property (strong, nonatomic) IBOutlet UITableView *tableviewCovert;
+@property (strong, nonatomic ) NSArray* dataCovert;
 
 @end
 

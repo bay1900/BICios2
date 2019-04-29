@@ -187,9 +187,17 @@
                                 <rect key="frame" x="43" y="459" width="91" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="CURRENCY"/>
+                                <connections>
+                                    <action selector="covertButton:" destination="9uR-pQ-lTw" eventType="touchUpInside" id="3MW-uQ-F11"/>
+                                </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KD2-3F-myL">
-                                <rect key="frame" x="43" y="432" width="91" height="228"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KD2-3F-myL">
+                                <rect key="frame" x="43" y="432" width="91" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lEq-do-D46">
+                                <rect key="frame" x="43" y="489" width="91" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -216,9 +224,11 @@
                     </view>
                     <connections>
                         <outlet property="btnOutlet" destination="4fW-00-WpM" id="jos-Vc-LB5"/>
+                        <outlet property="buttonCovert" destination="P7o-Wd-M3p" id="sTU-81-9BA"/>
                         <outlet property="exchangeBottomTF" destination="no0-pb-7QX" id="ooa-nR-TPh"/>
                         <outlet property="exchangeTopTF" destination="nY2-ne-lUu" id="0rK-za-w4B"/>
-                        <outlet property="tableView" destination="KD2-3F-myL" id="pEW-cG-10T"/>
+                        <outlet property="tableViewO" destination="KD2-3F-myL" id="k8V-eU-rnK"/>
+                        <outlet property="tableviewCovert" destination="lEq-do-D46" id="Gy7-MP-54l"/>
                         <segue destination="hvq-XJ-NFW" kind="show" identifier="exchangeToExchangePDF" id="6He-L0-dBv"/>
                     </connections>
                 </viewController>
