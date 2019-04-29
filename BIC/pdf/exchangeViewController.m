@@ -21,7 +21,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
+    self.data = [[ NSArray alloc ] initWithObjects: @"1", @"2", @"3", nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self ;
+    
+    //set all tableview hidden when page is loaded
+    if ( self.tableView.hidden == YES ) {
+        [ self.tableView setHidden: NO ];
+    }
+    else
+        [ self.tableView setHidden: YES ];
+    
 }
 
 /*
@@ -61,6 +72,53 @@
             // perform animate 
             [ self presentViewController: vc animated: YES completion: nil ];
 }
+
+// drop down table view
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [ tableView dequeueReusableCellWithIdentifier: simpleTableIdentifier];
+    
+        if ( cell == nil ) {
+            
+            cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
+            
+        }
+    
+    cell.textLabel.text = [ self.data objectAtIndex: indexPath.row];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
+    return  cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [ self.data count] ;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // get the value of tableview index selected
+    UITableViewCell *cell = [ self.tableView cellForRowAtIndexPath: indexPath ];
+    
+    // set button text as tableview path value selected
+    [self.btnOutlet setTitle: cell.textLabel.text  forState: UIControlStateNormal ];
+    
+    //hide tableview when cell any cell is clicked 
+    self.tableView.hidden = YES;
+    
+}
+
+// Origin currency button
+- (IBAction)btnAction:(id)sender {
+    
+    if ( self.tableView.hidden == YES ) {
+        [ self.tableView setHidden: NO ];
+    }
+    else
+        [ self.tableView setHidden: YES ];
+    
+}
+
 
 
 @end

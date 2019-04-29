@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface exchangeViewController : UIViewController
+@interface exchangeViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate>
 
 
 //@property (strong, nonatomic) IBOutlet UITextField *name;
@@ -25,6 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //- (IBAction)btnOpenHTML:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnOutlet;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *data;
+
+
+- (IBAction)btnAction:(id)sender;
 
 @end
 
