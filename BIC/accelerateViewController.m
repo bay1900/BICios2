@@ -18,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    
 }
 
 /*
@@ -36,9 +39,9 @@
 - (IBAction)exchangeButton:(id)sender {
     
     // trigger segue if register success
-   UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
-   UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"exchange"];
-   [ self presentViewController: vc animated: YES completion: nil ];
+  // UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
+  // UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"exchange"];
+  // [ self presentViewController: vc animated: YES completion: nil ];
     
    // [self performSegueWithIdentifier: @"mainToExchange" sender:self];
     

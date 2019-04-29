@@ -8,7 +8,7 @@
 
 #import "mainViewController.h"
 #import "registerViewController.h"
-
+#import "accelerateViewController.h"
 @interface mainViewController ()
 
 @end
@@ -22,8 +22,7 @@
     // Do any additional setup after loading the view.
     
     // hide the navigation bar that inherit from landing page !
- //   [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
     
 
     
@@ -37,15 +36,11 @@
     registerViewController *r = [[ registerViewController alloc ] init ];
     [ r printIT ];
     
-    
-    if ( [ FIRAuth auth ].currentUser ) {
-        NSLog( @"Currently signed ingfgfgfgfgfgffg");
-        
-    }else {
-        NSLog( @"Not signed in yet !fvxcvcxvxcvxccxv" );
-    }
-    
-    
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
 }
 
 -(void)hideSidePanel: (UIGestureRecognizer *) gesture {
@@ -120,9 +115,11 @@
 - (IBAction)accelerateButton:(id)sender {
     
     // trigger segue if register success
-    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
-    UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"mainToAccelerate"];
-    [ self presentViewController: vc animated: YES completion: nil ];
+   // UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
+  //  UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"mainToAccelerate"];
+   // [ self presentViewController: vc animated: YES completion: nil ];
+    
+  
     
 }
 

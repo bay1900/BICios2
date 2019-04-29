@@ -74,17 +74,17 @@
                         <outlet property="loginEmailTF" destination="ncp-xv-xll" id="FM1-a1-Bic"/>
                         <outlet property="loginPasswordTF" destination="TdC-iY-KLx" id="WmP-zz-Atl"/>
                         <outlet property="loginValidateText" destination="yrg-9h-Ywr" id="uer-kp-eYq"/>
-                        <segue destination="8Ys-zs-xpS" kind="show" id="lpu-2t-ojw"/>
+                        <segue destination="8Ys-zs-xpS" kind="show" identifier="loginToNew" id="lpu-2t-ojw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1165.5999999999999" y="-408.84557721139436"/>
         </scene>
-        <!--sidebarPage-->
+        <!--sidebarNC-->
         <scene sceneID="ClQ-9W-9y0">
             <objects>
-                <viewControllerPlaceholder storyboardName="Sidebar" referencedIdentifier="sidebarPage" id="8Ys-zs-xpS" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Sidebar" referencedIdentifier="sidebarNC" id="8Ys-zs-xpS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6W-Fe-eC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2302" y="-121"/>
@@ -206,7 +206,7 @@
                         <outlet property="registerEmail" destination="Mkt-Wp-PLb" id="Xi0-0B-bv6"/>
                         <outlet property="registerPassword" destination="AYD-ck-Cva" id="DJ8-5P-Iv3"/>
                         <outlet property="registerValidateText" destination="HFq-pv-nTw" id="SAt-kS-dDb"/>
-                        <segue destination="8Ys-zs-xpS" kind="show" id="z3D-hh-klR"/>
+                        <segue destination="8Ys-zs-xpS" kind="show" identifier="registerTonew" id="z3D-hh-klR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYp-1d-ms7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -239,6 +239,6 @@
         <image name="bcelOne.png" width="300" height="301"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lpu-2t-ojw"/>
+        <segue reference="z3D-hh-klR"/>
     </inferredMetricsTieBreakers>
 </document>

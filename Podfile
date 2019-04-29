@@ -18,12 +18,14 @@ target 'BIC' do
   end
 
 
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
 
 
 
 use_frameworks!
+
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+
 
 pod 'ACFloatingTextfield-Objc'
 

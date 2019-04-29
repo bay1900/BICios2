@@ -16,7 +16,7 @@
 @implementation exchangeViewController
 
 
-@synthesize loginNameTF, loginPasswordTF;
+@synthesize exchangeTopTF, exchangeBottomTF;
 
 
 - (void)viewDidLoad {
@@ -46,8 +46,8 @@
     
             NSMutableDictionary *dict = [[ NSMutableDictionary alloc ] init ];
     
-            [ dict setObject: loginNameTF.text forKey:@"nameKey"];
-            [ dict setObject: loginPasswordTF.text forKey:@"ageKey"];
+            [ dict setObject: exchangeTopTF.text forKey:@"nameKey"];
+            [ dict setObject: exchangeBottomTF.text forKey:@"ageKey"];
     
     
       //[ dict setObject: @"A" forKey:@"nameKey"];

@@ -59,6 +59,7 @@
 - (IBAction)loginButton:(id)sender {
  
 
+   
     BOOL user = [FIRAuth auth].currentUser.uid;
     
     
@@ -66,42 +67,37 @@
     BOOL correctEmail =  [ self validEmail: loginEmailTF.text ];
     
     // validate password
-   // BOOL correctPassword = [ self validPassword: _loginPassword.text ];
-
+    // BOOL correctPassword = [ self validPassword: _loginPassword.text ];
     
     
-              // if user not currently log in and email textfield is in correct format
     
-                
-                   [[FIRAuth auth] createUserWithEmail: loginEmailTF.text
-                                              password: loginPasswordTF.text
-                                            completion:^(FIRAuthDataResult * _Nullable authResult,
-                                                         NSError * _Nullable error) {
-                                                // ...
-                                                    }];
-                   
-                   
-                   /////
-                   if ( [ FIRAuth auth ].currentUser.uid ) {
-                       NSLog( @"Currently signed ingfgfgfgfgfgffg");
-                       
-                   }else {
-                       NSLog( @"Not signed in yet !fvxcvcxvxcvxccxv" );
-                   }
-                   
-                   
-
-                            // perform segue
-                            // trigger segue if register success
-                         //   UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
-                           // UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarPage"];
-                          //  [ self presentViewController: vc animated: YES completion: nil ];
-                
-                          //   NSLog( @"Logging in ... !");
-                   
-                
-                   
-             
+    // if user not currently log in and email textfield is in correct format
+    
+    
+    [[FIRAuth auth] signInWithEmail: @"gg@gg.com"
+                               password: @"1111111111"
+                             completion:^(FIRAuthDataResult * _Nullable authResult,
+                                          NSError * _Nullable error) {
+                                 
+                                                             // check the the log in success .. go to the next page
+                                                             if ( [ FIRAuth auth ].currentUser.uid ) {
+                                                                
+                                                                     // perform segue
+                                                                      //trigger segue if register success
+                                                                      UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
+                                                                      UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarNC"];
+                                                                      [ self presentViewController: vc animated: YES completion: nil ];
+                                                                 
+                                                                 
+                                                                      NSLog( @"Logging in ... !");
+                                                                      NSLog( @"Currently signed ingfgfgfgfgfgffg");
+                                                                 
+                                                             }else {
+                                                                      self->loginValidateText.text = @"Unsuccessfull sign in";
+                                                                      NSLog( @"Not signed in yet !fvxcvcxvxcvxccxv" );
+                                                             }
+                                 
+    }];
 }
 
 

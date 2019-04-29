@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //@property (weak, nonatomic) IBOutlet UITextField *loginEmail;
 //@property (weak, nonatomic) IBOutlet UITextField *loginPassword;
-@property (strong, nonatomic) IBOutlet UITextField *loginPasswordTF;
-@property (strong, nonatomic) IBOutlet UITextField *loginEmailTF;
+@property (weak, nonatomic) IBOutlet UITextField *loginPasswordTF;
+@property (weak, nonatomic) IBOutlet UITextField *loginEmailTF;
 
 // log in validate rebel 
 @property (weak, nonatomic) IBOutlet UILabel *loginValidateText;

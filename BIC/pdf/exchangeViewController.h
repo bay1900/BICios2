@@ -16,8 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (strong, nonatomic) IBOutlet UITextField *name;
 //@property (strong, nonatomic) IBOutlet UITextField *age;
 
-@property (strong, nonatomic) IBOutlet UITextField *loginNameTF;
-@property (strong, nonatomic) IBOutlet UITextField *loginPasswordTF;
+@property (strong, nonatomic) IBOutlet UITextField *exchangeTopTF;
+@property (strong, nonatomic) IBOutlet UITextField *exchangeBottomTF;
+
 
 - (IBAction)openHTML:(id)sender;
 
