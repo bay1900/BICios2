@@ -16,27 +16,27 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (strong, nonatomic) IBOutlet UITextField *name;
 //@property (strong, nonatomic) IBOutlet UITextField *age;
 
-@property (strong, nonatomic) IBOutlet UITextField *exchangeTopTF;
-@property (strong, nonatomic) IBOutlet UITextField *exchangeBottomTF;
+// Textfield
+    @property (strong, nonatomic) IBOutlet UITextField *exchangeTopTF;
+    @property (strong, nonatomic) IBOutlet UITextField *exchangeBottomTF;
 
 
-- (IBAction)openHTML:(id)sender;
+//Request PDF button
+    - (IBAction)openHTML:(id)sender;
 
-
-//- (IBAction)btnOpenHTML:(id)sender;
 
 // origin currency properties
-@property (weak, nonatomic) IBOutlet UIButton *btnOutlet;
-@property (strong, nonatomic) IBOutlet UITableView *tableViewO;
+    @property (weak, nonatomic) IBOutlet UIButton *btnOutlet;
+    @property (strong, nonatomic) IBOutlet UITableView *tableViewO;
+    @property (strong, nonatomic) NSArray *data;
 
-@property (strong, nonatomic) NSArray *data;
-- (IBAction)btnAction:(id)sender;
+    - (IBAction)btnAction:(id)sender;
 
 // covert currency properties
-
-@property (strong, nonatomic) IBOutlet UIButton *buttonCovert;
-@property (strong, nonatomic) IBOutlet UITableView *tableviewCovert;
-@property (strong, nonatomic ) NSArray* dataCovert;
+    @property (strong, nonatomic) IBOutlet UIButton *buttonCovert;
+    @property (strong, nonatomic) IBOutlet UITableView *tableviewCovert;
+    @property (strong, nonatomic ) NSArray* dataCovert;
+    - (IBAction)buttonCovert:(id)sender;
 
 @end
 

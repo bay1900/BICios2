@@ -22,8 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+                    // No interaction of "Textfield botton"
+                    [ self.exchangeBottomTF setUserInteractionEnabled:  NO ];
+    
                     // origin
-                    self.data = [[ NSArray alloc ] initWithObjects: @"1", @"2", @"3", nil];
+                    self.data = [[ NSArray alloc ] initWithObjects: @"1", @"2", @"3",@"1", @"2", @"3",@"1", @"2", @"3", nil];
                     self.tableViewO.delegate = self;
                     self.tableViewO.dataSource = self ;
     
@@ -35,7 +39,7 @@
                         [ self.tableViewO setHidden: YES ];
     
                     // covert
-                    self.dataCovert = [[ NSArray alloc ] initWithObjects: @"a", @"b", @"c", nil];
+                    self.dataCovert = [[ NSArray alloc ] initWithObjects: @"a", @"b", @"c", @"a", @"b", @"c", @"a", @"b", @"c", nil];
                     self.tableviewCovert.delegate = self;
                     self.tableviewCovert.dataSource = self;
     
@@ -49,21 +53,17 @@
     
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)openHTML:(id)sender {
-
-  
     
-               // trigger segue if register success
+    
+    
+                // trigger segue if register success
                 UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
                 exchangeWebviewViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"exchangePDF"];
     
@@ -75,8 +75,8 @@
                 [ dict setObject: exchangeBottomTF.text forKey:@"ageKey"];
     
     
-          //[ dict setObject: @"A" forKey:@"nameKey"];
-          //[ dict setObject: @"B" forKey:@"ageKey"];
+                //[ dict setObject: @"A" forKey:@"nameKey"];
+                //[ dict setObject: @"B" forKey:@"ageKey"];
     
                 // pass data `
                 vc.dictData = dict;
@@ -87,49 +87,39 @@
                 [ self presentViewController: vc animated: YES completion: nil ];
 }
 
+
+- (IBAction)openHTML:(id)sender {
+
+    
+}
+
 // drop down table view
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     
-    
-               // static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-               // UITableViewCell *cell = [ tableView dequeueReusableCellWithIdentifier: simpleTableIdentifier];
-    
-               // if ( cell == nil ) {
-                    
-              //           cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
-                    
-               // }
-    
-               // cell.textLabel.text = [ self.data objectAtIndex: indexPath.row];
-               // cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
-               // return  cell;
     
             static NSString *simpleTableIdentifier = @"SimpleTableItem";
             UITableViewCell *cell = [ tableView dequeueReusableCellWithIdentifier: simpleTableIdentifier];
     
             if ( tableView == _tableViewO ) {
                 
+                         cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
                 
-                
-                 cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
-                
-                 cell.textLabel.text = [ self.data objectAtIndex: indexPath.row];
-                 cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
-                // return  cell;
-                NSLog( @"Tableview 1");
+                         cell.textLabel.text = [ self.data objectAtIndex: indexPath.row];
+                         cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
+                        // return  cell;
+                        NSLog( @"Tableview 1");
                 
             }
             else if ( tableView == _tableviewCovert) {
                 
                 
-                 cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
-              
-                 cell.textLabel.text = [ self.dataCovert objectAtIndex: indexPath.row];
-                 cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
+                         cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
                 
-                 NSLog( @"Tableview 2");
+                         cell.textLabel.text = [ self.dataCovert objectAtIndex: indexPath.row];
+                         cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
+                
+                         NSLog( @"Tableview 2");
                 
             }
             else {
@@ -142,7 +132,17 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-               return [ self.data count] ;
+    
+                    if ( tableView == _tableViewO) {
+                        return [ self.data count] ;
+                    }
+                    else if (tableView == _tableviewCovert) {
+                        return  [ self.dataCovert count ];
+                    }
+                    else
+                        NSLog( @"No data return for tableview row ");
+    
+                    return 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -158,6 +158,12 @@
                                 //hide tableview when cell any cell is clicked
                                 self.tableViewO.hidden = YES;
                         
+                        
+                               NSString *originSymbol = cell.textLabel.text ;
+                               NSLog(  @"Origin amount : %@",  originSymbol );
+                        
+                              [ self getValue: originSymbol ];
+                    
                     }
                     else if ( tableView == _tableviewCovert) {
                         
@@ -169,11 +175,31 @@
                         
                                 //hide tableview when cell any cell is clicked
                                 self.tableviewCovert.hidden = YES;
+                        
+                                NSString *covertSymbol = cell.textLabel.text ;
+                                NSLog(  @"Origin amount : %@",  covertSymbol );
+                        
+                        
+                        
                     }
                     else {
+                        
+                                NSLog( @"Something went wrong on didSelectRowAtIndexPath ");
                     }
+
     
 }
+
+- (void) getValue:(NSString *) origin{
+    
+   // NSString *x =  [[ self buttonCovert]titleLabel];
+    
+    
+   
+    
+    
+}
+
 
 // Origin currency button
 - (IBAction)btnAction:(id)sender {
@@ -183,6 +209,8 @@
                 }
                 else
                     [ self.tableViewO setHidden: YES ];
+    
+    
     
 }
 
@@ -198,5 +226,17 @@
     }
     else
         [ self.tableviewCovert setHidden: YES ];
+    
+    
+ 
+   // Origin and covert button symbol
+     NSString *x = _buttonCovert.titleLabel.text;
+     NSString *y =  _btnOutlet.titleLabel.text;
+  
+    
+    NSLog( @"This is the button outlet: %@ and this is the button covert: %@ ", y, x  ); 
+    
+}
+- (IBAction)buttonCovert:(id)sender {
 }
 @end

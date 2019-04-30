@@ -30,7 +30,7 @@ pod 'Firebase/Auth'
 pod 'ACFloatingTextfield-Objc'
 
 
-
+pod 'CurrencyRequest'
 
 
 end

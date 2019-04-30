@@ -173,6 +173,7 @@
                                 </state>
                                 <connections>
                                     <action selector="openHTML:" destination="9uR-pQ-lTw" eventType="touchUpInside" id="Gbc-e9-lTa"/>
+                                    <segue destination="hvq-XJ-NFW" kind="show" id="Czm-l6-hLf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fW-00-WpM">
@@ -188,6 +189,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="CURRENCY"/>
                                 <connections>
+                                    <action selector="buttonCovert:" destination="9uR-pQ-lTw" eventType="touchUpInside" id="hAD-Tz-LI7"/>
                                     <action selector="covertButton:" destination="9uR-pQ-lTw" eventType="touchUpInside" id="3MW-uQ-F11"/>
                                 </connections>
                             </button>
@@ -229,7 +231,6 @@
                         <outlet property="exchangeTopTF" destination="nY2-ne-lUu" id="0rK-za-w4B"/>
                         <outlet property="tableViewO" destination="KD2-3F-myL" id="k8V-eU-rnK"/>
                         <outlet property="tableviewCovert" destination="lEq-do-D46" id="Gy7-MP-54l"/>
-                        <segue destination="hvq-XJ-NFW" kind="show" identifier="exchangeToExchangePDF" id="6He-L0-dBv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaQ-g7-0XU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -245,7 +246,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jlb-6v-vGP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="761"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
