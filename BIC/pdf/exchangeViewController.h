@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase; //  firebase class connection
+
+// data model
+#import "exData.h"
+
+// currency
+#import <CurrencyRequest/CRCurrencyRequest.h>
+#import <CurrencyRequest/CRCurrencyResults.h>
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,6 +46,24 @@ NS_ASSUME_NONNULL_BEGIN
     @property (strong, nonatomic) IBOutlet UITableView *tableviewCovert;
     @property (strong, nonatomic ) NSArray* dataCovert;
     - (IBAction)buttonCovert:(id)sender;
+
+
+//Currency
+@property (nonatomic ) CRCurrencyRequest *req;
+@property (nonatomic ) CRCurrencyResults *results;
+
+@property (strong, nonatomic) IBOutlet UILabel *internetReponse;
+
+
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
+
+
+
+@property (strong, nonatomic) NSMutableArray *storeData;
+
+- (IBAction)theCovert:(id)sender;
 
 @end
 

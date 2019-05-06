@@ -29,6 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 // this method imported from registerVC
 - ( BOOL ) validEmail:(NSString*) emailString;
 //- ( BOOL ) validPassword: (NSString *) passwordString;
+
+// firebase database reference
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

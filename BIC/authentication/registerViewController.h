@@ -31,6 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 - ( BOOL ) validEmail:(NSString*) emailString;
 - ( BOOL ) validPassword: (NSString *) passwordString;
 
+
+// firebase databse
+// firebase database reference
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -44,6 +44,8 @@
                 NSLog(@"Successfully Signout");
             }
     
+    
+         
 }
 
 /*
@@ -74,13 +76,13 @@
     // if user not currently log in and email textfield is in correct format
     
     
-    [[FIRAuth auth] signInWithEmail: @"gg@gg.com"
-                               password: @"1111111111"
+    [[FIRAuth auth] signInWithEmail: loginEmailTF.text
+                               password: loginPasswordTF.text
                              completion:^(FIRAuthDataResult * _Nullable authResult,
                                           NSError * _Nullable error) {
                                  
                                                              // check the the log in success .. go to the next page
-                                                             if ( [ FIRAuth auth ].currentUser.uid ) {
+                                                             if ( user && correctEmail ) {
                                                                 
                                                                      // perform segue
                                                                       //trigger segue if register success
@@ -88,7 +90,7 @@
                                                                       UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarNC"];
                                                                       [ self presentViewController: vc animated: YES completion: nil ];
                                                                  
-                                                                 
+                                                                      NSLog (@"%@", [ FIRAuth auth ].currentUser.uid );
                                                                       NSLog( @"Logging in ... !");
                                                                       NSLog( @"Currently signed ingfgfgfgfgfgffg");
                                                                  
@@ -99,6 +101,8 @@
                                  
     }];
 }
+
+
 
 
 
@@ -140,6 +144,7 @@
     NSLog( @"applicationWillTerminate");
 
 }
+
 
 
 @end

@@ -1,5 +1,6 @@
 PODS:
   - ACFloatingTextfield-Objc (1.7)
+  - CurrencyRequest (0.2.1)
   - Firebase/Auth (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.4.2)
@@ -8,6 +9,9 @@ PODS:
     - FirebaseAnalytics (= 5.8.1)
   - Firebase/CoreOnly (5.20.2):
     - FirebaseCore (= 5.4.1)
+  - Firebase/Database (5.20.2):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (= 5.1.1)
   - FirebaseAnalytics (5.8.1):
     - FirebaseCore (~> 5.4)
     - FirebaseInstanceID (~> 3.8)
@@ -26,6 +30,10 @@ PODS:
   - FirebaseCore (5.4.1):
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseDatabase (5.1.1):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.2)
+    - leveldb-library (~> 1.18)
   - FirebaseInstanceID (3.8.1):
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
@@ -55,6 +63,7 @@ PODS:
   - GoogleUtilities/UserDefaults (5.8.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
+  - leveldb-library (1.20)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -63,36 +72,44 @@ PODS:
 
 DEPENDENCIES:
   - ACFloatingTextfield-Objc
+  - CurrencyRequest
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ACFloatingTextfield-Objc
+    - CurrencyRequest
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseDatabase
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleUtilities
     - GTMSessionFetcher
+    - leveldb-library
     - nanopb
 
 SPEC CHECKSUMS:
   ACFloatingTextfield-Objc: 8780c7a0d96b2039d8a60d3461a4bbcd22e3faf3
+  CurrencyRequest: 92588153b6d3cfcd0497d0cdded3bd9ee27a5c3f
   Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
   FirebaseAuth: dd7bbf03a5aee0eafb3a1aee4d2812bd74bac890
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
+  FirebaseDatabase: 2c15b0ea6f2c6eb5e57413f9d6340f1e50b81ae3
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: a721b2d9b9b47b1e24db713e206d735ceed2f3a0
+PODFILE CHECKSUM: 92c14074f14069fc1005dcaad1b76b62efb4d1c9
 
 COCOAPODS: 1.6.1

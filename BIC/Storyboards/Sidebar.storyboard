@@ -173,7 +173,7 @@
                                 </state>
                                 <connections>
                                     <action selector="openHTML:" destination="9uR-pQ-lTw" eventType="touchUpInside" id="Gbc-e9-lTa"/>
-                                    <segue destination="hvq-XJ-NFW" kind="show" id="Czm-l6-hLf"/>
+                                    <segue destination="NZd-Aq-NgQ" kind="show" id="oT7-Dz-fbv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fW-00-WpM">
@@ -203,6 +203,23 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting to the internet " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frO-j8-neM">
+                                <rect key="frame" x="32" y="810" width="351" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="351" id="CUn-Fd-qGe"/>
+                                    <constraint firstAttribute="height" constant="30" id="nyg-qn-vWz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ig5-1Q-viz">
+                                <rect key="frame" x="127" y="747" width="163" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="theCovert:" destination="9uR-pQ-lTw" eventType="touchUpInside" id="RVI-lC-GP2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -213,14 +230,19 @@
                             <constraint firstItem="4fW-00-WpM" firstAttribute="top" secondItem="b1t-h4-ecf" secondAttribute="top" constant="314" id="Hdg-R0-ooy"/>
                             <constraint firstItem="4fW-00-WpM" firstAttribute="leading" secondItem="b1t-h4-ecf" secondAttribute="leading" constant="43" id="Hsk-t6-aJh"/>
                             <constraint firstItem="nY2-ne-lUu" firstAttribute="leading" secondItem="4fW-00-WpM" secondAttribute="trailing" constant="1" id="MmS-A7-78k"/>
+                            <constraint firstItem="b1t-h4-ecf" firstAttribute="trailing" secondItem="ig5-1Q-viz" secondAttribute="trailing" constant="124" id="Pqg-oV-KiE"/>
                             <constraint firstItem="b1t-h4-ecf" firstAttribute="trailing" secondItem="nY2-ne-lUu" secondAttribute="trailing" constant="43" id="UzR-8d-brV"/>
                             <constraint firstItem="fsf-oe-vOg" firstAttribute="top" secondItem="P7o-Wd-M3p" secondAttribute="bottom" constant="17" id="W0v-Vz-aM0"/>
+                            <constraint firstItem="frO-j8-neM" firstAttribute="leading" secondItem="b1t-h4-ecf" secondAttribute="leading" constant="32" id="Zmn-2u-Vqt"/>
                             <constraint firstItem="nY2-ne-lUu" firstAttribute="top" secondItem="b1t-h4-ecf" secondAttribute="top" constant="314" id="b8P-Sq-OVT"/>
                             <constraint firstItem="b1t-h4-ecf" firstAttribute="trailing" secondItem="no0-pb-7QX" secondAttribute="trailing" constant="43" id="bHx-qd-yqo"/>
+                            <constraint firstItem="ig5-1Q-viz" firstAttribute="top" secondItem="fsf-oe-vOg" secondAttribute="bottom" constant="211" id="cp6-Qe-I1O"/>
+                            <constraint firstItem="ig5-1Q-viz" firstAttribute="leading" secondItem="b1t-h4-ecf" secondAttribute="leading" constant="127" id="du2-aw-w4L"/>
                             <constraint firstItem="b1t-h4-ecf" firstAttribute="trailing" secondItem="fsf-oe-vOg" secondAttribute="trailing" constant="43" id="e8g-gm-nQX"/>
                             <constraint firstItem="P7o-Wd-M3p" firstAttribute="leading" secondItem="b1t-h4-ecf" secondAttribute="leading" constant="43" id="eCR-le-5QM"/>
-                            <constraint firstItem="b1t-h4-ecf" firstAttribute="bottom" secondItem="fsf-oe-vOg" secondAttribute="bottom" constant="326" id="j88-by-Mbl"/>
+                            <constraint firstItem="frO-j8-neM" firstAttribute="top" secondItem="ig5-1Q-viz" secondAttribute="bottom" constant="33" id="orL-IC-kDp"/>
                             <constraint firstItem="fsf-oe-vOg" firstAttribute="leading" secondItem="b1t-h4-ecf" secondAttribute="leading" constant="43" id="pp0-Yg-z5r"/>
+                            <constraint firstItem="b1t-h4-ecf" firstAttribute="trailing" secondItem="frO-j8-neM" secondAttribute="trailing" constant="31" id="wZg-l2-U8t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b1t-h4-ecf"/>
                     </view>
@@ -229,6 +251,7 @@
                         <outlet property="buttonCovert" destination="P7o-Wd-M3p" id="sTU-81-9BA"/>
                         <outlet property="exchangeBottomTF" destination="no0-pb-7QX" id="ooa-nR-TPh"/>
                         <outlet property="exchangeTopTF" destination="nY2-ne-lUu" id="0rK-za-w4B"/>
+                        <outlet property="internetReponse" destination="frO-j8-neM" id="7DM-fG-Yyc"/>
                         <outlet property="tableViewO" destination="KD2-3F-myL" id="k8V-eU-rnK"/>
                         <outlet property="tableviewCovert" destination="lEq-do-D46" id="Gy7-MP-54l"/>
                     </connections>

@@ -9,25 +9,30 @@
 #import "exchangeViewController.h"
 #import "exchangeWebviewViewController.h"
 
-@interface exchangeViewController ()
+// currency object
+
+
+@interface exchangeViewController () <CRCurrencyRequestDelegate>
 
 @end
 
 @implementation exchangeViewController
 
 
-@synthesize exchangeTopTF, exchangeBottomTF;
+@synthesize exchangeTopTF, exchangeBottomTF, storeData;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
+    [ self fetchData ] ;
+    
                     // No interaction of "Textfield botton"
                     [ self.exchangeBottomTF setUserInteractionEnabled:  NO ];
     
                     // origin
-                    self.data = [[ NSArray alloc ] initWithObjects: @"1", @"2", @"3",@"1", @"2", @"3",@"1", @"2", @"3", nil];
+                    self.data = [[ NSArray alloc ] initWithObjects: @"USD", @"EUR", @"JPY",@"BGN", @"CZK", @"DKK",@"GBP", @"HUF", @"PLN",@"RON",@"SEK",@"CHF",@"INR", nil];
                     self.tableViewO.delegate = self;
                     self.tableViewO.dataSource = self ;
     
@@ -39,7 +44,7 @@
                         [ self.tableViewO setHidden: YES ];
     
                     // covert
-                    self.dataCovert = [[ NSArray alloc ] initWithObjects: @"a", @"b", @"c", @"a", @"b", @"c", @"a", @"b", @"c", nil];
+                    self.dataCovert = [[ NSArray alloc ] initWithObjects: @"USD", @"EUR", @"JPY",@"BGN", @"CZK", @"DKK",@"GBP", @"HUF", @"PLN",@"RON",@"SEK",@"CHF",@"INR", nil];
                     self.tableviewCovert.delegate = self;
                     self.tableviewCovert.dataSource = self;
     
@@ -50,10 +55,22 @@
                     else
                         [ self.tableviewCovert setHidden: YES ];
     
+                  // Currenct object
+                  self.exchangeTopTF.enabled = NO ;
+                  self.req = [[ CRCurrencyRequest alloc ] init ];
+                  self.req.delegate = self ;
+                  [self.req start];
+    
     
 }
 
-
+-(void) currencyRequest:(CRCurrencyRequest *)req retrievedCurrencies:(CRCurrencyResults *)currencies{
+    
+    self.results = currencies;
+    self.exchangeTopTF.enabled = YES;
+    self.internetReponse.text = @"..."; 
+  
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -85,6 +102,11 @@
     
                 // perform animate
                 [ self presentViewController: vc animated: YES completion: nil ];
+    
+
+        
+        
+
 }
 
 
@@ -162,7 +184,7 @@
                                NSString *originSymbol = cell.textLabel.text ;
                                NSLog(  @"Origin amount : %@",  originSymbol );
                         
-                              [ self getValue: originSymbol ];
+                        
                     
                     }
                     else if ( tableView == _tableviewCovert) {
@@ -190,53 +212,113 @@
     
 }
 
-- (void) getValue:(NSString *) origin{
-    
-   // NSString *x =  [[ self buttonCovert]titleLabel];
-    
-    
-   
-    
-    
-}
 
 
 // Origin currency button
 - (IBAction)btnAction:(id)sender {
     
-                if ( self.tableViewO.hidden == YES ) {
-                    [ self.tableViewO setHidden: NO ];
-                }
-                else
-                    [ self.tableViewO setHidden: YES ];
-    
-    
+                        // set hidden
+                            if ( self.tableViewO.hidden == YES ) {
+                                [ self.tableViewO setHidden: NO ];
+                            }
+                            else
+                                [ self.tableViewO setHidden: YES ];
+
     
 }
+
+
+
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-
+// Covert currency button
 - (IBAction)covertButton:(id)sender {
     
-    if ( self.tableviewCovert.hidden == YES ) {
-        [ self.tableviewCovert setHidden: NO ];
-    }
-    else
-        [ self.tableviewCovert setHidden: YES ];
+
+                    //set hidden
+                    if ( self.tableviewCovert.hidden == YES ) {
+                        [ self.tableviewCovert setHidden: NO ];
+                    }
+                    else
+                        [ self.tableviewCovert setHidden: YES ];
+    
+                    // double originCurrency = [ exchangeTopTF.text doubleValue ];
     
     
- 
-   // Origin and covert button symbol
-     NSString *x = _buttonCovert.titleLabel.text;
-     NSString *y =  _btnOutlet.titleLabel.text;
-  
-    
-    NSLog( @"This is the button outlet: %@ and this is the button covert: %@ ", y, x  ); 
-    
+
+
+
 }
 - (IBAction)buttonCovert:(id)sender {
+}
+
+
+- (void)fetchData {
+                    NSString *userAuth = [FIRAuth auth].currentUser.uid;
+
+                    NSLog( @"This is the userAuth in fetch data fuction: %@", userAuth );
+    
+                    self.ref = [[FIRDatabase database] reference];
+    
+                   [[[[[self.ref child: @"client"]child: userAuth ] child: @"account"] child: @"balance" ] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                       
+                       
+                       NSMutableDictionary *usersDict =  [[ NSMutableDictionary alloc ] init ];
+                       
+                       [ usersDict setObject: snapshot.value  forKey: @"the snap"];
+                       
+                               NSString *snapshotValue = [ usersDict objectForKey:  @"the snap"];
+                               NSLog(@"snapshot vlaue : %@",snapshotValue);
+
+                               NSLog(@"Information : %@",usersDict);
+                    }];
+    
+    
+                    NSLog( @" fetching data from firebase ");
+}
+
+
+-(void) fetchLoopKey {
+    
+    
+                    NSString *userAuth = [FIRAuth auth].currentUser.uid;
+
+    
+                    FIRDatabaseQuery *myTopPostsQuery = [[self.ref child:@"client"] queryOrderedByKey];
+    
+                    storeData = [[ NSMutableArray alloc ] init ];
+    
+                    [ myTopPostsQuery observeEventType: FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                        
+                        BOOL isStuff = [ snapshot key ];
+
+                        
+                        exData *ex = [[ exData alloc ] init ] ;
+                        NSLog( @":::::::::::::::::::::%@", snapshot.key);
+                        NSLog( @":::::::::::::::::::::%d", isStuff);
+
+                        
+                    }];
+
+    
+}
+
+- (IBAction)theCovert:(id)sender {
+    
+    
+    float inputTop =  [ exchangeTopTF.text floatValue ];
+
+    // Origin and covert button symbol
+    NSString *x = _buttonCovert.titleLabel.text;
+    NSString *y =  _btnOutlet.titleLabel.text;
+    
+    if ( [x isEqualToString: @"JPY"] && [ y isEqualToString: @"USD"] ) {
+        float JPY = inputTop * self.results.JPY;
+        NSLog( @"JPY %f", JPY);
+        
+    };
 }
 @end

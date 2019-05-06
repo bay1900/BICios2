@@ -31,6 +31,7 @@
 		61EA59D22255C06C001216EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61EA59CF2255C06C001216EE /* GoogleService-Info.plist */; };
 		61EA59D62255C0B7001216EE /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EA59D52255C0B7001216EE /* registerViewController.m */; };
 		61EA59D92255C0C2001216EE /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EA59D82255C0C2001216EE /* loginViewController.m */; };
+		61FD4460227AAC7500466539 /* exData.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD445F227AAC7500466539 /* exData.m */; };
 		F55B19CB78B248303575A428 /* Pods_BICUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED2F85C2BC4B4CCA6E2DDFC /* Pods_BICUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,8 @@
 		61EA59D72255C0C2001216EE /* loginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		61EA59D82255C0C2001216EE /* loginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		61EA59DA2255C92D001216EE /* BIC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BIC.entitlements; sourceTree = "<group>"; };
+		61FD445E227AAC7500466539 /* exData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exData.h; sourceTree = "<group>"; };
+		61FD445F227AAC7500466539 /* exData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exData.m; sourceTree = "<group>"; };
 		86F884A9EB7E5943352555D0 /* Pods-BICTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BICTests.release.xcconfig"; path = "Target Support Files/Pods-BICTests/Pods-BICTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADFBD5D10F8364DA095DE592 /* Pods_BICTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BICTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34141F6EA2108E85212D907 /* Pods-BIC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BIC.release.xcconfig"; path = "Target Support Files/Pods-BIC/Pods-BIC.release.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				61E3A154226ED63500C49798 /* exchangeViewController.m */,
 				61E3A159226F1FAE00C49798 /* exchangeWebviewViewController.h */,
 				61E3A15A226F1FAE00C49798 /* exchangeWebviewViewController.m */,
+				61FD445E227AAC7500466539 /* exData.h */,
+				61FD445F227AAC7500466539 /* exData.m */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -461,8 +466,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BIC/Pods-BIC-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACFloatingTextfield-Objc/ACFloatingTextfield_Objc.framework",
+				"${BUILT_PRODUCTS_DIR}/CurrencyRequest/CurrencyRequest.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -470,8 +477,10 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACFloatingTextfield_Objc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CurrencyRequest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +519,7 @@
 			files = (
 				61618673225F49CA00A5BC67 /* LandingPageViewController.m in Sources */,
 				61E3A15B226F1FAE00C49798 /* exchangeWebviewViewController.m in Sources */,
+				61FD4460227AAC7500466539 /* exData.m in Sources */,
 				61278D6222558B280037C071 /* BIC.xcdatamodeld in Sources */,
 				61278D5C22558B280037C071 /* ViewController.m in Sources */,
 				61E3A155226ED63500C49798 /* exchangeViewController.m in Sources */,
