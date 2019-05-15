@@ -23,27 +23,6 @@
     // Do any additional setup after loading the view.
     
     
-            // check if user hasn't log out redirect them somewhere
-            // they have already signed in // token still alive
-            if ( [ FIRAuth auth ].currentUser ) {
-                NSLog( @"Currently signed in");
-                
-            }else {
-                NSLog( @"Not signed in yet !" );
-            }
-    
-    
-    
-            // Log out firebase session
-            NSError *signOutError;
-            BOOL status = [[FIRAuth auth] signOut:&signOutError];
-            if (!status) {
-                NSLog(@"Error signing out: %@", signOutError);
-                return;
-            }else{
-                NSLog(@"Successfully Signout");
-            }
-    
     
          
 }
@@ -59,73 +38,52 @@
 */
 
 - (IBAction)loginButton:(id)sender {
- 
+    
+    // call log in method
+    [ self login ];
+    
+    // authenticated user
+    BOOL user = [ FIRAuth auth ].currentUser ;
+    
+    // log in user respond
+    if ( user ) {
+        NSLog( @"it is a user !");
+    }
+    else {
+         self->loginValidateText.text = @"Unsuccessfull sign in";
+    }
 
-   
-    BOOL user = [FIRAuth auth].currentUser.uid;
-    
-    
-    // validate email
-    BOOL correctEmail =  [ self validEmail: loginEmailTF.text ];
-    
-    // validate password
-    // BOOL correctPassword = [ self validPassword: _loginPassword.text ];
-    
-    
-    
-    // if user not currently log in and email textfield is in correct format
-    
-    
-    [[FIRAuth auth] signInWithEmail: loginEmailTF.text
-                               password: loginPasswordTF.text
-                             completion:^(FIRAuthDataResult * _Nullable authResult,
-                                          NSError * _Nullable error) {
-                                 
-                                                             // check the the log in success .. go to the next page
-                                                             if ( user && correctEmail ) {
-                                                                
-                                                                     // perform segue
-                                                                      //trigger segue if register success
-                                                                      UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
-                                                                      UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarNC"];
-                                                                      [ self presentViewController: vc animated: YES completion: nil ];
-                                                                 
-                                                                      NSLog (@"%@", [ FIRAuth auth ].currentUser.uid );
-                                                                      NSLog( @"Logging in ... !");
-                                                                      NSLog( @"Currently signed ingfgfgfgfgfgffg");
-                                                                 
-                                                             }else {
-                                                                      self->loginValidateText.text = @"Unsuccessfull sign in";
-                                                                      NSLog( @"Not signed in yet !fvxcvcxvxcvxccxv" );
-                                                             }
-                                 
-    }];
 }
-
 
 
 
 
 - (BOOL) validEmail:(NSString*) emailString {
     
-            if([emailString length]==0){
-                return NO;
-            }
+                    if([emailString length]==0){
+                        return NO;
+                    }
     
-            NSString *regExPattern = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+                    NSString *regExPattern = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     
-            NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:regExPattern options:NSRegularExpressionCaseInsensitive error:nil];
-            NSUInteger regExMatches = [regEx numberOfMatchesInString:emailString options:0 range:NSMakeRange(0, [emailString length])];
+                    NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:regExPattern options:NSRegularExpressionCaseInsensitive error:nil];
+                    NSUInteger regExMatches = [regEx numberOfMatchesInString:emailString options:0 range:NSMakeRange(0, [emailString length])];
     
-            NSLog(@"%lu", (unsigned long)regExMatches);
+                    NSLog(@"%lu", (unsigned long)regExMatches);
     
-            if (regExMatches == 0) {
-                NSLog ( @"Email is not in correct format");
-                return NO;
-            } else {
-                NSLog ( @"Email is in format ");
-                return YES;
-            }
+                    if (regExMatches == 0) {
+                        NSLog ( @"Email is not in correct format");
+                        return NO;
+                    } else {
+                        NSLog ( @"Email is in format ");
+                        return YES;
+                    }
+}
+
+-(void)login {
+                 // listen the authStateChangeListener
+                 [ self viewWillAppear: true ];
+ 
 }
 
 
@@ -146,5 +104,56 @@
 }
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    // listen for authentication state ``added listener``
+    self.ref = [[FIRAuth auth]
+                   addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
+                       
+
+                       
+                       // validate email format
+                       BOOL correctEmail =  [ self validEmail: self->loginEmailTF.text ];
+                       
+                       // sign in
+                       [[FIRAuth auth] signInWithEmail: self->loginEmailTF.text
+                                              password: self->loginPasswordTF.text
+                                            completion:^(FIRAuthDataResult * _Nullable authResult,
+                                                         NSError * _Nullable error) {
+                                                
+                                                
+                                                                        // check the the log in success .. go to the next page
+                                                                        if ( user && correctEmail ) {
+                                                                            
+                                                                            // perform segue
+                                                                            //trigger segue if register success
+                                                                            UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
+                                                                            UIViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarNC"];
+                                                                            [ self presentViewController: vc animated: YES completion: nil ];
+                                                                            
+                                                                            NSLog (@"%@", [ FIRAuth auth ].currentUser.uid );
+                                                                            NSLog( @"Logging in ... !");
+                                                                            NSLog( @"Currently signed in ``Login page``");
+                                                                            
+                                                                        }else if ( !user  || !correctEmail ) {
+                                                                           // self->loginValidateText.text = @"Unsuccessfull sign in";
+                                                                           // NSLog( @"Unsuccessfull sign in" );
+                                                                        }else {
+                                                                            NSLog( @"Unsuccessfull sign in" );
+                                                                        }
+                                                
+                                                                    }];
+                   }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+
+   [[FIRAuth auth] removeAuthStateDidChangeListener: _ref];
+    
+}
+
+
 
 @end
+

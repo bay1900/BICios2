@@ -9,6 +9,7 @@
 #import "LandingPageViewController.h"
 
 
+@import Firebase;
 
 
 @interface LandingPageViewController ()
@@ -20,6 +21,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    
+    
+    // check if user hasn't log out redirect them somewhere
+    // they have already signed in // token still alive
+    if ( [ FIRAuth auth ].currentUser ) {
+        NSLog( @"Currently signed in");
+        
+    }else {
+        NSLog( @"Not signed in yet !" );
+    }
+    
+    
+    
+    // Log out firebase session
+    NSError *signOutError;
+    BOOL status = [[FIRAuth auth] signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Error signing out: %@", signOutError);
+        return;
+    }else{
+        NSLog(@"Successfully Signout");
+    }
     
     
     
@@ -58,7 +83,7 @@
     
     
     NSMutableArray *myCurrency = [[ NSMutableArray alloc] init ] ; // store currency name
-    NSMutableArray *myValue;    // store values
+    NSMutableArray *myValue = [[ NSMutableArray alloc ] init ];    // store values
     
     
     NSError *error;
@@ -76,30 +101,45 @@
                         NSString *value = [j[@"rates"] objectForKey:key];
                       //  NSLog(@"areacodedisplay: value = %@",value);
                         //NSLog(@"areacodedisplay: key = %@",key);
-        NSString *string_one = @"One";
+      //  NSString *string_one = @"One";
 
-        NSString *x = value;
-        NSString *y = key;
+        //NSString *x = value;
+       // NSString *y = key;
         
         
         
         
         [ myCurrency addObject: key ];
+        [ myValue addObject: value ];
+        // treat  JSON data as  NSArray for tableview
+        self.cur = [[NSArray alloc] initWithArray: myCurrency];
+        self.rate = [[ NSArray alloc ] initWithArray: myValue ];
         
+        //NSLog( @"the cur array %@", self.cur );
+       // NSLog( @"the rate array %@", self.rate );
 
 
       }
     
-    NSLog( @"gg:::::::::::%@", myCurrency );
+    
+     self.theIndex = [ _cur indexOfObject: @"AUD"   ];
+    
+    NSLog( @" OOOOOOOOO:::::::::::%@", j );
+    NSLog( @" OOOOOOOOO:::::::::::%d", self.theIndex );
+    NSLog( @" OOOOOOOOO:::::::::::%@", _rate[ self.theIndex ] );
 
+//NSLog( @"gg:::::::::::%@", myValue );
+    
+  
+//NSLog( @"the rate ..... %@""""", self.rate[1] );
     
 
-    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
-    NSString *string_one = @"One";
-    [mutableArray addObject:string_one];
+//NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+  //  NSString *string_one = @"One";
+//[mutableArray addObject:string_one];
     //Or
-    [mutableArray addObject:@"Two"];
-    NSLog(@"%@", mutableArray);
+//    [mutableArray addObject:@"Two"];
+//NSLog(@"%@", mutableArray);
     
     // check indexofObject of the string in an array
     NSLog(  @" the indexOfOBJECT%lu", (unsigned long)[ myCurrency indexOfObject: @"HRK" ] );

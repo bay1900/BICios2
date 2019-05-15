@@ -31,7 +31,6 @@ pod 'Firebase/Database'
 
 
 pod 'ACFloatingTextfield-Objc'
-pod 'CurrencyRequest'
 
 
 end

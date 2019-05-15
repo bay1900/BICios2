@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface exchangeWebviewViewController : UIViewController
+@interface exchangeWebviewViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, strong ) NSDictionary *dictData;
 //@property (strong, nonatomic) IBOutlet UIWebView *webView;

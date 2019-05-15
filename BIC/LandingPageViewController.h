@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -14,6 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LandingPageViewController : UIViewController
 - (IBAction)registerLand:(id)sender;
 - (IBAction)loginLand:(id)sender;
+
+
+
+
+@property (strong, nonatomic ) NSArray* cur;
+@property (strong, nonatomic ) NSArray* rate;
+
+@property (nonatomic, assign) int theIndex;
 
 @end
 

@@ -67,22 +67,19 @@
                                                        password: registerPassword.text
                                                      completion:^(FIRAuthDataResult * _Nullable authResult,
                                                                   NSError * _Nullable error) {
-                                                       
-                                                             // query to database
-                                                             // authenticated user
-                                                             NSString *userAuth = [FIRAuth auth].currentUser.uid;
-                                                             
-                                                             // [[[self.ref child:@"users"] child: userAuth ]setValue:@{@"username": @"what is the username !"}];
-                                                             
-                                                             // child of root client, created when this page is loaded
-                                                             NSString *key = [[[[ self.ref  child: userAuth ] child: @"GG" ]child:@"y" ]key ];
-                                                             
-                                                             
-                                                             NSDictionary *x = @{
-                                                                                 @"balance": @"100"
-                                                                                 
-                                                                                 };
-                                                             [[[ self.ref child: userAuth ] child: @"account"] setValue: x ];
+                                                         
+                                                         // query to database
+                                                         // authenticated user
+                                                         NSString *userAuth = [FIRAuth auth].currentUser.uid;
+                                                         
+                                                         // child of root client, created when this page is loaded
+                                                         NSString *key = [[[[ self.ref  child: userAuth ] child: @"GG" ]child:@"y" ]key ];
+                                                         
+                                                         
+                                                         NSDictionary *x = @{
+                                                                                @"balance": @"100"
+                                                                            };
+                                                         [[[ self.ref child: userAuth ] child: @"account"] setValue: x ];
                                                          
                                                          
                                                      }];

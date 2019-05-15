@@ -1,6 +1,5 @@
 PODS:
   - ACFloatingTextfield-Objc (1.7)
-  - CurrencyRequest (0.2.1)
   - Firebase/Auth (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.4.2)
@@ -72,7 +71,6 @@ PODS:
 
 DEPENDENCIES:
   - ACFloatingTextfield-Objc
-  - CurrencyRequest
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -80,7 +78,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ACFloatingTextfield-Objc
-    - CurrencyRequest
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -96,7 +93,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ACFloatingTextfield-Objc: 8780c7a0d96b2039d8a60d3461a4bbcd22e3faf3
-  CurrencyRequest: 92588153b6d3cfcd0497d0cdded3bd9ee27a5c3f
   Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
   FirebaseAuth: dd7bbf03a5aee0eafb3a1aee4d2812bd74bac890
@@ -110,6 +106,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 92c14074f14069fc1005dcaad1b76b62efb4d1c9
+PODFILE CHECKSUM: e3ad86238a106b585465832ea559b9994be526e7
 
 COCOAPODS: 1.6.1

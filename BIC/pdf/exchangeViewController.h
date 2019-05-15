@@ -13,8 +13,6 @@
 #import "exData.h"
 
 // currency
-#import <CurrencyRequest/CRCurrencyRequest.h>
-#import <CurrencyRequest/CRCurrencyResults.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -48,9 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
     - (IBAction)buttonCovert:(id)sender;
 
 
-//Currency
-@property (nonatomic ) CRCurrencyRequest *req;
-@property (nonatomic ) CRCurrencyResults *results;
+
 
 @property (strong, nonatomic) IBOutlet UILabel *internetReponse;
 
@@ -64,6 +60,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *storeData;
 
 - (IBAction)theCovert:(id)sender;
+
+
+@property (strong, nonatomic ) NSString* originSymbol;
+@property (strong, nonatomic ) NSString* covertSymbol;
+
+///
+@property (strong, nonatomic ) NSArray* cur;
+@property (strong, nonatomic ) NSArray* rate;
+
+/////
+@property (nonatomic)  double* originToUERO;
+@property (nonatomic)  double* result;
+
+
+
+@property (nonatomic, assign) int theIndex;
+
+
 
 @end
 

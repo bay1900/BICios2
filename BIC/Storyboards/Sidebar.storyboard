@@ -172,8 +172,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="openHTML:" destination="9uR-pQ-lTw" eventType="touchUpInside" id="Gbc-e9-lTa"/>
-                                    <segue destination="NZd-Aq-NgQ" kind="show" id="oT7-Dz-fbv"/>
+                                    <segue destination="hvq-XJ-NFW" kind="show" id="CGR-Q6-dAB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fW-00-WpM">
@@ -260,30 +259,30 @@
             </objects>
             <point key="canvasLocation" x="7453.6231884057979" y="-16.071428571428569"/>
         </scene>
-        <!--Exchange Webview View Controller-->
+        <!--View Controller-->
         <scene sceneID="sLc-fc-KM5">
             <objects>
-                <viewController storyboardIdentifier="exchangePDF" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hvq-XJ-NFW" customClass="exchangeWebviewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="exchangePDF" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hvq-XJ-NFW" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4gx-jI-HIO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jlb-6v-vGP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="761"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4l-Ta-XoJ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <connections>
+                                    <segue destination="L0i-bd-yT1" kind="embed" id="ZVv-Rj-gV1"/>
+                                </connections>
+                            </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.18420665689999999" green="0.42958630180000001" blue="0.325035621" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="U4l-Ta-XoJ" firstAttribute="top" secondItem="huv-bP-nwG" secondAttribute="top" id="7jc-CH-Wiv"/>
+                            <constraint firstItem="U4l-Ta-XoJ" firstAttribute="bottom" secondItem="huv-bP-nwG" secondAttribute="bottom" id="AnL-q4-Pne"/>
+                            <constraint firstItem="U4l-Ta-XoJ" firstAttribute="leading" secondItem="4gx-jI-HIO" secondAttribute="leading" id="VBL-2G-4B1"/>
+                            <constraint firstAttribute="trailing" secondItem="U4l-Ta-XoJ" secondAttribute="trailing" id="Wx4-q9-7Jd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="huv-bP-nwG"/>
                     </view>
-                    <connections>
-                        <outlet property="webView" destination="jlb-6v-vGP" id="eWF-bM-eao"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PT6-8e-K7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -380,6 +379,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UQa-ij-51M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4256.521739130435" y="1262.9464285714284"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qnz-QO-yfd">
+            <objects>
+                <viewController id="OdE-bv-jmy" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UET-tj-mpo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="MH9-Vw-S5z"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cet-fy-85t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Exchange Webview View Controller-->
+        <scene sceneID="e8K-43-m7D">
+            <objects>
+                <viewController id="L0i-bd-yT1" customClass="exchangeWebviewViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OcJ-FA-yeo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEY-XZ-5fa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gVH-Go-gBk"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="nEY-XZ-5fa" id="joQ-Hs-NKL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CVB-z0-BaY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9076.8115942028999" y="-14.0625"/>
         </scene>
     </scenes>
     <resources>
