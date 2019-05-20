@@ -17,7 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong ) NSDictionary *dictData;
 //@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
-@property (strong, nonatomic) IBOutlet WKWebView *webView;
+// (strong, nonatomic) IBOutlet WKWebView *webview;
+
+@property (strong, nonatomic) IBOutlet WKWebView *webview;
+
+// no need
+@property (strong, nonatomic) IBOutlet UILabel *testTextWeb;
+@property (strong, nonatomic) NSString *testForWeb;
+
 
 @end
 

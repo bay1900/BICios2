@@ -70,13 +70,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic ) NSArray* rate;
 
 /////
-@property (nonatomic)  double* originToUERO;
+@property (nonatomic, assign )  double  originToUERO;
 @property (nonatomic)  double* result;
 
 
 
-@property (nonatomic, assign) int theIndex;
+@property (nonatomic) int indexCur;
+@property (nonatomic)  double  lcAmount;
 
+
+- (IBAction)exchangeReguest:(id)sender;
+
+
+//no need
 
 
 @end

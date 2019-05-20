@@ -122,7 +122,7 @@
       }
     
     
-     self.theIndex = [ _cur indexOfObject: @"AUD"   ];
+     self.theIndex = (int)[_cur indexOfObject: @"AUD"];
     
     NSLog( @" OOOOOOOOO:::::::::::%@", j );
     NSLog( @" OOOOOOOOO:::::::::::%d", self.theIndex );

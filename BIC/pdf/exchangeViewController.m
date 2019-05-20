@@ -7,7 +7,9 @@
 //
 
 #import "exchangeViewController.h"
+#import  "exchangeForContainerViewController.h"
 #import "exchangeWebviewViewController.h"
+
 
 // currency object
 
@@ -19,41 +21,48 @@
 @implementation exchangeViewController
 
 
-@synthesize exchangeTopTF, exchangeBottomTF, storeData;
+@synthesize exchangeTopTF, exchangeBottomTF, storeData, cur, rate, originToUERO, indexCur ;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [ self fetchData ] ;
     
+//    trytextViewController *tryText = [[ trytextViewController alloc ] init ];
+//
+//    tryText.wooText = @"bay";
+//    NSLog ( @"popping up to container zzzz " );
 
     
-                    // No interaction of "Textfield botton"
-                    [ self.exchangeBottomTF setUserInteractionEnabled:  NO ];
+    [ self fetchData ] ;
     
-                    // origin
-                    self.tableViewO.delegate = self;
-                    self.tableViewO.dataSource = self ;
     
-                    //set all tableview hidden when page is loaded
-                    if ( self.tableViewO.hidden == YES ) {
-                        [ self.tableViewO setHidden: NO ];
-                    }
-                    else
-                        [ self.tableViewO setHidden: YES ];
     
-                    // covert
+    // No interaction of "Textfield botton"
+    [ self.exchangeBottomTF setUserInteractionEnabled:  NO ];
     
-                    self.tableviewCovert.delegate = self;
-                    self.tableviewCovert.dataSource = self;
+    // origin
+    self.tableViewO.delegate = self;
+    self.tableViewO.dataSource = self ;
     
-                    //set all tableview hidden when page is loaded
-                    if ( self.tableviewCovert.hidden == YES ) {
-                        [ self.tableviewCovert setHidden: NO ];
-                    }
-                    else
-                        [ self.tableviewCovert setHidden: YES ];
+    //set all tableview hidden when page is loaded
+    if ( self.tableViewO.hidden == YES ) {
+        [ self.tableViewO setHidden: NO ];
+    }
+    else
+        [ self.tableViewO setHidden: YES ];
+    
+    // covert
+    
+    self.tableviewCovert.delegate = self;
+    self.tableviewCovert.dataSource = self;
+    
+    //set all tableview hidden when page is loaded
+    if ( self.tableviewCovert.hidden == YES ) {
+        [ self.tableviewCovert setHidden: NO ];
+    }
+    else
+        [ self.tableviewCovert setHidden: YES ];
     
     ////////
     
@@ -67,24 +76,24 @@
     NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error: &error];
     
     NSMutableDictionary *j =[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error: &error];
- 
+    
     
     for (NSString * key in j[@"rates"]) {
         
-                NSString *value = [j[@"rates"] objectForKey:key];
+        NSString *value = [j[@"rates"] objectForKey:key];
         
-                        //NSString *x = value;
-                        // NSString *y = key;
+        //NSString *x = value;
+        // NSString *y = key;
         
-                [ myCurrency addObject: key ];
-                [ myValue addObject: value ];
+        [ myCurrency addObject: key ];
+        [ myValue addObject: value ];
         
-                // treat  NSMutableArray as  NSArray for tableview
-                self.cur = [[NSArray alloc] initWithArray: myCurrency];
-                self.rate = [[ NSArray alloc ] initWithArray: myValue ];
+        // treat  NSMutableArray as  NSArray for tableview
+        self.cur = [[NSArray alloc] initWithArray: myCurrency];
+        self.rate = [[ NSArray alloc ] initWithArray: myValue ];
         
-                //NSLog( @"the cur array %@", self.cur );
-                // NSLog( @"the rate array %@", self.rate );
+        //NSLog( @"the cur array %@", self.cur );
+        // NSLog( @"the rate array %@", self.rate );
         
         
     }
@@ -92,13 +101,13 @@
     
     
     
-    NSLog(  @" key AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ _cur indexOfObject: @"AUD" ] );
-   // NSLog(  @" value AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ _rate indexOfObject:  ] );
+    NSLog(  @" key AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ cur indexOfObject: @"AUD" ] );
+    // NSLog(  @" value AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ _rate indexOfObject:  ] );
     
     
-  //  NSLog( @">>>>>>>>>>>>  %@", _rate[indexOfCur]);
-  
-
+    //  NSLog( @">>>>>>>>>>>>  %@", _rate[indexOfCur]);
+    
+    
     
     NSLog( @"gg:::::::::::%@", myCurrency );
     NSLog( @"gg:::::::::::%@", myValue );
@@ -118,30 +127,35 @@
     
     
     // trigger segue if register success
-    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
-    exchangeWebviewViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"exchangePDF"];
+//    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
+//    exchangeForContainerViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"exchangePDF"];
+
+//
+//
+//    NSMutableDictionary *dict = [[ NSMutableDictionary alloc ] init ];
+//
+//    [ dict setObject: exchangeTopTF.text forKey:@"nameKey"];
+//    [ dict setObject: exchangeBottomTF.text forKey:@"ageKey"];
+//
+//
+//    //[ dict setObject: @"A" forKey:@"nameKey"];
+//    //[ dict setObject: @"B" forKey:@"ageKey"];
+//
+//    // pass data `
+//    vc.dictData = dict;
+//
+//    NSLog (@"nsdic = %@", dict);
+//
+//    // perform animate
+//   [ self presentViewController: vc animated: YES completion: nil ];
+
+    // pass data from exchangeVC to exchangeForContainerVC
+    exchangeForContainerViewController *x ;
+    x = [ segue destinationViewController];
+
+    NSString *name = @"bay";
     
-    
-    
-    NSMutableDictionary *dict = [[ NSMutableDictionary alloc ] init ];
-    
-    [ dict setObject: exchangeTopTF.text forKey:@"nameKey"];
-    [ dict setObject: exchangeBottomTF.text forKey:@"ageKey"];
-    
-    
-    //[ dict setObject: @"A" forKey:@"nameKey"];
-    //[ dict setObject: @"B" forKey:@"ageKey"];
-    
-    // pass data `
-    vc.dictData = dict;
-    
-    NSLog (@"nsdic = %@", dict);
-    
-    // perform animate
-    [ self presentViewController: vc animated: YES completion: nil ];
-    
-    
-    
+    x.theData = name ;
     
 
 }
@@ -157,36 +171,36 @@
     
     
     
-            static NSString *simpleTableIdentifier = @"SimpleTableItem";
-            UITableViewCell *cell = [ tableView dequeueReusableCellWithIdentifier: simpleTableIdentifier];
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    UITableViewCell *cell = [ tableView dequeueReusableCellWithIdentifier: simpleTableIdentifier];
     
-                        if ( tableView == _tableViewO ) {
-                            
-                                     cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
-                            
-                                     cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
-                                     cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
-                                    // return  cell;
-                                    NSLog( @"Tableview 1");
-                            
-                        }
-                        else if ( tableView == _tableviewCovert) {
-                            
-                            
-                                     cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
-                            
-                                     cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
-                                     cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
-                            
-                                     NSLog( @"Tableview 2");
-                            
-                        }
-                        else {
-                            
-                             NSLog( @"Tableview error");
-                        }
+    if ( tableView == _tableViewO ) {
+        
+        cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
+        
+        cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
+        // return  cell;
+        
+        
+    }
+    else if ( tableView == _tableviewCovert) {
+        
+        
+        cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
+        
+        cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
+        
+        
+        
+    }
+    else {
+        
+        NSLog( @"Tableview error");
+    }
     
-           return cell ;
+    return cell ;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -221,6 +235,7 @@
                                self.originSymbol = cell.textLabel.text ;
                                NSLog(  @"Origin amount : %@",  _originSymbol );
                         
+                        [ self covertOrigin];
                         
                     
                     }
@@ -238,7 +253,9 @@
                                 self.covertSymbol = cell.textLabel.text ;
                                 NSLog(  @"covert amount : %@",  _covertSymbol );
                         
-                        
+                        [ self getTotal ];
+                        [ self viewWillAppear: true ];
+
                         
                     }
                     else {
@@ -246,7 +263,7 @@
                                 NSLog( @"Something went wrong on didSelectRowAtIndexPath ");
                     }
   
-    [ self covertMethod ]; 
+   
     
 }
 
@@ -294,8 +311,11 @@
 
 
 - (void)fetchData {
+    
+    // authenticated user
     NSString *userAuth = [FIRAuth auth].currentUser.uid;
     
+    // display the authenticated user ID
     NSLog( @"This is the userAuth in fetch data fuction: %@", userAuth );
     
     self.ref = [[FIRDatabase database] reference];
@@ -320,25 +340,25 @@
 
 -(void) fetchLoopKey {
     
-    
-    NSString *userAuth = [FIRAuth auth].currentUser.uid;
-    
-    
-    FIRDatabaseQuery *myTopPostsQuery = [[self.ref child:@"client"] queryOrderedByKey];
-    
-    storeData = [[ NSMutableArray alloc ] init ];
-    
-    [ myTopPostsQuery observeEventType: FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        BOOL isStuff = [ snapshot key ];
-        
-        
-        exData *ex = [[ exData alloc ] init ] ;
-        NSLog( @":::::::::::::::::::::%@", snapshot.key);
-        NSLog( @":::::::::::::::::::::%d", isStuff);
-        
-        
-    }];
+//
+//    NSString *userAuth = [FIRAuth auth].currentUser.uid;
+//
+//
+//    FIRDatabaseQuery *myTopPostsQuery = [[self.ref child:@"client"] queryOrderedByKey];
+//
+//    storeData = [[ NSMutableArray alloc ] init ];
+//
+//    [ myTopPostsQuery observeEventType: FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//
+//        BOOL isStuff = [ snapshot key ];
+//
+//
+//        exData *ex = [[ exData alloc ] init ] ;
+//        NSLog( @":::::::::::::::::::::%@", snapshot.key);
+//        NSLog( @":::::::::::::::::::::%d", isStuff);
+//
+//
+//    }];
 
     
 }
@@ -346,57 +366,111 @@
 - (IBAction)theCovert:(id)sender {
     
     
-    float inputTop =  [ exchangeTopTF.text floatValue ];
-
-    // Origin and covert button symbol
-    NSString *x = _buttonCovert.titleLabel.text;
-    NSString *y =  _btnOutlet.titleLabel.text;
-    
-  
+//    float inputTop =  [ exchangeTopTF.text floatValue ];
+//
+//    // Origin and covert button symbol
+//    NSString *x = _buttonCovert.titleLabel.text;
+//    NSString *y =  _btnOutlet.titleLabel.text;
+//
+//
 }
 
 -(void)covertMethod{
-    
-    NSInteger inputTop =  [ exchangeTopTF.text integerValue ];
-    
-    NSLog( @"the originSymbol %ld", (long)inputTop );
-
-    
-    NSLog( @"the originSymbol %@", _originSymbol );
-    NSLog( @"the covertSymbol %@", _covertSymbol );
-    
-    
-    if ( ![self.originSymbol  isEqual: @"CURRENCY"] ) {
-        
-                // calculate result
-                // check indexofObject of the string in an array
-               NSInteger *indexCurr =  [self.cur indexOfObject: _originSymbol];
-                int indexCur = (int) indexCurr;   // treat NSInteger as int
-               NSLog( @"Index of cur button %lu",  (unsigned long)indexCurr);
-        
-        
-                // Check rate base on indexCure
-                NSString *valueRateee =  self.rate[indexCur];
-               // NSInteger *valueRatee = [ valueRatee integerValue ];
-                int valueRate = [ valueRateee  integerValue ];
-                NSLog( @"the result of selected index:::: %@ ", valueRateee );
-        
-                // covert origin rate to uero because, data that fetch from FIXER.IO base on UERO rates
-                 self.originToUERO = inputTop * valueRate ;
-        
-        
-                // set botton textfield as the result of the exchange
-        self.exchangeBottomTF.text =  [ NSString stringWithFormat: @"%lu", (unsigned long)self.originToUERO ] ;
-        
-        
-    } else if ( ![self.covertSymbol  isEqual: @"CURRENCY"]  ) {
-        
-    }
-    else {
-        
-    }
+//
+//    int inputTop =  (int)[ exchangeTopTF.text integerValue ];
+//
+//    NSLog( @"the originSymbol %d", inputTop );
+//
+//
+//    NSLog( @"the originSymbol %@", _originSymbol );
+//    NSLog( @"the covertSymbol %@", _covertSymbol );
+//
+//
+//    if ( ![self.originSymbol  isEqual: @"CURRENCY"] ) {
+//
+//
+//
+//
+//    } else if ( ![self.covertSymbol  isEqual: @"CURRENCY"] ) {
+//
+//
+//
+//    }
+//    else {
+//
+//    }
 
 }
+
+
+-(void)covertOrigin  {
+    
+    int inputOriginTF =  (int)[ exchangeTopTF.text integerValue ];
+
+    // check indexofObject of the string in an array
+    indexCur =  (int)[cur indexOfObject: _originSymbol];
+    NSLog( @"Index of original  ::::: %d", indexCur);
+    
+    
+    // Check rate base on indexCure
+    NSString *valueRateee =  self.rate[indexCur];
+    
+    // --------------------------------
+    
+    double valueRate = (double)[ valueRateee  doubleValue ];
+    NSLog( @"Rate of origin ::::: %@ ", valueRateee );
+    
+    // covert origin rate to uero because, data that fetch from FIXER.IO base on UERO rates
+    
+    double fcAmount ;
+    fcAmount  = inputOriginTF * valueRate ;
+    
+    originToUERO  = fcAmount ;
+    
+    NSLog( @"originToUERO ::::: %.2f", fcAmount  );
+    [ self viewWillAppear: true ];
+
+}
+
+- (void)getTotal{
+    
+    NSLog(  @" %@",   rate[indexCur]);   // todo
+    // get the AUS rate fom valueRate array
+//    int indexRate ;
+//    NSLog( @"Index of rate  ::::: %d", indexRate);
+//
+    // Check rate base on indexCure
+    NSString *rateArray =  rate[indexCur];;
+    
+    // ----------------------------------
+    
+    double covertRate = (double)[ rateArray doubleValue];
+    NSLog( @"Rate of covert ::::: %@ ", rateArray );
+    
+    
+    _lcAmount =  originToUERO * covertRate ;
+    NSLog( @" The covert result ::::: %.2f", _lcAmount  );
+    
+//    // set botton textfield as the result of the exchange
+//    self.exchangeBottomTF.text =  [ NSString stringWithFormat: @"%.2f", lcAmount ];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    // set botton textfield as the result of the exchange
+    self.exchangeBottomTF.text =  [ NSString stringWithFormat: @"%.2f", _lcAmount ];
+    NSLog( @"viewWillAppear is loaded ");
+}
+
+- (IBAction)exchangeReguest:(id)sender {
+    
+    NSLog( @" Exchange button is clicked !");
+
+    // perform segue base on segue identifier
+    [ self performSegueWithIdentifier: @"toVC" sender: self ]; 
+    
+}
+
 
 
 @end

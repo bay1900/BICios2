@@ -22,6 +22,7 @@
 		61618673225F49CA00A5BC67 /* LandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61618672225F49CA00A5BC67 /* LandingPageViewController.m */; };
 		61618676225F4E6900A5BC67 /* bcelOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 61618675225F4E6900A5BC67 /* bcelOne.png */; };
 		618DEF91226800510098BC8A /* mainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 618DEF90226800510098BC8A /* mainViewController.m */; };
+		61C2FECD228BD49A00571D68 /* exchangeForContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C2FECC228BD49A00571D68 /* exchangeForContainerViewController.m */; };
 		61E3A151226ED3A200C49798 /* exchange.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E3A150226ED3A100C49798 /* exchange.html */; };
 		61E3A155226ED63500C49798 /* exchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E3A154226ED63500C49798 /* exchangeViewController.m */; };
 		61E3A158226EE38000C49798 /* accelerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E3A157226EE38000C49798 /* accelerateViewController.m */; };
@@ -77,6 +78,8 @@
 		61618675225F4E6900A5BC67 /* bcelOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bcelOne.png; sourceTree = "<group>"; };
 		618DEF8F226800510098BC8A /* mainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainViewController.h; sourceTree = "<group>"; };
 		618DEF90226800510098BC8A /* mainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mainViewController.m; sourceTree = "<group>"; };
+		61C2FECB228BD49A00571D68 /* exchangeForContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exchangeForContainerViewController.h; sourceTree = "<group>"; };
+		61C2FECC228BD49A00571D68 /* exchangeForContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exchangeForContainerViewController.m; sourceTree = "<group>"; };
 		61E3A150226ED3A100C49798 /* exchange.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exchange.html; sourceTree = "<group>"; };
 		61E3A153226ED63500C49798 /* exchangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exchangeViewController.h; sourceTree = "<group>"; };
 		61E3A154226ED63500C49798 /* exchangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exchangeViewController.m; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				61E3A15A226F1FAE00C49798 /* exchangeWebviewViewController.m */,
 				61FD445E227AAC7500466539 /* exData.h */,
 				61FD445F227AAC7500466539 /* exData.m */,
+				61C2FECB228BD49A00571D68 /* exchangeForContainerViewController.h */,
+				61C2FECC228BD49A00571D68 /* exchangeForContainerViewController.m */,
 			);
 			path = pdf;
 			sourceTree = "<group>";
@@ -347,7 +352,7 @@
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -522,6 +527,7 @@
 				61E3A15B226F1FAE00C49798 /* exchangeWebviewViewController.m in Sources */,
 				61FD4460227AAC7500466539 /* exData.m in Sources */,
 				61278D6222558B280037C071 /* BIC.xcdatamodeld in Sources */,
+				61C2FECD228BD49A00571D68 /* exchangeForContainerViewController.m in Sources */,
 				61278D5C22558B280037C071 /* ViewController.m in Sources */,
 				61E3A155226ED63500C49798 /* exchangeViewController.m in Sources */,
 				618DEF91226800510098BC8A /* mainViewController.m in Sources */,

@@ -13,25 +13,21 @@
 @end
 
 @implementation exchangeWebviewViewController
-
-@synthesize webView;
+@synthesize  testTextWeb, testForWeb;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    
+//    testTextWeb.text = testForWeb ;
+//    NSLog( @"the testText :::::::::::::::: %@", testForWeb );
+//    
+//    
+//    // set it as webview when this page is loaded
+//    [_webview.scrollView setScrollEnabled: false ];
+//    //[webView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [_webview loadHTMLString: [self getHTMLString ] baseURL: [ NSURL URLWithString: @""]];
 
-    // set it as webview when this page is loaded
-    [webView.scrollView setScrollEnabled: false ];
-    //[webView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [webView loadHTMLString: [self getHTMLString ] baseURL: [ NSURL URLWithString: @""]];
-
-
-    // create button on the right top
-    UIBarButtonItem *btnSavePDF = [[ UIBarButtonItem alloc ] initWithTitle: @"Save as PDF" style: UIBarButtonItemStylePlain target: self action: @selector(savePDF:)];
-    // self.navigationItem.rightBarButtonItem = btnSavePDF;
-    [ self.navigationItem setRightBarButtonItem: btnSavePDF ];
 }
 
 /*
@@ -43,30 +39,30 @@
     // Pass the selected object to the new view controller.
 }
 */
-
--(NSString *) getHTMLString {
-    
-    
-    NSString *filePath = [[ NSBundle mainBundle ] pathForResource: @"exchange" ofType:@"html" ];
-    NSString *strHTML = [ NSString stringWithContentsOfFile: filePath encoding: NSUTF8StringEncoding error: nil ];
-    
-    // replace data from Dictionary to the webview
-    if ( self.dictData ) {
-        
-        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#name" withString: [ _dictData valueForKey: @"nameKey"]];
-        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#age" withString: [ _dictData valueForKey: @"ageKey"]];
-        
-    }
-    else {
-        
-        NSLog( @" someting went wrong ! ");
-    }
-    
-    
-    NSLog (@"nsdic in the webviewpage ! = %@", self.dictData);
-    return strHTML ;
-    
-}
+//
+//-(NSString *) getHTMLString {
+//
+//
+//    NSString *filePath = [[ NSBundle mainBundle ] pathForResource: @"exchange" ofType:@"html" ];
+//    NSString *strHTML = [ NSString stringWithContentsOfFile: filePath encoding: NSUTF8StringEncoding error: nil ];
+//
+//    // replace data from Dictionary to the webview
+//    if ( self.dictData ) {
+//
+//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#name" withString: [ _dictData valueForKey: @"nameKey"]];
+//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#age" withString: [ _dictData valueForKey: @"ageKey"]];
+//
+//    }
+//    else {
+//
+//        NSLog( @" someting went wrong ! ");
+//    }
+//
+//
+//    NSLog (@"nsdic in the webviewpage ! = %@", self.dictData);
+//    return strHTML ;
+//
+//}
 
 - ( void ) savePDF:(id)sender {
     
