@@ -50,9 +50,23 @@
     
     // check internet connection
     
+//    int i = 1;
+//    NSString *name = @"thefirstsong";
+//    NSString *filename = [NSString stringWithFormat:@"%0d-%@.mp3", i, name];
+//    NSLog(@" +++++++ %@", filename);
+
     
-    [ self tryData ];
-}
+    
+   
+    
+//    NSString *yes = [ NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=%@&to=%@&amount=%@", x, y, z ];
+//    NSLog(@" +++++++ %@", yes);
+
+//    NSString *url_string = [NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=X&to=Y&amount=Z"];
+   // [ self tryData ];
+   // [ self fixerCovert ];
+    
+  }
 
 /*
 #pragma mark - Navigation
@@ -153,6 +167,33 @@
 
                     }
 
- 
     }
+
+
+-(void)fixerCovert {
+//    NSError *error;
+//    NSString *url_string = [NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=AUD&to=USD&amount=10"];
+//    //NSString *url_string = [NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=X&to=Y&amount=Z"];
+//
+//
+//    NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString: url_string ]];
+//    NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error ];
+//   
+//    
+//    NSMutableDictionary *j =[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error: &error];
+//    NSLog( @"date ::: %@", j[@"date"]);
+//    NSLog( @"query ::: %@", j[@"query"][@"to"]);
+//    
+//    
+//    NSString *x = @"AUD";
+//    NSString *y = @"USD";
+//    NSString *z = @"10";
+//    
+//        NSString *yes = [ NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=%@&to=%@&amount=%@", x, y, z ];
+//        NSLog(@" +++++++ %@", yes);
+//    
+//        //NSString *url_string = [NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=X&to=Y&amount=Z"];
+//     [ self tryData ];
+//     [ self fixerCovert ];
+}
 @end

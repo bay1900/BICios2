@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface exchangeViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate>
+@interface exchangeViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 
 //@property (strong, nonatomic) IBOutlet UITextField *name;
@@ -79,7 +79,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic)  double  lcAmount;
 
 
+@property (nonatomic) double jCount;
+@property (strong, nonatomic ) NSArray* j;
+
+
+
 - (IBAction)exchangeReguest:(id)sender;
+
+///
+@property (strong, nonatomic ) NSString* x;
+@property (strong, nonatomic ) NSString* y;
+@property (strong, nonatomic ) NSString* z;
+@property (strong, nonatomic ) NSString* covertResult;
+@property (nonatomic)  double  resultCovertEndpoint;
+@property (strong, nonatomic ) NSString* dateReceipt;
+@property (strong, nonatomic ) NSString* billNumber;
+@property (strong, nonatomic ) NSString* rateReceipt;
+
+
+
 
 
 //no need

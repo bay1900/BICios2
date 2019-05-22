@@ -269,13 +269,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4l-Ta-XoJ">
-                                <rect key="frame" x="20" y="285" width="365" height="547"/>
+                                <rect key="frame" x="20" y="170" width="365" height="662"/>
                                 <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="L0i-bd-yT1" kind="embed" identifier="toExchangeContainer" id="ZVv-Rj-gV1"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2D-b6-TrN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2D-b6-TrN">
                                 <rect key="frame" x="20" y="116" width="374" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9P3-Or-T8b"/>
@@ -287,7 +287,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.18420665689999999" green="0.42958630180000001" blue="0.325035621" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="U4l-Ta-XoJ" firstAttribute="top" secondItem="e2D-b6-TrN" secondAttribute="bottom" constant="137" id="6zl-RQ-xk8"/>
+                            <constraint firstItem="U4l-Ta-XoJ" firstAttribute="top" secondItem="e2D-b6-TrN" secondAttribute="bottom" constant="22" id="0O8-cJ-M9T"/>
                             <constraint firstItem="U4l-Ta-XoJ" firstAttribute="leading" secondItem="huv-bP-nwG" secondAttribute="leading" constant="20" id="AjO-Xb-A2L"/>
                             <constraint firstItem="huv-bP-nwG" firstAttribute="trailing" secondItem="e2D-b6-TrN" secondAttribute="trailing" constant="20" id="CXv-9x-FR8"/>
                             <constraint firstItem="huv-bP-nwG" firstAttribute="trailing" secondItem="U4l-Ta-XoJ" secondAttribute="trailing" constant="29" id="QRw-6H-eGB"/>
@@ -402,47 +402,34 @@
             <objects>
                 <viewController storyboardIdentifier="exchangeContainer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L0i-bd-yT1" customClass="exchangeWebviewViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OcJ-FA-yeo">
-                        <rect key="frame" x="0.0" y="0.0" width="365" height="547"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="662"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEY-XZ-5fa">
-                                <rect key="frame" x="16" y="236" width="333" height="280"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="365" height="662"/>
+                                <color key="backgroundColor" red="0.70397763319999995" green="0.072218347380000006" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNW-0s-exd">
-                                <rect key="frame" x="81" y="87" width="235" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="YKD-HY-vIn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gVH-Go-gBk" firstAttribute="trailing" secondItem="nEY-XZ-5fa" secondAttribute="trailing" constant="16" id="4ar-G5-6zs"/>
-                            <constraint firstItem="MNW-0s-exd" firstAttribute="top" secondItem="gVH-Go-gBk" secondAttribute="top" constant="43" id="9DD-qY-GbF"/>
-                            <constraint firstItem="nEY-XZ-5fa" firstAttribute="top" secondItem="MNW-0s-exd" secondAttribute="bottom" constant="111" id="CDg-ur-b5d"/>
-                            <constraint firstItem="gVH-Go-gBk" firstAttribute="trailing" secondItem="MNW-0s-exd" secondAttribute="trailing" constant="49" id="LtR-1C-Ynj"/>
-                            <constraint firstItem="nEY-XZ-5fa" firstAttribute="leading" secondItem="gVH-Go-gBk" secondAttribute="leading" constant="16" id="QXH-WB-k1L"/>
-                            <constraint firstItem="MNW-0s-exd" firstAttribute="leading" secondItem="gVH-Go-gBk" secondAttribute="leading" constant="81" id="edc-8Z-4ba"/>
-                            <constraint firstItem="nEY-XZ-5fa" firstAttribute="bottom" secondItem="gVH-Go-gBk" secondAttribute="bottom" constant="3" id="zwm-8J-Rlh"/>
+                            <constraint firstItem="nEY-XZ-5fa" firstAttribute="leading" secondItem="OcJ-FA-yeo" secondAttribute="leading" id="J4x-9W-SgA"/>
+                            <constraint firstAttribute="trailing" secondItem="nEY-XZ-5fa" secondAttribute="trailing" id="d68-WY-TS0"/>
+                            <constraint firstItem="nEY-XZ-5fa" firstAttribute="top" secondItem="OcJ-FA-yeo" secondAttribute="top" id="hLh-ag-W21"/>
+                            <constraint firstAttribute="bottom" secondItem="nEY-XZ-5fa" secondAttribute="bottom" id="ub6-PB-1TP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gVH-Go-gBk"/>
                     </view>
                     <connections>
-                        <outlet property="testTextWeb" destination="MNW-0s-exd" id="2NB-ao-cbZ"/>
                         <outlet property="webview" destination="nEY-XZ-5fa" id="w0z-RH-UCd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVB-z0-BaY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9076.0869565217399" y="-14.397321428571427"/>
+            <point key="canvasLocation" x="9076.0869565217399" y="-14.732142857142856"/>
         </scene>
     </scenes>
     <resources>

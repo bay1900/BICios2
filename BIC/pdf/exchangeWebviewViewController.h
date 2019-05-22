@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 // no need
 @property (strong, nonatomic) IBOutlet UILabel *testTextWeb;
 @property (strong, nonatomic) NSString *testForWeb;
+@property (nonatomic, strong ) NSDictionary *dictShowWeb;
 
 
 @end

@@ -31,6 +31,7 @@ pod 'Firebase/Database'
 
 
 pod 'ACFloatingTextfield-Objc'
-
+pod 'Firebase/Analytics'
+pod 'Firebase/Storage'
 
 end

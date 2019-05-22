@@ -21,18 +21,14 @@
 @implementation exchangeViewController
 
 
-@synthesize exchangeTopTF, exchangeBottomTF, storeData, cur, rate, originToUERO, indexCur ;
+@synthesize exchangeTopTF, exchangeBottomTF, storeData, cur, rate, originToUERO, indexCur, jCount, j, resultCovertEndpoint ;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-//    trytextViewController *tryText = [[ trytextViewController alloc ] init ];
-//
-//    tryText.wooText = @"bay";
-//    NSLog ( @"popping up to container zzzz " );
 
+    // user press keyboard return "hide keyboard"
+    self.exchangeTopTF.delegate = self;
     
     [ self fetchData ] ;
     
@@ -64,44 +60,44 @@
     else
         [ self.tableviewCovert setHidden: YES ];
     
-    ////////
+ 
+
     
-    NSMutableArray *myCurrency = [[ NSMutableArray alloc] init ] ;  // store currency name
-    NSMutableArray *myValue = [[ NSMutableArray alloc ] init ];     // store values
-    
-    
+    // Retreive latest rate from fixer.io
     NSError *error;
-    NSString *url_string = [NSString stringWithFormat: @"http://data.fixer.io/api/latest?access_key=2056ca64bc11aa6cad1a18a1e191f957&format=1"];
+    NSString *url_string = [NSString stringWithFormat: @"http://data.fixer.io/api/latest?access_key=2056ca64bc11aa6cad1a18a1e191f957&base=AUD&symbols=USD,EUR,GBP,INR,CAD,SGD,CHF,MYR,JPY,CNY,THB"];
     NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString: url_string ]];
     NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error: &error];
     
     NSMutableDictionary *j =[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error: &error];
     
+    NSLog( @"the j ::: %@", j );
+    NSLog( @"the j[rates] ::: %@", j[@"rates"] );
+    NSLog( @"the j[rates]  count ::: %lu", (unsigned long)[j[@"rates"] count]);
+
+   
+    //  Array
+    NSMutableArray *myCurrency = [[ NSMutableArray alloc] init ] ;  // store currency name
+    NSMutableArray *myValue = [[ NSMutableArray alloc ] init ];     // store values
     
+    // copy currency rate and name in new arrays
     for (NSString * key in j[@"rates"]) {
-        
+
         NSString *value = [j[@"rates"] objectForKey:key];
-        
-        //NSString *x = value;
-        // NSString *y = key;
-        
+
         [ myCurrency addObject: key ];
         [ myValue addObject: value ];
-        
+
         // treat  NSMutableArray as  NSArray for tableview
         self.cur = [[NSArray alloc] initWithArray: myCurrency];
         self.rate = [[ NSArray alloc ] initWithArray: myValue ];
-        
-        //NSLog( @"the cur array %@", self.cur );
-        // NSLog( @"the rate array %@", self.rate );
-        
-        
+
     }
+
+
     
     
-    
-    
-    NSLog(  @" key AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ cur indexOfObject: @"AUD" ] );
+   // NSLog(  @" key AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ cur indexOfObject: @"AUD" ] );
     // NSLog(  @" value AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ _rate indexOfObject:  ] );
     
     
@@ -111,9 +107,6 @@
     
     NSLog( @"gg:::::::::::%@", myCurrency );
     NSLog( @"gg:::::::::::%@", myValue );
-    
-    
-    
     
 }
 
@@ -125,34 +118,34 @@
     // Pass the selected object to the new view controller.
     
     
+   // NSString *jj = self.dateReceipt;
     
-    // trigger segue if register success
-//    UIStoryboard *mainStoryboard = [ UIStoryboard storyboardWithName:@"Sidebar" bundle: nil ];
-//    exchangeForContainerViewController *vc = [ mainStoryboard instantiateViewControllerWithIdentifier: @"exchangePDF"];
-
-//
-//
-//    NSMutableDictionary *dict = [[ NSMutableDictionary alloc ] init ];
-//
-//    [ dict setObject: exchangeTopTF.text forKey:@"nameKey"];
-//    [ dict setObject: exchangeBottomTF.text forKey:@"ageKey"];
-//
-//
-//    //[ dict setObject: @"A" forKey:@"nameKey"];
-//    //[ dict setObject: @"B" forKey:@"ageKey"];
-//
-//    // pass data `
-//    vc.dictData = dict;
-//
-//    NSLog (@"nsdic = %@", dict);
-//
-//    // perform animate
-//   [ self presentViewController: vc animated: YES completion: nil ];
 
     // pass data from exchangeVC to exchangeForContainerVC
+    // allocate
     exchangeForContainerViewController *x ;
     x = [ segue destinationViewController];
+    
+    // store data from textfields in dictionary
+    NSMutableDictionary *dict = [[ NSMutableDictionary alloc ] init ];
+    [ dict setObject: exchangeTopTF.text forKey:@"fcAmount"];
+    [ dict setObject: exchangeBottomTF.text forKey:@"lcAmount"];
+    
+    [ dict setObject: @"3 Bldg A Mueang Canthabuli" forKey:@"address"];
+    [ dict setObject: @"Vientiane, Laos" forKey:@"country"];
+    [ dict setObject: @"+856 21 211 018" forKey:@"phone"];
+    [ dict setObject: self.dateReceipt forKey:@"date"];
+    [ dict setObject: self.billNumber forKey:@"billNumber"];
+    
+    [ dict setObject: self.rateReceipt forKey:@"exchangeRate"];
+    [ dict setObject: self.originSymbol forKey:@"origin"];
+    [ dict setObject: self.covertSymbol forKey:@"covert"];
+  
+    
+    // pass data
+    x.dictData = dict;
 
+    NSLog (@"nsdic = %@", dict);
     NSString *name = @"bay";
     
     x.theData = name ;
@@ -169,35 +162,25 @@
 // drop down table view
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    
-    
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     UITableViewCell *cell = [ tableView dequeueReusableCellWithIdentifier: simpleTableIdentifier];
     
     if ( tableView == _tableViewO ) {
         
-        cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
-        
-        cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
-        // return  cell;
-        
+            cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
+            cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
         
     }
     else if ( tableView == _tableviewCovert) {
         
-        
-        cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
-        
-        cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
-        
-        
-        
+            cell = [[ UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: simpleTableIdentifier ];
+            cell.textLabel.text = [ self.cur objectAtIndex: indexPath.row];
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;    // alight text center in tableview
     }
     else {
         
-        NSLog( @"Tableview error");
+        NSLog( @"[ERROR] Tableview cellForRowAtIndexPath error");
     }
     
     return cell ;
@@ -205,66 +188,61 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    
-                    if ( tableView == _tableViewO) {
-                        return [ self.cur count] ;
-                    }
-                    else if (tableView == _tableviewCovert) {
-                        return  [ self.cur count ];
-                    }
-                    else
-                        NSLog( @"No data return for tableview row ");
-    
-                    return 1;
+
+            if ( tableView == _tableViewO) {
+                return [self.cur count] ;
+            }
+            else if (tableView == _tableviewCovert) {
+                return  [ self.cur count ];
+            }
+            else
+                NSLog( @"No data return for tableview row ");
+
+            return 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-                    if ( tableView == _tableViewO ) {
-                        
-                                // get the value of tableview index selected
-                                UITableViewCell *cell = [ self.tableViewO cellForRowAtIndexPath: indexPath ];
-                        
-                                // set button text as tableview path value selected
-                                [self.btnOutlet setTitle: cell.textLabel.text  forState: UIControlStateNormal ];
-                        
-                                //hide tableview when cell any cell is clicked
-                                self.tableViewO.hidden = YES;
-                        
-                        
-                               self.originSymbol = cell.textLabel.text ;
-                               NSLog(  @"Origin amount : %@",  _originSymbol );
-                        
-                        [ self covertOrigin];
-                        
-                    
-                    }
-                    else if ( tableView == _tableviewCovert) {
-                        
-                                // get the value of tableview index selected
-                                UITableViewCell *cell = [ self.tableviewCovert cellForRowAtIndexPath: indexPath ];
-                        
-                                // set button text as tableview path value selected
-                                [self.buttonCovert setTitle: cell.textLabel.text  forState: UIControlStateNormal ];
-                        
-                                //hide tableview when cell any cell is clicked
-                                self.tableviewCovert.hidden = YES;
-                        
-                                self.covertSymbol = cell.textLabel.text ;
-                                NSLog(  @"covert amount : %@",  _covertSymbol );
-                        
-                        [ self getTotal ];
-                        [ self viewWillAppear: true ];
+            if ( tableView == _tableViewO ) {
+                
+                    // get the value of tableview index selected
+                    UITableViewCell *cell = [ self.tableViewO cellForRowAtIndexPath: indexPath ];
+            
+                    // set button text as tableview path value selected
+                    [self.btnOutlet setTitle: cell.textLabel.text  forState: UIControlStateNormal ];
+            
+                    //hide tableview when cell any cell is clicked
+                    self.tableViewO.hidden = YES;
+            
+            
+                    self.originSymbol = cell.textLabel.text ;
+                    NSLog(  @"Origin amount : %@",  _originSymbol );
+            
+            }
+            else if ( tableView == _tableviewCovert) {
+            
+                    // get the value of tableview index selected
+                    UITableViewCell *cell = [ self.tableviewCovert cellForRowAtIndexPath: indexPath ];
+            
+                    // set button text as tableview path value selected
+                    [self.buttonCovert setTitle: cell.textLabel.text  forState: UIControlStateNormal ];
+            
+                    //hide tableview when cell any cell is clicked
+                    self.tableviewCovert.hidden = YES;
+            
+                    self.covertSymbol = cell.textLabel.text ;
+                    NSLog(  @"covert amount : %@",  _covertSymbol );
+                
+                // Trigger fixerCovert when user click button bottom
+                [ self fixerCovert ];
+                [ self viewWillAppear: true ];   // update result in textfield bottom
 
-                        
-                    }
-                    else {
-                        
-                                NSLog( @"Something went wrong on didSelectRowAtIndexPath ");
-                    }
-  
-   
-    
+                
+            }
+            else {
+                
+                        NSLog( @"[ERROR] Something went wrong on didSelectRowAtIndexPath ");
+            }
 }
 
 
@@ -272,19 +250,13 @@
 // Origin currency button
 - (IBAction)btnAction:(id)sender {
     
-                        // set hidden
-                            if ( self.tableViewO.hidden == YES ) {
-                                [ self.tableViewO setHidden: NO ];
-                            }
-                            else
-                                [ self.tableViewO setHidden: YES ];
-
-    
+        // set hidden
+            if ( self.tableViewO.hidden == YES ) {
+                [ self.tableViewO setHidden: NO ];
+            }
+            else
+                [ self.tableViewO setHidden: YES ];
 }
-
-
-
-
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -293,15 +265,15 @@
 - (IBAction)covertButton:(id)sender {
     
 
-                    //set hidden
-                    if ( self.tableviewCovert.hidden == YES ) {
-                        [ self.tableviewCovert setHidden: NO ];
-                    }
-                    else
-                        [ self.tableviewCovert setHidden: YES ];
-    
-                    // double originCurrency = [ exchangeTopTF.text doubleValue ];
-    
+            //set hidden
+            if ( self.tableviewCovert.hidden == YES ) {
+                [ self.tableviewCovert setHidden: NO ];
+            }
+            else
+                [ self.tableviewCovert setHidden: YES ];
+
+            // double originCurrency = [ exchangeTopTF.text doubleValue ];
+
 
 }
 
@@ -429,6 +401,9 @@
     
     NSLog( @"originToUERO ::::: %.2f", fcAmount  );
     [ self viewWillAppear: true ];
+    
+    
+    
 
 }
 
@@ -458,8 +433,18 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     // set botton textfield as the result of the exchange
-    self.exchangeBottomTF.text =  [ NSString stringWithFormat: @"%.2f", _lcAmount ];
+    self.exchangeBottomTF.text =  [ NSString stringWithFormat: @"%.2f", resultCovertEndpoint];
     NSLog( @"viewWillAppear is loaded ");
+    
+    //
+    _dateReceipt;
+    _billNumber;
+    _rateReceipt;
+    
+    NSLog ( @"%@", _dateReceipt );
+    NSLog ( @"%@", _billNumber );
+    NSLog ( @"%@", _rateReceipt );
+
 }
 
 - (IBAction)exchangeReguest:(id)sender {
@@ -473,4 +458,43 @@
 
 
 
+-(void)fixerCovert {
+    
+        NSError *error;
+        NSString *x = self.originSymbol ;          // origin 
+        NSString *y = self.covertSymbol;           // covert
+        NSString *z = self.exchangeTopTF.text;     // amount
+    
+        // custom fixer.link
+        // retreive fixer.io covert endpoint
+        NSString *covertURL = [ NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=%@&to=%@&amount=%@", x, y, z ];
+        NSLog(@" +++++++ %@", covertURL);
+    
+        NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString: covertURL ]];
+        NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error ];
+    
+       
+        NSMutableDictionary *covertEndpoint =[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error: &error];
+    
+        NSLog( @"date ::: %@", covertEndpoint[@"date"]);
+        NSLog( @"query ::: %@", covertEndpoint[@"query"][@"to"]);
+        NSLog( @"result ::: %@", covertEndpoint[@"result"]);
+    
+    
+        self.dateReceipt = covertEndpoint[@"date"];
+
+        self.billNumber = [covertEndpoint[@"info"][@"timestamp"] stringValue ];
+        self.rateReceipt = [covertEndpoint[@"info"][@"rate"] stringValue ];
+        double covertResult = (double)  [covertEndpoint[@"result"]doubleValue ] ;
+    
+        resultCovertEndpoint = covertResult;
+    
+  
+            //NSString *url_string = [NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=X&to=Y&amount=Z"];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+      [exchangeTopTF resignFirstResponder];
+      return YES;
+}
 @end

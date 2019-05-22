@@ -9,7 +9,6 @@
 #import "exchangeForContainerViewController.h"
 #import "exchangeWebviewViewController.h"
 
-
 #define A4PaperSize CGRectMake(0, 0, 595.2, 841.8)
 
 @interface exchangeForContainerViewController ()
@@ -18,15 +17,17 @@
 
 @implementation exchangeForContainerViewController
 
-@synthesize  textLabel, theData ;
+@synthesize  textLabel, theData, dictData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    
+     
     // set label text 
     textLabel.text = theData ;
-    
+    NSLog ( @"the dictData you are testing bay  :: %@", dictData );
     
     //    // create button on the right top
     UIBarButtonItem *btnSavePDF = [[ UIBarButtonItem alloc ] initWithTitle: @"Save as PDF" style: UIBarButtonItemStylePlain target: self action: @selector(savePDF:)];
@@ -35,6 +36,12 @@
 
    
     }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [ self savePDF: self ];
+}
 
 /*
 #pragma mark - Navigation
@@ -57,11 +64,16 @@
         exchangeWebviewViewController *tryText = segue.destinationViewController;
         tryText.testForWeb = @"haha bay ";
         
+        
     }
     else  {
     }
+    
+    
+    exchangeWebviewViewController *x ;
+    x = [ segue destinationViewController];
+    x.dictShowWeb = dictData ;
 }
-
 
 -(NSString *) getHTMLString {
     
@@ -70,13 +82,21 @@
     NSString *strHTML = [ NSString stringWithContentsOfFile: filePath encoding: NSUTF8StringEncoding error: nil ];
     
     // replace data from Dictionary to the webview
-    if ( self.tryData ) {
+    if ( self.dictData ) {
         
-        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#name" withString: [ _tryData valueForKey: @"nameKey"]];
-        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#age" withString: [ _tryData valueForKey: @"ageKey"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#fcAmount" withString: [ dictData valueForKey: @"fcAmount"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#lcAmount" withString: [ dictData valueForKey: @"lcAmount"]];
         
-    }
-    else {
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#address" withString: [ dictData valueForKey: @"address"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#country" withString: [ dictData valueForKey: @"country"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#phone" withString: [ dictData valueForKey: @"phone"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#date" withString: [ dictData valueForKey: @"date"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#billNumber" withString: [ dictData valueForKey: @"billNumber"]];
+        
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#exchangeRate" withString: [ dictData valueForKey: @"exchangeRate"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#origin" withString: [ dictData valueForKey: @"origin"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#covert" withString: [ dictData valueForKey: @"covert"]];
+    } else {
         
         NSLog( @" someting went wrong ! ");
     }
@@ -86,6 +106,8 @@
     return strHTML ;
     
 }
+
+
 
 -(IBAction)savePDF:(id)sender {
     CGRect pageFrame = A4PaperSize ;
@@ -105,11 +127,51 @@
     UIGraphicsEndPDFContext();
     
     NSString *filePath = [ NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, true) objectAtIndex: 0 ];
-    filePath = [ filePath stringByAppendingString: @"/demo2.pdf"];
+    filePath = [ filePath stringByAppendingString: @"/demo5.pdf"];
     
     [ pdfData writeToFile: filePath atomically: true ];
     
-    NSLog( @"%@", filePath ); 
+    NSLog( @"%@", filePath );
+    
+  ////////
+    
+    // Get a reference to the storage service using the default Firebase App
+    FIRStorage *storage = [FIRStorage storage];
+    
+    // Create a storage reference from our storage service
+    FIRStorageReference *storageRef = [storage reference];
+    
+    NSURL *URL = [ NSURL fileURLWithPath: filePath];
+    NSLog( @" URL ::::::: %@", URL);
+    
+    
+    // File located on disk
+    //NSURL *localFile = [NSURL URLWithString:@"path/to/image"];
+    
+    // Create a reference to the file you want to upload
+    FIRStorageReference *riversRef = [storageRef child:@"images/xx.pdf"];
+    
+    // Upload the file to the path "images/rivers.jpg"
+    FIRStorageUploadTask *uploadTask = [riversRef putFile: URL metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
+        if (error != nil) {
+            // Uh-oh, an error occurred!
+        } else {
+            // Metadata contains file metadata such as size, content-type, and download URL.
+            int size = metadata.size;
+            // You can also access to download URL after upload.
+            [riversRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+                if (error != nil) {
+                    // Uh-oh, an error occurred!
+                } else {
+                    NSURL *downloadURL = URL;
+                }
+            }];
+        }
+    }];
+    
+    
+
+    
 }
 
 

@@ -6,27 +6,55 @@
     <title>Document</title>
     
     <style>
-        h2 {
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid #000;
-            line-height: 0.001em;
-            margin: 10px 0 20px;
-        }
+                h2 {
+                    width: 100%;
+                    text-align: center;
+                    border-bottom: 1px solid #000;
+                    line-height: 0.001em;
+                    margin: 10px 0 20px;
+                }
     
-        h2 span {
-            background:#fff;
-            padding:0 5px;
-        }
-    </style>
+                h2 span {
+                    background:#fff;
+                    padding:0 5px;
+                }
+    
+                p {
+                    margin: 0.1px;
+                }
+    
+                .alignleft {
+                    float: left;
+                }
+                .alignright {
+                    float: right;
+                }
+                </style>
 </head>
 <body>
      <center> <h3> Banque pour le Commerce Exterieur Lao Public. </h3> </center>
    
+        <p align="left">  #address </p>
+        <p align="left">  #country </p>
+        <p align="left"> Phone no: #phone </p>
+        <p align="left"> Date: #date </p>
+        <p align="left"> Bill no: #billNumber </p>
+  
      
-     <h2><span>THIS IS A TEST</span></h2>
-     <center> <p> #name </p>  </center>
-     <center> <p> #age </p>  </center>
+     <h2><span> #origin --- TO --- #covert </span></h2>
+     
+     <p class="alignleft"> fcAmount </p>
+     <p class="alignright"> #fcAmount  </p> <br/>
+     
+     <p class="alignleft"> exchangeRate </p>
+     <p class="alignright"> #exchangeRate  </p> <br/>
+                             
+     <p class="alignleft"> lcAmount </p>
+     <p class="alignright"> #lcAmount  </p> <br/>
+     
+     
+     <p class="alignleft">> #name </p>
+     <p class="alignright"> #age </p>
      
      <p> ______________________________________________________</p>
 </body>

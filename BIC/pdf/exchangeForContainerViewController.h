@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase;
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Try .. delete it later
 @property (nonatomic, strong ) NSDictionary *tryData;
+@property (nonatomic, strong ) NSDictionary *dictData;
 
 @end
 
