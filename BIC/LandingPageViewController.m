@@ -23,8 +23,7 @@
     // Do any additional setup after loading the view.
     
     
-    
-    
+   
     // check if user hasn't log out redirect them somewhere
     // they have already signed in // token still alive
     if ( [ FIRAuth auth ].currentUser ) {

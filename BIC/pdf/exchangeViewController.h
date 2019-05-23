@@ -95,6 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic ) NSString* dateReceipt;
 @property (strong, nonatomic ) NSString* billNumber;
 @property (strong, nonatomic ) NSString* rateReceipt;
+@property (strong, nonatomic ) NSString* timestamp;
 
 
 

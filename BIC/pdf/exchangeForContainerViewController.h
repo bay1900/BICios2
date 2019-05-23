@@ -27,6 +27,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong ) NSDictionary *tryData;
 @property (nonatomic, strong ) NSDictionary *dictData;
 
+
+// firebase databse
+// firebase database reference
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
+
+@property (nonatomic, strong ) NSDictionary *receiptDictionary;
+
+@property (strong, nonatomic) NSString *buttonLinkPDF;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

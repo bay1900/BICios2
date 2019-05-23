@@ -140,7 +140,7 @@
     [ dict setObject: self.rateReceipt forKey:@"exchangeRate"];
     [ dict setObject: self.originSymbol forKey:@"origin"];
     [ dict setObject: self.covertSymbol forKey:@"covert"];
-  
+    [dict setObject: self.timestamp forKey:@"timestamp"];
     
     // pass data
     x.dictData = dict;
@@ -440,6 +440,7 @@
     _dateReceipt;
     _billNumber;
     _rateReceipt;
+    _timestamp;
     
     NSLog ( @"%@", _dateReceipt );
     NSLog ( @"%@", _billNumber );
@@ -489,6 +490,10 @@
     
         resultCovertEndpoint = covertResult;
     
+        NSInteger  timestampLong = [[NSDate date] timeIntervalSince1970]; // snap timstamp when covert method is called
+        NSLog( @" The timestampe value ::: %ld", (long)timestampLong );
+        self.timestamp =  [ NSString stringWithFormat: @"%ld", (long)timestampLong];
+
   
             //NSString *url_string = [NSString stringWithFormat: @"https://data.fixer.io/api/convert?access_key=2056ca64bc11aa6cad1a18a1e191f957&from=X&to=Y&amount=Z"];
 }

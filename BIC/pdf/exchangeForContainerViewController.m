@@ -30,7 +30,7 @@
     NSLog ( @"the dictData you are testing bay  :: %@", dictData );
     
     //    // create button on the right top
-    UIBarButtonItem *btnSavePDF = [[ UIBarButtonItem alloc ] initWithTitle: @"Save as PDF" style: UIBarButtonItemStylePlain target: self action: @selector(savePDF:)];
+    UIBarButtonItem *btnSavePDF = [[ UIBarButtonItem alloc ] initWithTitle: @"Save as PDF" style: UIBarButtonItemStylePlain target: self action: @selector(downloadPDF:)];
     // self.navigationItem.rightBarButtonItem = btnSavePDF;
     self.navigationItem.rightBarButtonItem =  btnSavePDF ;
 
@@ -41,6 +41,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [ self savePDF: self ];
+
+
 }
 
 /*
@@ -96,6 +98,8 @@
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#exchangeRate" withString: [ dictData valueForKey: @"exchangeRate"]];
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#origin" withString: [ dictData valueForKey: @"origin"]];
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#covert" withString: [ dictData valueForKey: @"covert"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#timestamp" withString: [ dictData valueForKey: @"timestamp"]];
+
     } else {
         
         NSLog( @" someting went wrong ! ");
@@ -107,6 +111,26 @@
     
 }
 
+
+-(IBAction)downloadPDF:(id)sender {
+    
+   
+    NSURL  *url = [NSURL URLWithString: self.buttonLinkPDF];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    
+    if ( urlData )
+    {
+        
+//        NSString *pdfBill =  [NSString stringWithFormat: @"/%@.pdf", dictData[@"timestamp"]];
+        NSString *pdfBillDowload = [ NSString stringWithFormat: @"/download%@.pdf", dictData[@"timestamp"]];
+        NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString  *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, pdfBillDowload];
+        [urlData writeToFile:filePath atomically:YES];
+    }
+    NSLog( @"downloadPDF");
+}
 
 
 -(IBAction)savePDF:(id)sender {
@@ -127,7 +151,11 @@
     UIGraphicsEndPDFContext();
     
     NSString *filePath = [ NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, true) objectAtIndex: 0 ];
-    filePath = [ filePath stringByAppendingString: @"/demo5.pdf"];
+    
+    //------
+    NSString *pdfBill =  [NSString stringWithFormat: @"/%@.pdf", dictData[@"timestamp"]];
+
+    filePath = [ filePath stringByAppendingString: pdfBill ]; // use timestamp for generate file
     
     [ pdfData writeToFile: filePath atomically: true ];
     
@@ -144,12 +172,17 @@
     NSURL *URL = [ NSURL fileURLWithPath: filePath];
     NSLog( @" URL ::::::: %@", URL);
     
-    
+    //this new string link contain no dash if compare to pdfBill
+    NSString *pdfBillNew =  [NSString stringWithFormat: @"%@.pdf", dictData[@"timestamp"]];
+
     // File located on disk
     //NSURL *localFile = [NSURL URLWithString:@"path/to/image"];
+    NSString *userAuth = [FIRAuth auth].currentUser.uid;
+    
+  //  NSString *pdfBillFirebase = [[ NSString stringWithFormat: @"%@", userAuth ];
     
     // Create a reference to the file you want to upload
-    FIRStorageReference *riversRef = [storageRef child:@"images/xx.pdf"];
+    FIRStorageReference *riversRef = [[storageRef child: userAuth] child: pdfBillNew] ;
     
     // Upload the file to the path "images/rivers.jpg"
     FIRStorageUploadTask *uploadTask = [riversRef putFile: URL metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
@@ -164,12 +197,28 @@
                     // Uh-oh, an error occurred!
                 } else {
                     NSURL *downloadURL = URL;
+                    NSLog( @"The downloadURL ::::: %@", downloadURL  );
+                    
+                    // timestamp since 1970
+                    NSUInteger currentTime = [[ NSDate date ] timeIntervalSince1970 ];
+                    NSString *receiptTimestamp = [ NSString stringWithFormat: @"%ld", currentTime ];
+                    
+                    NSString * receiptDownloadLink = downloadURL.absoluteString; // treat NSURL as string
+                    NSString * receiptKey = receiptTimestamp;
+                    
+                    self.buttonLinkPDF = receiptDownloadLink; // copy than use for button download link
+                    // realtime database
+                    // Realtime datebse
+                    self.ref = [[[FIRDatabase database] reference] child: @"client"];
+                    
+                    [[[ self.ref child: userAuth ] child: @"receipt"] updateChildValues: @{ receiptKey : receiptDownloadLink } ];
                 }
             }];
         }
     }];
     
-    
+ 
+
 
     
 }

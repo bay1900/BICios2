@@ -61,6 +61,7 @@
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#exchangeRate" withString: [ _dictShowWeb valueForKey: @"exchangeRate"]];
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#origin" withString: [ _dictShowWeb valueForKey: @"origin"]];
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#covert" withString: [ _dictShowWeb valueForKey: @"covert"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#timestamp" withString: [ _dictShowWeb valueForKey: @"timestamp"]];
 
 
     }
