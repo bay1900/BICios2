@@ -1,53 +1,56 @@
 PODS:
   - ACFloatingTextfield-Objc (1.7)
-  - Firebase/Analytics (6.0.0):
+  - EstimoteBluetoothScanning (1.0.2)
+  - EstimoteProximitySDK (1.4.0):
+    - EstimoteBluetoothScanning (>= 0.2)
+  - Firebase/Analytics (6.1.0):
     - Firebase/Core
-  - Firebase/Auth (6.0.0):
+  - Firebase/Auth (6.1.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.0.0)
-  - Firebase/Core (6.0.0):
+    - FirebaseAuth (~> 6.1.0)
+  - Firebase/Core (6.1.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.0)
-  - Firebase/CoreOnly (6.0.0):
-    - FirebaseCore (= 6.0.0)
-  - Firebase/Database (6.0.0):
+    - FirebaseAnalytics (= 6.0.1)
+  - Firebase/CoreOnly (6.1.0):
+    - FirebaseCore (= 6.0.1)
+  - Firebase/Database (6.1.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.0.0)
-  - Firebase/Storage (6.0.0):
+  - Firebase/Storage (6.1.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 3.2.0)
-  - FirebaseAnalytics (6.0.0):
+    - FirebaseStorage (~> 3.2.1)
+  - FirebaseAnalytics (6.0.1):
     - FirebaseCore (~> 6.0)
-    - FirebaseInstanceID (~> 4.0)
-    - GoogleAppMeasurement (= 6.0.0)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleAppMeasurement (= 6.0.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseAuth (6.0.0):
+  - FirebaseAuth (6.1.0):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.0.0):
+  - FirebaseCore (6.0.1):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
   - FirebaseDatabase (6.0.0):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (4.0.0):
+  - FirebaseInstanceID (4.1.0):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseStorage (3.2.0):
+  - FirebaseStorage (3.2.1):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleAppMeasurement (6.0.0):
+  - GoogleAppMeasurement (6.0.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
@@ -81,6 +84,7 @@ PODS:
 
 DEPENDENCIES:
   - ACFloatingTextfield-Objc
+  - EstimoteProximitySDK
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -90,6 +94,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ACFloatingTextfield-Objc
+    - EstimoteBluetoothScanning
+    - EstimoteProximitySDK
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -106,20 +112,22 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ACFloatingTextfield-Objc: 8780c7a0d96b2039d8a60d3461a4bbcd22e3faf3
-  Firebase: fa80b9d987ca014a1ba9357496ef2a0178b28b12
-  FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
-  FirebaseAuth: efc72b0f6fe075d2a6de8d81a6d9de83ef2b47eb
+  EstimoteBluetoothScanning: 8e3f085001b20acd40f465de2e8b7ac849493870
+  EstimoteProximitySDK: 45d453e37c1ed1c3f36275caef55a6f86677b22b
+  Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
+  FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
+  FirebaseAuth: 4281d6d98a90881e00710fa8d9e37c2ccdfc7d80
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: e38f025287b413255a53acc1945d048a112047f7
+  FirebaseCore: 66bdef3b310a026880e2a5bc8aa586ab62ce4543
   FirebaseDatabase: f48e067716864be2b855cf716b927ef375d6cfa0
-  FirebaseInstanceID: 0e0348a3c00a734fa376a070f5ad4533ad975cb5
-  FirebaseStorage: ff1e8f1f6cf1557a8694b0ef39d3e72cb60c42ac
-  GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
+  FirebaseInstanceID: 27bed93a59b6685f5c3e0c028a878a764fd75c33
+  FirebaseStorage: 926d41552072b9fee67aa645760f05f87b7ce604
+  GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 84df567c76ca84f67b7bb40e769fdd4acc746a10
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: b1aa6bdc372bcc001bc1ee182455c53dae76906d
+PODFILE CHECKSUM: b0c925fc37e01c922c4bdd32fff5632c8fc37a05
 
 COCOAPODS: 1.6.1

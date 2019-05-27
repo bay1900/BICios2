@@ -9,8 +9,15 @@
 #import "AppDelegate.h"
 @import Firebase; //  firebase class connection
 
+@import UserNotifications;
+@import EstimoteProximitySDK;
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
+
+// 1. Add a property to hold the Proximity Observer
+@property(strong, nonatomic) EPXProximityObserver *proximityObserver;
+
+
 
 @end
 
@@ -20,7 +27,47 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [FIRApp configure];
+    UNUserNotificationCenter *notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
+    notificationCenter.delegate = self;
+    [notificationCenter requestAuthorizationWithOptions:UNAuthorizationOptionAlert | UNAuthorizationOptionSound
+                                      completionHandler:^(BOOL granted, NSError *_Nullable error) {
+                                          NSLog(@"notifications permission granted = %d, error = %@", granted, error);
+                                      }];
+    
+    EPXCloudCredentials *estimoteCloudCredentials = [[EPXCloudCredentials alloc] initWithAppID:@"bicapp-9ci" appToken:@"ba9bba484b0dc4cbe7697d80c8bd8253"];  // iBeacon cloud `appID` and `appToken`
+    
+    // error handler
+    self.proximityObserver = [[EPXProximityObserver alloc] initWithCredentials:estimoteCloudCredentials
+                                                                       onError:^(NSError *_Nonnull error) {
+                                                                           NSLog(@"EPXProximityObserver error: %@", error);
+                                                                       }];
+    
+    EPXProximityZone *zone = [[EPXProximityZone alloc] initWithTag:@"bicapp-9ci" range:[EPXProximityRange nearRange]]; // tags id `my ice iBeacon ` find this in estimote cloud
+    
+    
+    // Enter
+    zone.onEnter = ^(EPXProximityZoneContext *context) {
+        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+        content.title = @"Hello";
+        content.body = @"You're near your tag";
+        content.sound = [UNNotificationSound defaultSound];
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"enter" content:content trigger:nil];
+        [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
+    };
+    // Exit
+    zone.onExit = ^(EPXProximityZoneContext *context) {
+        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+        content.title = @"Bye bye";
+        content.body = @"You've left the proximity of your tag";
+        content.sound = [UNNotificationSound defaultSound];
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"exit" content:content trigger:nil];
+        [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
+    };
+    
+    [self.proximityObserver startObservingZones:@[ zone ]];
+
+    
+    [FIRApp configure];   // firebase
     return YES;
 }
 
@@ -97,6 +144,15 @@
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
+}
+
+
+
+// Needs to be implemented to receive notifications both in foreground and background
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound);
 }
 
 @end

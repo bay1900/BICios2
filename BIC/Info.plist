@@ -62,5 +62,13 @@
 	</array>
 	<key>CFBundleGetInfoString</key>
 	<string></string>
+  
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>We'll show you cool things near you in the app.</string> 
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Program requires GPS to track cars and job orders</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Program requires GPS to track cars and job orders</string>
+
 </dict>
 </plist>
