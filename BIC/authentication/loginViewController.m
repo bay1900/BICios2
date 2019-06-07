@@ -122,7 +122,7 @@
                                                 
                                                 
                                                                         // check the the log in success .. go to the next page
-                                                                        if ( user && correctEmail ) {
+                                                                        if ( user && correctEmail && user.isEmailVerified ) {
                                                                             
                                                                             // perform segue
                                                                             //trigger segue if register success
@@ -133,6 +133,9 @@
                                                                             NSLog (@"%@", [ FIRAuth auth ].currentUser.uid );
                                                                             NSLog( @"Logging in ... !");
                                                                             NSLog( @"Currently signed in ``Login page``");
+                                                                            
+                                                                        } else if ( user && correctEmail && !user.isEmailVerified ) {
+                                                                            NSLog( @"Dude ! email is not verified yet !! ");
                                                                             
                                                                         }else if ( !user  || !correctEmail ) {
                                                                            // self->loginValidateText.text = @"Unsuccessfull sign in";

@@ -82,6 +82,12 @@
                                                          [[[ self.ref child: userAuth ] child: @"account"] setValue: x ];
                                                          
                                                          
+                                                         
+                                                         // send emailVerification to email used for register 
+                                                         [[FIRAuth auth].currentUser sendEmailVerificationWithCompletion:^(NSError *_Nullable error) {
+                                                             // ...
+                                                         }];
+                                                         
                                                      }];
                     
                             registerEmail.text = @"";

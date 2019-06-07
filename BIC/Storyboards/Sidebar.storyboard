@@ -58,7 +58,10 @@
                                         <rect key="frame" x="0.0" y="266" width="214" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Gather compaint"/>
+                                        <connections>
+                                            <segue destination="R0T-Nh-twc" kind="show" id="mlr-D8-8vd"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1a-th-Em6">
                                         <rect key="frame" x="0.0" y="315" width="214" height="41"/>
@@ -100,6 +103,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="87Y-aq-2Oj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5242.0289855072469" y="-14.0625"/>
+        </scene>
+        <!--Gather Conplaint View Controller-->
+        <scene sceneID="5Zf-GE-v94">
+            <objects>
+                <viewController id="R0T-Nh-twc" customClass="gatherConplaintViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wh6-lU-3oY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tfW-2N-tqi">
+                                <rect key="frame" x="34" y="215" width="360" height="204"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkS-yW-NuQ">
+                                <rect key="frame" x="34" y="474" width="360" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.72820191059999995" green="0.56830657650000005" blue="0.16614772929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Ni-3G-RvR" firstAttribute="trailing" secondItem="tfW-2N-tqi" secondAttribute="trailing" constant="20" id="2NG-TU-0cd"/>
+                            <constraint firstItem="fkS-yW-NuQ" firstAttribute="leading" secondItem="5Ni-3G-RvR" secondAttribute="leading" constant="34" id="4vm-yG-6s7"/>
+                            <constraint firstItem="5Ni-3G-RvR" firstAttribute="trailing" secondItem="fkS-yW-NuQ" secondAttribute="trailing" constant="20" id="FMy-pS-N2O"/>
+                            <constraint firstItem="fkS-yW-NuQ" firstAttribute="top" secondItem="tfW-2N-tqi" secondAttribute="bottom" constant="55" id="Gs8-NH-Cdr"/>
+                            <constraint firstItem="5Ni-3G-RvR" firstAttribute="bottom" secondItem="fkS-yW-NuQ" secondAttribute="bottom" constant="358" id="Njm-Zq-y0I"/>
+                            <constraint firstItem="tfW-2N-tqi" firstAttribute="leading" secondItem="5Ni-3G-RvR" secondAttribute="leading" constant="34" id="jsV-uv-9ME"/>
+                            <constraint firstItem="tfW-2N-tqi" firstAttribute="top" secondItem="5Ni-3G-RvR" secondAttribute="top" constant="127" id="n7p-Jb-ke2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Ni-3G-RvR"/>
+                    </view>
+                    <connections>
+                        <outlet property="complaintTV" destination="tfW-2N-tqi" id="Hl1-mF-BlU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lng-Pd-ohJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6066.666666666667" y="164.73214285714286"/>
         </scene>
         <!--gg-->
         <scene sceneID="sWG-33-qWV">

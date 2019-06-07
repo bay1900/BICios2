@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1047104042483-r72pvme343s7k64eg27cjek0i59j7bt2.apps.googleusercontent.com</string>
+	<string>1047104042483-o93crvhqdv9lojcvjb2676qef6k4regd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1047104042483-r72pvme343s7k64eg27cjek0i59j7bt2</string>
+	<string>com.googleusercontent.apps.1047104042483-o93crvhqdv9lojcvjb2676qef6k4regd</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC6PNPg3lsoQvSPNYIA00ZKehGVt7fIu-s</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.bankincharge.bic</string>
+	<string>com.bankincharge.dev.bic</string>
 	<key>PROJECT_ID</key>
 	<string>bicproject-4e5df</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1047104042483:ios:6829bab23c3ec29a</string>
+	<string>1:1047104042483:ios:54e475cdaabb0134</string>
 	<key>DATABASE_URL</key>
 	<string>https://bicproject-4e5df.firebaseio.com</string>
 </dict>

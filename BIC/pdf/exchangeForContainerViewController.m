@@ -213,7 +213,34 @@
                     // Realtime datebse
                     self.ref = [[[FIRDatabase database] reference] child: @"client"];
                     
-                    [[[ self.ref child: userAuth ] child: @"receipt"] updateChildValues: @{ receiptKey : receiptDownloadLink } ];
+//                    [[ self.ref child: userAuth ] updateChildValues: @{ receiptKey : receiptDownloadLink },
+//                                                                     @{ @"receiptNumber": receiptKey},
+//                                                                     @{ @"link": receiptDownloadLink}];
+                    
+                    
+                    NSDictionary *userData = [[ NSDictionary alloc ] init ];
+                    
+                    userData = @{
+                                 @"userID" : userAuth,
+                                 @"link" : receiptDownloadLink,
+                                 @"receiptID" : receiptKey,
+                                 @"status" : @"false"
+                                };
+                    [[self->_ref child: receiptKey ]  setValue:userData];
+                    
+                    
+                    // for check status
+                    self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+                    
+                    NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
+                    checkStatus = @{
+                                 @"userID" : userAuth,
+                                 @"link" : receiptDownloadLink,
+                                 @"receiptID" : receiptKey,
+                                 @"status" : @"false"
+                                 };
+                    [[self->_ref child: receiptKey ]  setValue:checkStatus];
+                    
                 }
             }];
         }

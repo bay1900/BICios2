@@ -12,7 +12,7 @@
 @import UserNotifications;
 @import EstimoteProximitySDK;
 
-@interface AppDelegate () <UNUserNotificationCenterDelegate>
+@interface AppDelegate () <UNUserNotificationCenterDelegate, UIApplicationDelegate>
 
 // 1. Add a property to hold the Proximity Observer
 @property(strong, nonatomic) EPXProximityObserver *proximityObserver;
@@ -22,11 +22,22 @@
 @end
 
 @implementation AppDelegate
+@synthesize  ref ;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+
+    [FIRApp configure];   // firebase
+    
+
+    
+
+    
+    
+    
+    // estimote
     UNUserNotificationCenter *notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
     notificationCenter.delegate = self;
     [notificationCenter requestAuthorizationWithOptions:UNAuthorizationOptionAlert | UNAuthorizationOptionSound
@@ -47,12 +58,79 @@
     
     // Enter
     zone.onEnter = ^(EPXProximityZoneContext *context) {
+        
+         NSLog( @"ENTER ENTER ENTER " );
         UNMutableNotificationContent *content = [UNMutableNotificationContent new];
         content.title = @"Hello";
         content.body = @"You're near your tag";
         content.sound = [UNNotificationSound defaultSound];
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"enter" content:content trigger:nil];
         [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
+        
+       // ----------  check order status  ----------
+        
+        
+
+        // firebase
+        NSString *userAuth = [FIRAuth auth].currentUser.uid;
+
+        NSLog( @"The userAuth delegate ::: %@", userAuth );
+        
+        if (  userAuth != nil ) {
+
+                // realtime database
+                self.ref = [[FIRDatabase database] reference];
+
+                [[self.ref child:@"checkStatus"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+
+                NSDictionary *checkStatus = snapshot.value;
+
+                //  NSLog(@"Info : %@",checkStatus);
+
+                NSArray *checkStatusArray = [ checkStatus allValues];
+                NSLog( @"checkStatus %@" , checkStatusArray );
+
+                for ( NSString * x in checkStatus ) {
+
+                        NSString * link = checkStatus[x][@"link"];
+
+                        NSString * receiptID = checkStatus[x][@"receiptID"];//
+                        NSLog( @"receiptID :: %@  ", receiptID );
+
+                        NSString * userIDstatus = checkStatus[x][@"userID"];//
+                        NSLog( @"userID :: %@  ", userIDstatus );
+
+                        NSString * status = checkStatus[x][@"status"];//
+                        NSLog( @"status :: %@  ", status );
+                    
+                                        if ( [ status  isEqual: @"false"] ) {
+
+                                        NSLog( @"xx :: %@", receiptID );
+
+                                        // update data
+                                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+
+
+                                        NSDictionary *updateCheckStatus = [[ NSDictionary alloc ] init ];
+
+                                        updateCheckStatus = @{
+                                        @"link" : link,
+                                        @"receiptID": receiptID,
+                                        @"status" : @"true",
+                                        @"userID" :userIDstatus
+                                        };
+
+                                        [[self->ref child: receiptID ]  setValue: updateCheckStatus];
+
+                                        NSLog( @"update done !!!!!!!");
+                                        }
+                                        else {
+
+                                        }
+                                }
+                      }];
+               }
+       // ------------------------------------------
     };
     // Exit
     zone.onExit = ^(EPXProximityZoneContext *context) {
@@ -65,9 +143,7 @@
     };
     
     [self.proximityObserver startObservingZones:@[ zone ]];
-
-    
-    [FIRApp configure];   // firebase
+    // end estimote
     return YES;
 }
 
@@ -153,6 +229,25 @@
        willPresentNotification:(UNNotification *)notification
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound);
+}
+
+
+//-(void)setCornerRadius {
+//    UIView *viewCheck = [[ UIView alloc ] init ];
+//    viewCheck.layer.shadowRadius  = 1.5f;
+//    viewCheck.layer.shadowColor   = [UIColor colorWithRed:176.f/255.f green:199.f/255.f blue:226.f/255.f alpha:1.f].CGColor;
+//    viewCheck.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+//    viewCheck.layer.shadowOpacity = 0.9f;
+//    viewCheck.layer.masksToBounds = NO;
+//    
+//    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+//    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(viewCheck.bounds, shadowInsets)];
+//    viewCheck.layer.shadowPath    = shadowPath.CGPath;
+//}
+
+
+-(void)setCornerRadius {
+    NSLog( @"setCornerRadius");
 }
 
 @end

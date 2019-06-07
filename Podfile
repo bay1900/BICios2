@@ -28,7 +28,7 @@ pod 'Firebase/Auth'
 
 pod 'Firebase/Core'
 pod 'Firebase/Database'
-
+pod 'Firebase/Messaging'
 
 pod 'ACFloatingTextfield-Objc'
 pod 'Firebase/Analytics'

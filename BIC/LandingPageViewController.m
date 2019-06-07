@@ -36,9 +36,7 @@
 //    NSError *err = nil;
 //    [ content writeToFile: fileURL atomically: false ];
 
-  
-    
-    
+     
     // check if user hasn't log out redirect them somewhere
     // they have already signed in // token still alive
     if ( [ FIRAuth auth ].currentUser ) {
