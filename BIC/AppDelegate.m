@@ -31,12 +31,6 @@
 
     [FIRApp configure];   // firebase
     
-
-    
-
-    
-    
-    
     // estimote
     UNUserNotificationCenter *notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
     notificationCenter.delegate = self;
@@ -128,10 +122,13 @@
 
                                         }
                                 }
+                    
                       }];
                }
+        
        // ------------------------------------------
     };
+    
     // Exit
     zone.onExit = ^(EPXProximityZoneContext *context) {
         UNMutableNotificationContent *content = [UNMutableNotificationContent new];
@@ -140,6 +137,72 @@
         content.sound = [UNNotificationSound defaultSound];
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"exit" content:content trigger:nil];
         [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
+        
+        
+        
+        
+        
+        // firebase
+        NSString *userAuth = [FIRAuth auth].currentUser.uid;
+        
+        NSLog( @"The userAuth delegate exit ::: %@", userAuth );
+        
+        
+        if (  userAuth != nil ) {
+            
+            // realtime database
+            self.ref = [[FIRDatabase database] reference];
+            
+            [[self.ref child:@"checkStatus"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                
+                NSDictionary *checkStatus = snapshot.value;
+                
+                //  NSLog(@"Info : %@",checkStatus);
+                
+                NSArray *checkStatusArray = [ checkStatus allValues];
+                NSLog( @"checkStatus %@" , checkStatusArray );
+                
+                for ( NSString * x in checkStatus ) {
+                    
+                    NSString * link = checkStatus[x][@"link"];
+                    
+                    NSString * receiptID = checkStatus[x][@"receiptID"];//
+                    NSLog( @"receiptID :: %@  ", receiptID );
+                    
+                    NSString * userIDstatus = checkStatus[x][@"userID"];//
+                    NSLog( @"userID :: %@  ", userIDstatus );
+                    
+                    NSString * status = checkStatus[x][@"status"];//
+                    NSLog( @"status :: %@  ", status );
+                    
+                    if ( [ status  isEqual: @"true"] ) {
+                        
+                        NSLog( @"xx :: %@", receiptID );
+                        
+                        // update data
+                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+                        
+                        
+                        NSDictionary *updateCheckStatus = [[ NSDictionary alloc ] init ];
+                        
+                        updateCheckStatus = @{
+                                              @"link" : link,
+                                              @"receiptID": receiptID,
+                                              @"status" : @"false",
+                                              @"userID" :userIDstatus
+                                              };
+                        
+                        [[self->ref child: receiptID ]  setValue: updateCheckStatus];
+                        
+                        NSLog( @"update done exit!!!!!!!");
+                        break ;
+                    }
+                    else {
+                        
+                    }
+                }
+            }];
+        }
     };
     
     [self.proximityObserver startObservingZones:@[ zone ]];

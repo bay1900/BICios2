@@ -24,6 +24,8 @@
     // hide the navigation bar that inherit from landing page !
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    
+
 
     
     // use the Gesture recognizer for hidding the sidebar !

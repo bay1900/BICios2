@@ -114,6 +114,8 @@
                        // validate email format
                        BOOL correctEmail =  [ self validEmail: self->loginEmailTF.text ];
                        
+                       
+                    
                        // sign in
                        [[FIRAuth auth] signInWithEmail: self->loginEmailTF.text
                                               password: self->loginPasswordTF.text
