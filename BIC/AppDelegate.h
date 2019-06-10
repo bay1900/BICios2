@@ -17,9 +17,13 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 
 
+
 - (void)saveContext;
 -(void)setCornerRadius;
 
+ @property (nonatomic, strong) NSArray *checkStatusArray;
+ @property (nonatomic, strong) NSMutableArray *checkStatusArrayMutable;
+ @property (nonatomic, strong ) NSDictionary *dictionaryStatus;
 
 @end
 

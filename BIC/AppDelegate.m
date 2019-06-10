@@ -22,14 +22,35 @@
 @end
 
 @implementation AppDelegate
-@synthesize  ref ;
+@synthesize  ref, checkStatusArray;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+
+    //
+    [FIRApp configure];   // firebase
+//
+    
     
 
-    [FIRApp configure];   // firebase
+    // --- GET DATA BEFORE TRIGGERS exENTER and exOUT
+    // realtime database
+    self.ref = [[FIRDatabase database] reference];
+
+    [[self.ref child:@"checkStatus"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+
+            self.dictionaryStatus = snapshot.value ;
+        
+    }];
+    
+    
+    //  CHECK IF USER LOGGED IN
+    NSString *userAuth = [FIRAuth auth].currentUser.uid;
+    NSLog( @"The userAuth delegate ::: %@", userAuth );
+    
+    
     
     // estimote
     UNUserNotificationCenter *notificationCenter = [UNUserNotificationCenter currentNotificationCenter];
@@ -38,18 +59,18 @@
                                       completionHandler:^(BOOL granted, NSError *_Nullable error) {
                                           NSLog(@"notifications permission granted = %d, error = %@", granted, error);
                                       }];
-    
+
     EPXCloudCredentials *estimoteCloudCredentials = [[EPXCloudCredentials alloc] initWithAppID:@"bicapp-9ci" appToken:@"ba9bba484b0dc4cbe7697d80c8bd8253"];  // iBeacon cloud `appID` and `appToken`
-    
+
     // error handler
     self.proximityObserver = [[EPXProximityObserver alloc] initWithCredentials:estimoteCloudCredentials
                                                                        onError:^(NSError *_Nonnull error) {
                                                                            NSLog(@"EPXProximityObserver error: %@", error);
                                                                        }];
-    
+
     EPXProximityZone *zone = [[EPXProximityZone alloc] initWithTag:@"bicapp-9ci" range:[EPXProximityRange nearRange]]; // tags id `my ice iBeacon ` find this in estimote cloud
-    
-    
+
+
     // Enter
     zone.onEnter = ^(EPXProximityZoneContext *context) {
         
@@ -60,154 +81,46 @@
         content.sound = [UNNotificationSound defaultSound];
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"enter" content:content trigger:nil];
         [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
+
+
+
+        // --- UPDATE DATA HERE
         
-       // ----------  check order status  ----------
+        [self walkin: userAuth ];
         
-        
+        // --- END UPDATE
 
-        // firebase
-        NSString *userAuth = [FIRAuth auth].currentUser.uid;
+        NSLog(@"welcome");
 
-        NSLog( @"The userAuth delegate ::: %@", userAuth );
-        
-        if (  userAuth != nil ) {
-
-                // realtime database
-                self.ref = [[FIRDatabase database] reference];
-
-                [[self.ref child:@"checkStatus"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-
-                NSDictionary *checkStatus = snapshot.value;
-
-                //  NSLog(@"Info : %@",checkStatus);
-
-                NSArray *checkStatusArray = [ checkStatus allValues];
-                NSLog( @"checkStatus %@" , checkStatusArray );
-
-                for ( NSString * x in checkStatus ) {
-
-                        NSString * link = checkStatus[x][@"link"];
-
-                        NSString * receiptID = checkStatus[x][@"receiptID"];//
-                        NSLog( @"receiptID :: %@  ", receiptID );
-
-                        NSString * userIDstatus = checkStatus[x][@"userID"];//
-                        NSLog( @"userID :: %@  ", userIDstatus );
-
-                        NSString * status = checkStatus[x][@"status"];//
-                        NSLog( @"status :: %@  ", status );
-                    
-                                        if ( [ status  isEqual: @"false"] ) {
-
-                                        NSLog( @"xx :: %@", receiptID );
-
-                                        // update data
-                                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
-
-
-                                        NSDictionary *updateCheckStatus = [[ NSDictionary alloc ] init ];
-
-                                        updateCheckStatus = @{
-                                        @"link" : link,
-                                        @"receiptID": receiptID,
-                                        @"status" : @"true",
-                                        @"userID" :userIDstatus
-                                        };
-
-                                        [[self->ref child: receiptID ]  setValue: updateCheckStatus];
-
-                                        NSLog( @"update done !!!!!!!");
-                                        }
-                                        else {
-
-                                        }
-                                }
-                    
-                      }];
-               }
-        
-       // ------------------------------------------
     };
-    
+   
+
     // Exit
-    zone.onExit = ^(EPXProximityZoneContext *context) {
-        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+zone.onExit = ^(EPXProximityZoneContext *context) {
+    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
         content.title = @"Bye bye";
         content.body = @"You've left the proximity of your tag";
         content.sound = [UNNotificationSound defaultSound];
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"exit" content:content trigger:nil];
         [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
-        
-        
-        
-        
-        
+
         // firebase
         NSString *userAuth = [FIRAuth auth].currentUser.uid;
-        
+
         NSLog( @"The userAuth delegate exit ::: %@", userAuth );
-        
-        
-        if (  userAuth != nil ) {
-            
-            // realtime database
-            self.ref = [[FIRDatabase database] reference];
-            
-            [[self.ref child:@"checkStatus"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                
-                NSDictionary *checkStatus = snapshot.value;
-                
-                //  NSLog(@"Info : %@",checkStatus);
-                
-                NSArray *checkStatusArray = [ checkStatus allValues];
-                NSLog( @"checkStatus %@" , checkStatusArray );
-                
-                for ( NSString * x in checkStatus ) {
-                    
-                    NSString * link = checkStatus[x][@"link"];
-                    
-                    NSString * receiptID = checkStatus[x][@"receiptID"];//
-                    NSLog( @"receiptID :: %@  ", receiptID );
-                    
-                    NSString * userIDstatus = checkStatus[x][@"userID"];//
-                    NSLog( @"userID :: %@  ", userIDstatus );
-                    
-                    NSString * status = checkStatus[x][@"status"];//
-                    NSLog( @"status :: %@  ", status );
-                    
-                    if ( [ status  isEqual: @"true"] ) {
-                        
-                        NSLog( @"xx :: %@", receiptID );
-                        
-                        // update data
-                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
-                        
-                        
-                        NSDictionary *updateCheckStatus = [[ NSDictionary alloc ] init ];
-                        
-                        updateCheckStatus = @{
-                                              @"link" : link,
-                                              @"receiptID": receiptID,
-                                              @"status" : @"false",
-                                              @"userID" :userIDstatus
-                                              };
-                        
-                        [[self->ref child: receiptID ]  setValue: updateCheckStatus];
-                        
-                        NSLog( @"update done exit!!!!!!!");
-                        break ;
-                    }
-                    else {
-                        
-                    }
-                }
-            }];
-        }
-    };
+
+        // --- UPDATE DATA HERE
     
-    [self.proximityObserver startObservingZones:@[ zone ]];
-    // end estimote
-    return YES;
+        [self walkout: userAuth ];
+    
+        // --- END UPDATE
+        NSLog(@"bye bye");
+
+};
+
+[self.proximityObserver startObservingZones:@[ zone ]];
+// end estimote
+return YES;
 }
 
 
@@ -253,7 +166,7 @@
                 if (error != nil) {
                     // Replace this implementation with code to handle the error appropriately.
                     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    
+
                     /*
                      Typical reasons for an error here include:
                      * The parent directory does not exist, cannot be created, or disallows writing.
@@ -268,7 +181,7 @@
             }];
         }
     }
-    
+
     return _persistentContainer;
 }
 
@@ -302,7 +215,7 @@
 //    viewCheck.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
 //    viewCheck.layer.shadowOpacity = 0.9f;
 //    viewCheck.layer.masksToBounds = NO;
-//    
+//
 //    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
 //    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(viewCheck.bounds, shadowInsets)];
 //    viewCheck.layer.shadowPath    = shadowPath.CGPath;
@@ -313,4 +226,93 @@
     NSLog( @"setCornerRadius");
 }
 
+-(void)walkin:(NSString *)firebaseUserID {
+    
+    // --- UPDATE DATA HERE
+    
+    for( NSString * x in self->_dictionaryStatus) {
+        
+        // LOOP TO CHECK IF ANY OF DATA FROM DATABASE HAS STATUS EQUAL TO FALSE
+        NSString * link =  self->_dictionaryStatus[x][@"link"];
+        NSLog( @" ++ link ++  :: %@", link );
+        
+        NSString * receiptID =  self->_dictionaryStatus[x][@"receiptID"];
+        NSLog( @" ++ receiptID ++  :: %@", receiptID );
+        
+        NSString * status =  self->_dictionaryStatus[x][@"status"];
+        NSLog( @" ++ status ++  :: %@", status );
+        
+        NSString * userID =  self->_dictionaryStatus[x][@"userID"];
+        NSLog( @" ++ userID ++  :: %@", userID );
+        
+                // IF FOUND STATUS EQUAL TO FALSE
+                if ( [ status isEqual: @"false"] && [ userID isEqual: firebaseUserID ]) {
+                    NSLog( @"FOUND MATCH FALSE ");
+                    
+                    NSLog( @"the one that match false %@ ", x );
+                    
+                    self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
+                    
+                    // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                    NSDictionary *updateDataSet = @ {
+                                                        @"link":  link,
+                                                        @"receiptID": receiptID,
+                                                        @"status": @"true",
+                                                        @"userID": userID
+                                                    };
+                    // OVERIDE FIREBASE
+                    [[self->ref child: receiptID ]  setValue: updateDataSet];
+                    
+                }
+    }
+    
+    // --- END UPDATE
+}
+
+-(void)walkout:(NSString *)firebaseUserID {
+
+    
+        // --- UPDATE DATA HERE
+
+        for( NSString * x in self->_dictionaryStatus) {
+
+        // LOOP TO CHECK IF ANY OF DATA FROM DATABASE HAS STATUS EQUAL TO FALSE
+        NSString * link =  self->_dictionaryStatus[x][@"link"];
+        NSLog( @" ++ link ++  :: %@", link );
+
+        NSString * receiptID =  self->_dictionaryStatus[x][@"receiptID"];
+        NSLog( @" ++ receiptID ++  :: %@", receiptID );
+
+        NSString * status =  self->_dictionaryStatus[x][@"status"];
+        NSLog( @" ++ status ++  :: %@", status );
+
+        NSString * userID =  self->_dictionaryStatus[x][@"userID"];
+        NSLog( @" ++ userID ++  :: %@", userID );
+
+                // IF FOUND STATUS EQUAL TO TRUE
+                if ( [ status isEqual: @"true"] && [ userID isEqual: firebaseUserID ]) {
+                NSLog( @"FOUND MATCH FALSE ");
+
+                NSLog( @"the one that match false %@ ", x );
+
+                self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
+
+                            // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                            NSDictionary *updateDataSet = @ {
+                                                                @"link":  link,
+                                                                @"receiptID": receiptID,
+                                                                @"status": @"false",
+                                                                @"userID": userID
+                                                            };
+                // OVERIDE FIREBASE
+                [[self->ref child: receiptID ]  setValue: updateDataSet];
+
+                }
+    }
+    
+     // --- END UPDATE
+}
+
 @end
+
+

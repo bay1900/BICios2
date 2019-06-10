@@ -13,7 +13,6 @@
 
 
 @interface LandingPageViewController ()
-
 @end
 
 @implementation LandingPageViewController
@@ -21,20 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-//    NSString *file = @"/bay.pdf";
-//    NSMutableArray *content  = @"haha bay";
-//  //  NSString *dir = [[ NSFileManager defaultManager ] NSSearchPathForDirectoriesInDomains: NSDocumentDirectory inDomains: NSUserDomainMask ];
-//    NSString *dir = [ NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, true) objectAtIndex: 0 ];
-//
-//    NSLog( @"the DIR ::: %@", dir );
-//
-//    NSString *fileURL = [ dir stringByAppendingString: file];
-//
-//    NSLog( @"the fileURL ::: %@", fileURL );
-//
-//    NSError *err = nil;
-//    [ content writeToFile: fileURL atomically: false ];
 
      
     // check if user hasn't log out redirect them somewhere
