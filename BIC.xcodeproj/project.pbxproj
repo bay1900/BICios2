@@ -10,6 +10,10 @@
 		127C94E1EB90AB478391076D /* Pods_BIC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF62EF2546D6DCEB8907EE2C /* Pods_BIC.framework */; };
 		242B0892E7812667763EE256 /* Pods_BICTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFBD5D10F8364DA095DE592 /* Pods_BICTests.framework */; };
 		6105AD3F22708673005C4C7F /* Sidebar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6105AD3E22708673005C4C7F /* Sidebar.storyboard */; };
+		6116FCD622AE4A4A0073092B /* statementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6116FCD522AE4A4A0073092B /* statementViewController.m */; };
+		6116FCD822AE94D90073092B /* statement.html in Resources */ = {isa = PBXBuildFile; fileRef = 6116FCD722AE94D90073092B /* statement.html */; };
+		6116FCDB22AF96B20073092B /* statementForContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6116FCDA22AF96B20073092B /* statementForContainerViewController.m */; };
+		6116FCDE22AF96D30073092B /* statementWebviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6116FCDD22AF96D30073092B /* statementWebviewViewController.m */; };
 		61278D5922558B280037C071 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61278D5822558B280037C071 /* AppDelegate.m */; };
 		61278D5C22558B280037C071 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61278D5B22558B280037C071 /* ViewController.m */; };
 		61278D5F22558B280037C071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61278D5D22558B280037C071 /* Main.storyboard */; };
@@ -55,6 +59,13 @@
 /* Begin PBXFileReference section */
 		3ED2F85C2BC4B4CCA6E2DDFC /* Pods_BICUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BICUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6105AD3E22708673005C4C7F /* Sidebar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidebar.storyboard; sourceTree = "<group>"; };
+		6116FCD422AE4A4A0073092B /* statementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = statementViewController.h; sourceTree = "<group>"; };
+		6116FCD522AE4A4A0073092B /* statementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = statementViewController.m; sourceTree = "<group>"; };
+		6116FCD722AE94D90073092B /* statement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = statement.html; sourceTree = "<group>"; };
+		6116FCD922AF96B20073092B /* statementForContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = statementForContainerViewController.h; sourceTree = "<group>"; };
+		6116FCDA22AF96B20073092B /* statementForContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = statementForContainerViewController.m; sourceTree = "<group>"; };
+		6116FCDC22AF96D30073092B /* statementWebviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = statementWebviewViewController.h; sourceTree = "<group>"; };
+		6116FCDD22AF96D30073092B /* statementWebviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = statementWebviewViewController.m; sourceTree = "<group>"; };
 		61278D5422558B280037C071 /* BIC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BIC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61278D5722558B280037C071 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		61278D5822558B280037C071 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -157,6 +168,20 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		6116FCD322AE4A350073092B /* statement */ = {
+			isa = PBXGroup;
+			children = (
+				6116FCD722AE94D90073092B /* statement.html */,
+				6116FCD422AE4A4A0073092B /* statementViewController.h */,
+				6116FCD522AE4A4A0073092B /* statementViewController.m */,
+				6116FCDC22AF96D30073092B /* statementWebviewViewController.h */,
+				6116FCDD22AF96D30073092B /* statementWebviewViewController.m */,
+				6116FCD922AF96B20073092B /* statementForContainerViewController.h */,
+				6116FCDA22AF96B20073092B /* statementForContainerViewController.m */,
+			);
+			name = statement;
+			sourceTree = "<group>";
+		};
 		61278D4B22558B280037C071 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +207,7 @@
 		61278D5622558B280037C071 /* BIC */ = {
 			isa = PBXGroup;
 			children = (
+				6116FCD322AE4A350073092B /* statement */,
 				61433C95229BC15500B4A568 /* complaint */,
 				6105AD3D22708613005C4C7F /* Storyboards */,
 				61E3A152226ED61900C49798 /* pdf */,
@@ -414,6 +440,7 @@
 				61278D6422558B290037C071 /* Assets.xcassets in Resources */,
 				61278D5F22558B280037C071 /* Main.storyboard in Resources */,
 				61E3A151226ED3A200C49798 /* exchange.html in Resources */,
+				6116FCD822AE94D90073092B /* statement.html in Resources */,
 				61433C9A229CE06B00B4A568 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,9 +582,12 @@
 				61E3A158226EE38000C49798 /* accelerateViewController.m in Sources */,
 				61278D6A22558B290037C071 /* main.m in Sources */,
 				61EA59D62255C0B7001216EE /* registerViewController.m in Sources */,
+				6116FCDE22AF96D30073092B /* statementWebviewViewController.m in Sources */,
 				61EA59D92255C0C2001216EE /* loginViewController.m in Sources */,
 				61433C98229BC17700B4A568 /* gatherConplaintViewController.m in Sources */,
 				61278D5922558B280037C071 /* AppDelegate.m in Sources */,
+				6116FCDB22AF96B20073092B /* statementForContainerViewController.m in Sources */,
+				6116FCD622AE4A4A0073092B /* statementViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

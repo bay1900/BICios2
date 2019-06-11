@@ -123,8 +123,8 @@
         
 //        NSString *pdfBill =  [NSString stringWithFormat: @"/%@.pdf", dictData[@"timestamp"]];
         NSString *pdfBillDowload = [ NSString stringWithFormat: @"/download%@.pdf", dictData[@"timestamp"]];
-        NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString  *documentsDirectory = [paths objectAtIndex:0];
+        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
         
         NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, pdfBillDowload];
         [urlData writeToFile:filePath atomically:YES];
@@ -188,62 +188,62 @@
     
     // Upload the file to the path "images/rivers.jpg"
     FIRStorageUploadTask *uploadTask = [riversRef putFile: URL metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
-        if (error != nil) {
-            // Uh-oh, an error occurred!
-        } else {
-            // Metadata contains file metadata such as size, content-type, and download URL.
-            int size = metadata.size;
-            // You can also access to download URL after upload.
-            [riversRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
-                if (error != nil) {
-                    // Uh-oh, an error occurred!
-                } else {
-                    NSURL *downloadURL = URL;
-                    NSLog( @"The downloadURL ::::: %@", downloadURL  );
-                    
-                    // timestamp since 1970
-                    NSUInteger currentTime = [[ NSDate date ] timeIntervalSince1970 ];
-                    NSString *receiptTimestamp = [ NSString stringWithFormat: @"%ld", currentTime ];
-                    
-                    NSString * receiptDownloadLink = downloadURL.absoluteString; // treat NSURL as string
-                    NSString * receiptKey = receiptTimestamp;
-                    
-                    self.buttonLinkPDF = receiptDownloadLink; // copy than use for button download link
-                    // realtime database
-                    // Realtime datebse
-                    self.ref = [[[FIRDatabase database] reference] child: @"client"];
-                    
-//                    [[ self.ref child: userAuth ] updateChildValues: @{ receiptKey : receiptDownloadLink },
-//                                                                     @{ @"receiptNumber": receiptKey},
-//                                                                     @{ @"link": receiptDownloadLink}];
-                    
-                    
-                    NSDictionary *userData = [[ NSDictionary alloc ] init ];
-                    
-                    userData = @{
-                                 @"userID" : userAuth,
-                                 @"link" : receiptDownloadLink,
-                                 @"receiptID" : receiptKey,
-                                 @"status" : @"false"
-                                };
-                    [[self->_ref child: receiptKey ]  setValue:userData];
-                    
-                    
-                    // for check status
-                    self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
-                    
-                    NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
-                    checkStatus = @{
-                                 @"userID" : userAuth,
-                                 @"link" : receiptDownloadLink,
-                                 @"receiptID" : receiptKey,
-                                 @"status" : @"false"
-                                 };
-                    [[self->_ref child: receiptKey ]  setValue:checkStatus];
-                    
-                }
-            }];
-        }
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+            } else {
+                    // Metadata contains file metadata such as size, content-type, and download URL.
+                    int size = metadata.size;
+                    // You can also access to download URL after upload.
+                    [riversRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+                                if (error != nil) {
+                                    // Uh-oh, an error occurred!
+                                } else {
+                                            NSURL *downloadURL = URL;
+                                            NSLog( @"The downloadURL ::::: %@", downloadURL  );
+                                    
+                                            // timestamp since 1970
+                                            NSUInteger currentTime = [[ NSDate date ] timeIntervalSince1970 ];
+                                            NSString *receiptTimestamp = [ NSString stringWithFormat: @"%ld", currentTime ];
+                                    
+                                            NSString * receiptDownloadLink = downloadURL.absoluteString; // treat NSURL as string
+                                            NSString * receiptKey = self->dictData[@"timestamp"];  /// this is the one !
+                                    
+                                            self.buttonLinkPDF = receiptDownloadLink; // copy than use for button download link
+                                            // realtime database
+                                            // Realtime datebse
+                                            self.ref = [[[FIRDatabase database] reference] child: @"client"];
+                                    
+                        //                    [[ self.ref child: userAuth ] updateChildValues: @{ receiptKey : receiptDownloadLink },
+                        //                                                                     @{ @"receiptNumber": receiptKey},
+                        //                                                                     @{ @"link": receiptDownloadLink}];
+                                    
+                                    
+                                            NSDictionary *userData = [[ NSDictionary alloc ] init ];
+                                    
+                                            userData = @{
+                                                         @"userID" : userAuth,
+                                                         @"link" : receiptDownloadLink,
+                                                         @"receiptID" : receiptKey,
+                                                         @"status" : @"false"
+                                                        };
+                                            [[self->_ref child: receiptKey ]  setValue:userData];
+                                    
+                                    
+                                            // for check status
+                                            self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+                                    
+                                            NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
+                                            checkStatus = @{
+                                                         @"userID" : userAuth,
+                                                         @"link" : receiptDownloadLink,
+                                                         @"receiptID" : receiptKey,
+                                                         @"status" : @"false"
+                                                         };
+                                            [[self->_ref child: receiptKey ]  setValue:checkStatus];
+                                    
+                                }
+                    }];
+            }
     }];
     
  

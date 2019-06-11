@@ -80,33 +80,23 @@
     NSMutableArray *myCurrency = [[ NSMutableArray alloc] init ] ;  // store currency name
     NSMutableArray *myValue = [[ NSMutableArray alloc ] init ];     // store values
     
-    // copy currency rate and name in new arrays
-    for (NSString * key in j[@"rates"]) {
+            // copy currency rate and name in new arrays
+            for (NSString * key in j[@"rates"]) {
 
-        NSString *value = [j[@"rates"] objectForKey:key];
+                NSString *value = [j[@"rates"] objectForKey:key];
 
-        [ myCurrency addObject: key ];
-        [ myValue addObject: value ];
+                [ myCurrency addObject: key ];
+                [ myValue addObject: value ];
 
-        // treat  NSMutableArray as  NSArray for tableview
-        self.cur = [[NSArray alloc] initWithArray: myCurrency];
-        self.rate = [[ NSArray alloc ] initWithArray: myValue ];
+                // treat  NSMutableArray as  NSArray for tableview
+                self.cur = [[NSArray alloc] initWithArray: myCurrency];
+                self.rate = [[ NSArray alloc ] initWithArray: myValue ];
 
-    }
+            }
 
-
     
-    
-   // NSLog(  @" key AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ cur indexOfObject: @"AUD" ] );
-    // NSLog(  @" value AUD indexOfOBJECT%lu  ::: ", (unsigned long)[ _rate indexOfObject:  ] );
-    
-    
-    //  NSLog( @">>>>>>>>>>>>  %@", _rate[indexOfCur]);
-    
-    
-    
-    NSLog( @"gg:::::::::::%@", myCurrency );
-    NSLog( @"gg:::::::::::%@", myValue );
+                NSLog( @"gg:::::::::::%@", myCurrency );
+                NSLog( @"gg:::::::::::%@", myValue );
     
 }
 
@@ -116,10 +106,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    
-   // NSString *jj = self.dateReceipt;
-    
 
     // pass data from exchangeVC to exchangeForContainerVC
     // allocate
@@ -154,10 +140,6 @@
 }
 
 
-- (IBAction)openHTML:(id)sender {
-
-    
-}
 
 // drop down table view
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -214,7 +196,6 @@
                     //hide tableview when cell any cell is clicked
                     self.tableViewO.hidden = YES;
             
-            
                     self.originSymbol = cell.textLabel.text ;
                     NSLog(  @"Origin amount : %@",  _originSymbol );
             
@@ -250,7 +231,7 @@
 // Origin currency button
 - (IBAction)btnAction:(id)sender {
     
-        // set hidden
+            // set hidden
             if ( self.tableViewO.hidden == YES ) {
                 [ self.tableViewO setHidden: NO ];
             }
@@ -310,125 +291,7 @@
 }
 
 
--(void) fetchLoopKey {
-    
-//
-//    NSString *userAuth = [FIRAuth auth].currentUser.uid;
-//
-//
-//    FIRDatabaseQuery *myTopPostsQuery = [[self.ref child:@"client"] queryOrderedByKey];
-//
-//    storeData = [[ NSMutableArray alloc ] init ];
-//
-//    [ myTopPostsQuery observeEventType: FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//
-//        BOOL isStuff = [ snapshot key ];
-//
-//
-//        exData *ex = [[ exData alloc ] init ] ;
-//        NSLog( @":::::::::::::::::::::%@", snapshot.key);
-//        NSLog( @":::::::::::::::::::::%d", isStuff);
-//
-//
-//    }];
 
-    
-}
-
-- (IBAction)theCovert:(id)sender {
-    
-    
-//    float inputTop =  [ exchangeTopTF.text floatValue ];
-//
-//    // Origin and covert button symbol
-//    NSString *x = _buttonCovert.titleLabel.text;
-//    NSString *y =  _btnOutlet.titleLabel.text;
-//
-//
-}
-
--(void)covertMethod{
-//
-//    int inputTop =  (int)[ exchangeTopTF.text integerValue ];
-//
-//    NSLog( @"the originSymbol %d", inputTop );
-//
-//
-//    NSLog( @"the originSymbol %@", _originSymbol );
-//    NSLog( @"the covertSymbol %@", _covertSymbol );
-//
-//
-//    if ( ![self.originSymbol  isEqual: @"CURRENCY"] ) {
-//
-//
-//
-//
-//    } else if ( ![self.covertSymbol  isEqual: @"CURRENCY"] ) {
-//
-//
-//
-//    }
-//    else {
-//
-//    }
-
-}
-
-
--(void)covertOrigin  {
-    
-    int inputOriginTF =  (int)[ exchangeTopTF.text integerValue ];
-
-    // check indexofObject of the string in an array
-    indexCur =  (int)[cur indexOfObject: _originSymbol];
-    NSLog( @"Index of original  ::::: %d", indexCur);
-    
-    
-    // Check rate base on indexCure
-    NSString *valueRateee =  self.rate[indexCur];
-    
-    // --------------------------------
-    
-    double valueRate = (double)[ valueRateee  doubleValue ];
-    NSLog( @"Rate of origin ::::: %@ ", valueRateee );
-    
-    // covert origin rate to uero because, data that fetch from FIXER.IO base on UERO rates
-    
-    double fcAmount ;
-    fcAmount  = inputOriginTF * valueRate ;
-    
-    originToUERO  = fcAmount ;
-    
-    NSLog( @"originToUERO ::::: %.2f", fcAmount  );
-    [ self viewWillAppear: true ];
-    
-    
-    
-
-}
-
-- (void)getTotal{
-    
-    NSLog(  @" %@",   rate[indexCur]);   // todo
-    // get the AUS rate fom valueRate array
-//    int indexRate ;
-//    NSLog( @"Index of rate  ::::: %d", indexRate);
-//
-    // Check rate base on indexCure
-    NSString *rateArray =  rate[indexCur];;
-    
-    // ----------------------------------
-    
-    double covertRate = (double)[ rateArray doubleValue];
-    NSLog( @"Rate of covert ::::: %@ ", rateArray );
-    
-    
-    _lcAmount =  originToUERO * covertRate ;
-    NSLog( @" The covert result ::::: %.2f", _lcAmount  );
-    
-//    // set botton textfield as the result of the exchange
-//    self.exchangeBottomTF.text =  [ NSString stringWithFormat: @"%.2f", lcAmount ];
-}
 
 -(void)viewWillAppear:(BOOL)animated {
     

@@ -28,10 +28,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+   
 
-    //
     [FIRApp configure];   // firebase
-//
+
     
     
 
@@ -46,10 +46,10 @@
     }];
     
     
-    //  CHECK IF USER LOGGED IN
-    NSString *userAuth = [FIRAuth auth].currentUser.uid;
-    NSLog( @"The userAuth delegate ::: %@", userAuth );
-    
+//    //  CHECK IF USER LOGGED IN
+//    NSString *userAuth = [FIRAuth auth].currentUser.uid;
+//    NSLog( @"The userAuth delegate ::: %@", userAuth );
+//
     
     
     // estimote
@@ -83,7 +83,10 @@
         [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
 
 
-
+        //  CHECK IF USER LOGGED IN
+        NSString *userAuth = [FIRAuth auth].currentUser.uid;
+        NSLog( @"The userAuth delegate ::: %@", userAuth );
+        
         // --- UPDATE DATA HERE
         
         [self walkin: userAuth ];
@@ -104,10 +107,11 @@ zone.onExit = ^(EPXProximityZoneContext *context) {
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"exit" content:content trigger:nil];
         [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
 
-        // firebase
-        NSString *userAuth = [FIRAuth auth].currentUser.uid;
-
-        NSLog( @"The userAuth delegate exit ::: %@", userAuth );
+       
+    //  CHECK IF USER LOGGED IN
+    NSString *userAuth = [FIRAuth auth].currentUser.uid;
+    NSLog( @"The userAuth delegate ::: %@", userAuth );
+    
 
         // --- UPDATE DATA HERE
     
