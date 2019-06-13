@@ -62,7 +62,7 @@
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#origin" withString: [ _dictShowWeb valueForKey: @"origin"]];
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#covert" withString: [ _dictShowWeb valueForKey: @"covert"]];
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#timestamp" withString: [ _dictShowWeb valueForKey: @"timestamp"]];
-
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#futurepickup" withString: [ _dictShowWeb valueForKey: @"futurepickup"]];
 
     }
     else {

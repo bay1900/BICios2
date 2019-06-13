@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) IBOutlet WKWebView *webViewStatement;
 
+@property (nonatomic, strong ) NSDictionary *dictData;
+
+@property (nonatomic, strong ) NSDictionary *dictShowWeb;
 @end
 
 NS_ASSUME_NONNULL_END

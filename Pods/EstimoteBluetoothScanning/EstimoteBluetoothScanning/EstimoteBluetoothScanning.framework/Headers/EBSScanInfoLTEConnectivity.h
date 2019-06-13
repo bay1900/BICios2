@@ -11,6 +11,8 @@
 
 #import <EstimoteBluetoothScanning/EstimoteBluetoothScanning.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Connectivity packet of LTE beacons.
  */
@@ -24,12 +26,12 @@
 /**
  *  Version of application running on the device.
  */
-@property(nonatomic, strong, readonly) NSString *appVersion;
+@property(nonatomic, strong, readonly, nullable) NSString *appVersion;
 
 /**
  *  Version of bootloader running on the device.
  */
-@property(nonatomic, strong, readonly) NSString *bootloaderVersion;
+@property(nonatomic, strong, readonly, nullable) NSString *bootloaderVersion;
 
 /**
  Flag indicating if beacon's button was pressed.
@@ -50,8 +52,10 @@
                                         rssi:(NSNumber *)rssi
                                     scanDate:(NSDate *)scanDate
                                     publicID:(NSString *)publicID
-                                  appVersion:(NSString *)appVersion
-                           bootloaderVersion:(NSString *)bootloaderVersion
+                                  appVersion:(nullable NSString *)appVersion
+                           bootloaderVersion:(nullable NSString *)bootloaderVersion
                                    isPressed:(NSNumber *)isPressed;
 
 @end
+
+NS_ASSUME_NONNULL_END

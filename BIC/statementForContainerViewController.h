@@ -8,11 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface statementForContainerViewController : UIViewController 
 @property (nonatomic, strong ) NSDictionary *dictData;
+
+
+// firebase databse
+// firebase database reference
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+
+@property (strong, nonatomic) NSString *buttonLinkPDF;
+
 
 @end
 

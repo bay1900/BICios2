@@ -7,6 +7,7 @@
 //
 
 #import "statementWebviewViewController.h"
+#import "statementWebviewViewController.h"
 
 @interface statementWebviewViewController ()
 
@@ -24,15 +25,14 @@
     [_webViewStatement loadHTMLString: [self getHTMLString ] baseURL: [ NSURL URLWithString: @""]];
 }
 
-/*
-#pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
 }
-*/
+
+
+
 
 -(NSString *) getHTMLString {
     
@@ -40,30 +40,33 @@
     NSString *filePath = [[ NSBundle mainBundle ] pathForResource: @"statement" ofType:@"html" ];
     NSString *strHTML = [ NSString stringWithContentsOfFile: filePath encoding: NSUTF8StringEncoding error: nil ];
     
-//    // replace data from Dictionary to the webview
-//    if ( self.dictShowWeb ) {
-//
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#fcAmount" withString: [ _dictShowWeb valueForKey: @"fcAmount"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#lcAmount" withString: [ _dictShowWeb valueForKey: @"lcAmount"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#address" withString: [ _dictShowWeb valueForKey: @"address"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#country" withString: [ _dictShowWeb valueForKey: @"country"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#phone" withString: [ _dictShowWeb valueForKey: @"phone"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#date" withString: [ _dictShowWeb valueForKey: @"date"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#billNumber" withString: [ _dictShowWeb valueForKey: @"billNumber"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#exchangeRate" withString: [ _dictShowWeb valueForKey: @"exchangeRate"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#origin" withString: [ _dictShowWeb valueForKey: @"origin"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#covert" withString: [ _dictShowWeb valueForKey: @"covert"]];
-//        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#timestamp" withString: [ _dictShowWeb valueForKey: @"timestamp"]];
-//
-//
-//    }
-//    else {
-//
-//        NSLog( @" someting went wrong ! ");
-//    }
-//
-//
-//    NSLog (@"nsdic in the webviewpage ! = %@", self.dictData);
+    // replace data from Dictionary to the webview
+    if ( self.dictShowWeb ) {
+
+
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#address" withString: [ _dictShowWeb valueForKey: @"address"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#country" withString: [ _dictShowWeb valueForKey: @"country"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#phone" withString: [ _dictShowWeb valueForKey: @"phone"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#date" withString: [ _dictShowWeb valueForKey: @"date"]];
+        
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#billNumber" withString: [ _dictShowWeb valueForKey: @"billNumber"]];
+          strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#timestamp" withString: [ _dictShowWeb valueForKey: @"timestamp"]];
+        
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#statementBegin" withString: [ _dictShowWeb valueForKey: @"startStatement"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#statementEnd" withString: [ _dictShowWeb valueForKey: @"endStatement"]];
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#futurepickup" withString: [ _dictShowWeb valueForKey: @"futurepickup"]];
+        
+      //  strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#timestamp" withString: [ _dictShowWeb valueForKey: @"timestamp"]];
+
+
+    }
+    else {
+
+        NSLog( @" someting went wrong ! ");
+    }
+
+
+    NSLog (@"nsdic in the webviewpage ! = %@", self.dictData);
    return strHTML ;
 //    
 }

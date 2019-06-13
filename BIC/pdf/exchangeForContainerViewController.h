@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *buttonLinkPDF;
 
+- (IBAction)goHome:(id)sender;
 
 @end
 

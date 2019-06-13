@@ -8,6 +8,7 @@
 
 #import "exchangeForContainerViewController.h"
 #import "exchangeWebviewViewController.h"
+#import "mainViewController.h"
 
 #define A4PaperSize CGRectMake(0, 0, 595.2, 841.8)
 
@@ -29,10 +30,10 @@
     textLabel.text = theData ;
     NSLog ( @"the dictData you are testing bay  :: %@", dictData );
     
-    //    // create button on the right top
-    UIBarButtonItem *btnSavePDF = [[ UIBarButtonItem alloc ] initWithTitle: @"Save as PDF" style: UIBarButtonItemStylePlain target: self action: @selector(downloadPDF:)];
-    // self.navigationItem.rightBarButtonItem = btnSavePDF;
-    self.navigationItem.rightBarButtonItem =  btnSavePDF ;
+//    // create button on the right top
+//    UIBarButtonItem *btnSavePDF = [[ UIBarButtonItem alloc ] initWithTitle: @"Save as PDF" style: UIBarButtonItemStylePlain target: self action: @selector(Home:)];
+//    // self.navigationItem.rightBarButtonItem = btnSavePDF;
+//    self.navigationItem.rightBarButtonItem =  btnSavePDF ;
 
    
     }
@@ -41,7 +42,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [ self savePDF: self ];
-
 
 }
 
@@ -65,8 +65,6 @@
         
         exchangeWebviewViewController *tryText = segue.destinationViewController;
         tryText.testForWeb = @"haha bay ";
-        
-        
     }
     else  {
     }
@@ -75,6 +73,9 @@
     exchangeWebviewViewController *x ;
     x = [ segue destinationViewController];
     x.dictShowWeb = dictData ;
+    
+    
+    
 }
 
 -(NSString *) getHTMLString {
@@ -100,6 +101,8 @@
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#covert" withString: [ dictData valueForKey: @"covert"]];
         strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#timestamp" withString: [ dictData valueForKey: @"timestamp"]];
 
+        strHTML = [ strHTML stringByReplacingOccurrencesOfString: @"#futurepickup" withString: [ dictData valueForKey: @"futurepickup"]];
+
     } else {
         
         NSLog( @" someting went wrong ! ");
@@ -111,31 +114,42 @@
     
 }
 
-
--(IBAction)downloadPDF:(id)sender {
+-(IBAction)Home:(id)sender {
+//    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
     
-   
-    NSURL  *url = [NSURL URLWithString: self.buttonLinkPDF];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    
-    if ( urlData )
-    {
-        
-//        NSString *pdfBill =  [NSString stringWithFormat: @"/%@.pdf", dictData[@"timestamp"]];
-        NSString *pdfBillDowload = [ NSString stringWithFormat: @"/download%@.pdf", dictData[@"timestamp"]];
-        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        
-        NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, pdfBillDowload];
-        [urlData writeToFile:filePath atomically:YES];
-    }
-    NSLog( @"downloadPDF");
+//    UINavigationController *navController = (UINavigationController *)[self mainViewController];
+//    [navController popToRootViewControllerAnimated:YES];
+//    
+//    NSLog( @"home is clicked ");
 }
+
+
+//-(IBAction)downloadPDF:(id)sender {
+//
+//
+//    NSURL  *url = [NSURL URLWithString: self.buttonLinkPDF];
+//    NSData *urlData = [NSData dataWithContentsOfURL:url];
+//
+//    if ( urlData )
+//    {
+//
+//        //NSString *pdfBill =  [NSString stringWithFormat: @"/%@.pdf", dictData[@"timestamp"]];
+//        NSString *pdfBillDowload = [ NSString stringWithFormat: @"/download%@.pdf", dictData[@"timestamp"]];
+//        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *documentsDirectory = [paths objectAtIndex:0];
+//
+//        NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, pdfBillDowload];
+//        [urlData writeToFile:filePath atomically:YES];
+//    }
+//    NSLog( @"downloadPDF");
+//}
 
 
 -(IBAction)savePDF:(id)sender {
     CGRect pageFrame = A4PaperSize ;
     
+    
+    // GENERATE PDF FILR
     UIPrintPageRenderer *printPageRenderer = [[ UIPrintPageRenderer alloc ] init ];
     [ printPageRenderer setValue: [ NSValue valueWithCGRect: pageFrame ] forKey: @"paperRect" ];
     [ printPageRenderer setValue: [ NSValue valueWithCGRect: pageFrame ] forKey: @"printableRect" ];
@@ -161,10 +175,8 @@
     
     NSLog( @"%@", filePath );
     
-   
     
-  ////////
-    
+    // UPLOAD TO FIREBASE STORAGE
     // Get a reference to the storage service using the default Firebase App
     FIRStorage *storage = [FIRStorage storage];
     
@@ -180,9 +192,7 @@
     // File located on disk
     //NSURL *localFile = [NSURL URLWithString:@"path/to/image"];
     NSString *userAuth = [FIRAuth auth].currentUser.uid;
-    
-  //  NSString *pdfBillFirebase = [[ NSString stringWithFormat: @"%@", userAuth ];
-    
+
     // Create a reference to the file you want to upload
     FIRStorageReference *riversRef = [[storageRef child: userAuth] child: pdfBillNew] ;
     
@@ -195,6 +205,7 @@
                     int size = metadata.size;
                     // You can also access to download URL after upload.
                     [riversRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+                        
                                 if (error != nil) {
                                     // Uh-oh, an error occurred!
                                 } else {
@@ -208,51 +219,120 @@
                                             NSString * receiptDownloadLink = downloadURL.absoluteString; // treat NSURL as string
                                             NSString * receiptKey = self->dictData[@"timestamp"];  /// this is the one !
                                     
-                                            self.buttonLinkPDF = receiptDownloadLink; // copy than use for button download link
-                                            // realtime database
-                                            // Realtime datebse
-                                            self.ref = [[[FIRDatabase database] reference] child: @"client"];
-                                    
-                        //                    [[ self.ref child: userAuth ] updateChildValues: @{ receiptKey : receiptDownloadLink },
-                        //                                                                     @{ @"receiptNumber": receiptKey},
-                        //                                                                     @{ @"link": receiptDownloadLink}];
                                     
                                     
-                                            NSDictionary *userData = [[ NSDictionary alloc ] init ];
-                                    
-                                            userData = @{
-                                                         @"userID" : userAuth,
-                                                         @"link" : receiptDownloadLink,
-                                                         @"receiptID" : receiptKey,
-                                                         @"status" : @"false"
-                                                        };
-                                            [[self->_ref child: receiptKey ]  setValue:userData];
                                     
                                     
-                                            // for check status
-                                            self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
                                     
-                                            NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
-                                            checkStatus = @{
-                                                         @"userID" : userAuth,
-                                                         @"link" : receiptDownloadLink,
-                                                         @"receiptID" : receiptKey,
-                                                         @"status" : @"false"
-                                                         };
-                                            [[self->_ref child: receiptKey ]  setValue:checkStatus];
+                                            // ******* covert string date to timeinterval
+                                            // get string from date picker
                                     
+                                            NSString * futurepickup = self->dictData[@"futurepickup"];  /// this is the one !
+                                            NSLog( @"future pick up in exchange %@ ", futurepickup);
+
+                                            NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+                                        //    [dateFormatter setDateFormat:@"yyyy-M-dd"] ;
+                                            [dateFormatter setDateFormat:@"dd-M-yyyy"] ;
+
+                                    
+                                            // string to NSDate
+                                            NSDate *date = [dateFormatter dateFromString: futurepickup ] ;
+                                            NSLog(@"date=%@",date) ;
+                                    
+                                            // get timestamp from 1970 - 2019-06-12 ( string that coverted to NSDate )
+                                            NSTimeInterval interval  = [date timeIntervalSince1970] ;
+                                            NSLog(@"interval=%.0f",interval) ;
+                                        //    NSInteger intervalInt = round(interval);
+                                    
+                                            int intervalInt = (int)interval;
+                                            NSString *intervalString = [ NSString stringWithFormat: @"%.0f", (float)intervalInt];
+                                    
+                                    
+                                            NSDate *methodStart = [NSDate dateWithTimeIntervalSince1970:interval] ;
+                                           // [dateFormatter setDateFormat:@"yyyy/M/dd "] ;
+                                           [dateFormatter setDateFormat:@"dd-M-yyyy"] ;
+
+                                            NSLog(@"result: %@", [dateFormatter stringFromDate:methodStart]) ;
+                                    
+                               
+                                   
+                                    
+                                    
+                                    if  ( futurepickup.length > 0  ) {
+                                                // for check future pick up
+                                                self.ref = [[[FIRDatabase database] reference] child: @"futurePickup"];
+                                        
+                                                NSDictionary *pickup = [[ NSDictionary alloc ] init ];
+                                                pickup = @{
+                                                           @"userID" : userAuth,
+                                                           @"link" : receiptDownloadLink,
+                                                           @"receiptID" : receiptKey,
+                                                           @"status" : @"false",
+                                                           @"futurepickup":futurepickup,
+                                                           @"intervalPickupDate": intervalString
+                                                           
+                                                           };
+                                                [[self->_ref child: receiptKey ]  setValue:pickup];
+                                    }
+                                  
+                                    else {
+                                        
+                                                // *******
+                                        
+                                                self.buttonLinkPDF = receiptDownloadLink; // copy than use for button download link
+                                                // realtime database
+                                                // Realtime datebse
+                                                self.ref = [[[FIRDatabase database] reference] child: @"client"];
+                                        
+                                                //                    [[ self.ref child: userAuth ] updateChildValues: @{ receiptKey : receiptDownloadLink },
+                                                //                                                                     @{ @"receiptNumber": receiptKey},
+                                                //                                                                     @{ @"link": receiptDownloadLink}];
+                                        
+                                        
+                                                NSDictionary *userData = [[ NSDictionary alloc ] init ];
+                                        
+                                                userData = @{
+                                                             @"userID" : userAuth,
+                                                             @"link" : receiptDownloadLink,
+                                                             @"receiptID" : receiptKey,
+                                                             @"status" : @"false"
+                                                            
+                                                             };
+                                                [[self->_ref child: receiptKey ]  setValue:userData];
+                                        
+                                        
+                                                // for check status
+                                                self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+                                        
+                                                NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
+                                                checkStatus = @{
+                                                                @"userID" : userAuth,
+                                                                @"link" : receiptDownloadLink,
+                                                                @"receiptID" : receiptKey,
+                                                                @"status" : @"false"
+                                                               
+                                                                };
+                                                [[self->_ref child: receiptKey ]  setValue:checkStatus];
+                                    }
                                 }
-                    }];
-            }
-    }];
-    
- 
+                         }];
+                   }
+           }];
+      }
 
 
+
+
+- (IBAction)goHome:(id)sender {
     
+//    UIViewController *controler = [[ UIViewController alloc ] init ];
+//    [ self.navigationController pushViewController: controler  animated: YES ];
+
+    
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+
+    mainViewController *mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"sidebarPage"];
+    [self.navigationController pushViewController: mainView animated:YES];
+
 }
-
-
-
-
 @end

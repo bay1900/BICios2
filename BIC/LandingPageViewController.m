@@ -21,25 +21,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // get string from date picker
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
-    [dateFormatter setDateFormat:@"yyyy-M-dd"] ;
-    
-    // string to NSDate
-    NSDate *date = [dateFormatter dateFromString:@"2019-06-12"] ;
-    NSLog(@"date=%@",date) ;
-    
-    // get timestamp from 1970 - 2019-06-12 ( string that coverted to NSDate )
-    NSTimeInterval interval  = [date timeIntervalSince1970] ;
-    NSLog(@"interval=%f",interval) ;
-    
-    NSDate *methodStart = [NSDate dateWithTimeIntervalSince1970:interval] ;
-    [dateFormatter setDateFormat:@"yyyy/M/dd "] ;
-    
-    NSLog(@"result: %@", [dateFormatter stringFromDate:methodStart]) ;
-    
+//    // get string from date picker
+//    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init] ;
+//    [dateFormatter setDateFormat:@"yyyy-M-dd"] ;
+//    
+//    // string to NSDate
+//    NSDate *date = [dateFormatter dateFromString:@"2019-06-12"] ;
+//    NSLog(@"date=%@",date) ;
+//    
+//    // get timestamp from 1970 - 2019-06-12 ( string that coverted to NSDate )
+//    NSTimeInterval interval  = [date timeIntervalSince1970] ;
+//    NSLog(@"interval=%f",interval) ;
+//    
+//    NSDate *methodStart = [NSDate dateWithTimeIntervalSince1970:interval] ;
+//    [dateFormatter setDateFormat:@"yyyy/M/dd "] ;
+//    
+//    NSLog(@"result: %@", [dateFormatter stringFromDate:methodStart]) ;
+//    
+//
+//
 
-     
+ 
+
     // check if user hasn't log out redirect them somewhere
     // they have already signed in // token still alive
     if ( [ FIRAuth auth ].currentUser ) {

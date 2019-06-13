@@ -17,7 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface exchangeViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface exchangeViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
+      UIDatePicker *datePicker;
+}
 
 
 //@property (strong, nonatomic) IBOutlet UITextField *name;
@@ -97,7 +99,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic ) NSString* rateReceipt;
 @property (strong, nonatomic ) NSString* timestamp;
 
+@property (strong, nonatomic) IBOutlet UIButton *setPickupDate;
 
+- (IBAction)setPickupDateButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *addPickDateTF;
 
 
 
