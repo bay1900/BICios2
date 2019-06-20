@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _addPickDateTF.hidden = YES ;
     
     datePicker =  [[ UIDatePicker alloc ] init ];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -136,7 +137,7 @@
     [ dict setObject: @"+856 21 211 018" forKey:@"phone"];
     [ dict setObject: self.dateReceipt forKey:@"date"];
     [ dict setObject: self.billNumber forKey:@"billNumber"];
-    
+   
     [ dict setObject: self.rateReceipt forKey:@"exchangeRate"];
     [ dict setObject: self.originSymbol forKey:@"origin"];
     [ dict setObject: self.covertSymbol forKey:@"covert"];

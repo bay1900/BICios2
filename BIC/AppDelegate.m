@@ -22,7 +22,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize  ref, checkStatusArray;
+@synthesize  ref, checkStatusArray, currentTimestamp;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -73,53 +73,62 @@
 
     // Enter
     zone.onEnter = ^(EPXProximityZoneContext *context) {
-        
-         NSLog( @"ENTER ENTER ENTER " );
-        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-        content.title = @"Hello";
-        content.body = @"You're near your tag";
-        content.sound = [UNNotificationSound defaultSound];
-        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"enter" content:content trigger:nil];
-        [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
 
 
         //  CHECK IF USER LOGGED IN
         NSString *userAuth = [FIRAuth auth].currentUser.uid;
         NSLog( @"The userAuth delegate ::: %@", userAuth );
         
-        // --- UPDATE DATA HERE
+        if ( userAuth ) {
+            
+            NSLog( @"ENTER ENTER ENTER " );
+            UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+            content.title = @"WELCOM TO BCEL";
+            content.body = @"Collect order at counter number 1";
+            content.sound = [UNNotificationSound defaultSound];
+            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"enter" content:content trigger:nil];
+            [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
+            
+            // --- UPDATE DATA HERE
+            
+            [self walkin: userAuth ];
+            
+            // --- END UPDATE
+            
+          
+        }
         
-        [self walkin: userAuth ];
-        
-        // --- END UPDATE
-
-        NSLog(@"welcome");
+          NSLog(@"welcome");
 
     };
    
 
     // Exit
 zone.onExit = ^(EPXProximityZoneContext *context) {
-    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-        content.title = @"Bye bye";
-        content.body = @"You've left the proximity of your tag";
-        content.sound = [UNNotificationSound defaultSound];
-        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"exit" content:content trigger:nil];
-        [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
-
-       
+ 
     //  CHECK IF USER LOGGED IN
     NSString *userAuth = [FIRAuth auth].currentUser.uid;
     NSLog( @"The userAuth delegate ::: %@", userAuth );
     
-
-        // --- UPDATE DATA HERE
     
-        [self walkout: userAuth ];
-    
-        // --- END UPDATE
-        NSLog(@"bye bye");
-
+                if ( userAuth ) {
+                    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+                    content.title = @"HAVE A GOOD DAY";
+                    content.body = @"Thank you for using accelerate service";
+                    content.sound = [UNNotificationSound defaultSound];
+                    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"exit" content:content trigger:nil];
+                    [notificationCenter addNotificationRequest:request withCompletionHandler:nil];
+                    
+                    // --- UPDATE DATA HERE
+                    
+                    [self walkout: userAuth ];
+                    
+                    // --- END UPDATE
+                  
+                    
+                }
+   
+  NSLog(@"bye bye");
 };
 
 [self.proximityObserver startObservingZones:@[ zone ]];
@@ -249,25 +258,174 @@ return YES;
         NSString * userID =  self->_dictionaryStatus[x][@"userID"];
         NSLog( @" ++ userID ++  :: %@", userID );
         
-                // IF FOUND STATUS EQUAL TO FALSE
-                if ( [ status isEqual: @"false"] && [ userID isEqual: firebaseUserID ]) {
-                    NSLog( @"FOUND MATCH FALSE ");
-                    
-                    NSLog( @"the one that match false %@ ", x );
-                    
-                    self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
-                    
-                    // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
-                    NSDictionary *updateDataSet = @ {
-                                                        @"link":  link,
-                                                        @"receiptID": receiptID,
-                                                        @"status": @"true",
-                                                        @"userID": userID
-                                                    };
-                    // OVERIDE FIREBASE
-                    [[self->ref child: receiptID ]  setValue: updateDataSet];
-                    
-                }
+        NSString * futurepickup =  self->_dictionaryStatus[x][@"futurepickup"];
+        NSLog( @" ++ futurepickup ++  :: %@", futurepickup );
+        
+        NSString * mark =  self->_dictionaryStatus[x][@"mark"];
+        NSLog( @" ++ mark ++  :: %@", mark );
+        
+        NSString * serviceName =  self->_dictionaryStatus[x][@"serviceName"];
+        NSLog( @" ++ serviceName ++  :: %@", futurepickup );
+        
+        NSString * intervalPickupDate =  self->_dictionaryStatus[x][@"intervalPickupDate"];
+        NSLog( @" ++ intervalPickupDate ++  :: %@", intervalPickupDate );
+        
+        // closed the day
+        NSInteger closedInt = [ intervalPickupDate integerValue ];
+        NSInteger closeedIntLate = closedInt + 86400 ;
+       
+        
+        // Covert currenttime and intervalPickupdate  to string
+         NSInteger currentTimeStampInt = [ currentTimestamp integerValue ];
+         NSInteger intervalPickupDateInt = [ intervalPickupDate integerValue ];
+        
+        //FAKE TIMESTAMP
+        NSInteger intervalPickupDateIntFake = 200;
+        NSInteger closeedIntLateFake =  300;
+        NSLog( @"-----------------------------------------------------------------");
+        
+        if ( futurepickup.length > 0 ) {
+            NSLog( @" a");
+            
+                        // check pick time interval
+                        //GET TIMESTAMP
+                        NSInteger  timestampLong = [[NSDate date] timeIntervalSince1970]; // snap timstamp when covert method is called
+                        NSLog( @" The timestampe value ::: %ld", (long)timestampLong );
+                        currentTimestamp =  [ NSString stringWithFormat: @"%ld", (long)timestampLong];
+            
+                        NSLog( @"current timestamp :: %@ ", currentTimestamp );
+                        NSLog( @"pickup interval  :: %@ ", intervalPickupDate );
+                        NSLog( @"cloased interval  :: %ld ", (long)intervalPickupDateInt );
+            
+                                    if ( currentTimeStampInt > intervalPickupDateInt  && currentTimeStampInt < closeedIntLate ) {
+                                        // found order pick up
+                                        NSLog( @"1");
+                                        NSLog( @"found order pick up");
+                                        
+                                        
+                                                    // PICK UP ON TIME
+                                                    if ( [ status isEqual: @"false"] && [ userID isEqual: firebaseUserID ]) {
+                                                        NSLog( @"FOUND MATCH FALSE ");
+                                                        
+                                                        NSLog( @"the one that match false %@ ", x );
+                                                        
+                                                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
+                                                        
+                                                        // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                                                        NSDictionary *updateDataSet = @ {
+                                                            @"link":  link,
+                                                            @"receiptID": receiptID,
+                                                            @"status": @"true",
+                                                            @"userID": userID,
+                                                            @"futurepickup" : futurepickup,
+                                                            @"mark" : mark,
+                                                            @"serviceName": serviceName,
+                                                            @"intervalPickupDate":intervalPickupDate
+                                                            
+                                                        };
+                                                        // OVERIDE FIREBASE
+                                                        [[self->ref child: receiptID ]  setValue: updateDataSet];
+                                                        
+                                                        
+                                                        // AFTER UPDATE THAN REMOVE FROM CLIENT FIREBASE DATABASE NODE BASE ON RECEIPT ID
+                                                        self.ref = [[[FIRDatabase database] reference] child: @"client"] ;
+                                                        [[self->ref child: receiptID ] removeValue ];
+                                                    }
+                                        
+                                    }
+                                    else if (  currentTimeStampInt > intervalPickupDateInt && currentTimeStampInt > closeedIntLate) {
+                                                        // late pick up
+                                                        NSLog( @"3");
+                                                        NSLog( @"late pick up");
+                                        
+                                                        // delete from client as well
+                                                        // AFTER UPDATE THAN REMOVE FROM CLIENT FIREBASE DATABASE NODE BASE ON RECEIPT ID
+                                                        self.ref = [[[FIRDatabase database] reference] child: @"client"] ;
+                                                        [[self->ref child: receiptID ] removeValue ];
+                                    }
+                                    else if ( currentTimeStampInt < intervalPickupDateInt && currentTimeStampInt < closeedIntLate ) {
+                                                        // not found order pick up
+                                                        NSLog( @"2");
+                                                        NSLog( @"not found order pick up");
+                                        
+                                        
+                                    }
+
+//                                    if ( intervalPickupDateInt < currentTimeStampInt ) {
+//                                        NSLog( @" [[[[[[[[[[[[   FOUND ORDER PICK UP TODAY  ]]]]]]]]]]]]]" );
+//
+//                                                    // IF FOUND STATUS EQUAL TO FALSE
+//                                                    if ( [ status isEqual: @"false"] && [ userID isEqual: firebaseUserID ]) {
+//                                                        NSLog( @"FOUND MATCH FALSE ");
+//
+//                                                        NSLog( @"the one that match false %@ ", x );
+//
+//                                                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
+//
+//                                                        // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+//                                                        NSDictionary *updateDataSet = @ {
+//                                                            @"link":  link,
+//                                                            @"receiptID": receiptID,
+//                                                            @"status": @"true",
+//                                                            @"userID": userID,
+//                                                            @"futurepickup" : futurepickup,
+//                                                            @"mark" : mark,
+//                                                            @"serviceName": serviceName,
+//                                                            @"intervalPickupDate":intervalPickupDate
+//
+//                                                        };
+//                                                        // OVERIDE FIREBASE
+//                                                        [[self->ref child: receiptID ]  setValue: updateDataSet];
+//
+//
+//                                                        // AFTER UPDATE THAN REMOVE FROM CLIENT FIREBASE DATABASE NODE BASE ON RECEIPT ID
+//                                                        self.ref = [[[FIRDatabase database] reference] child: @"client"] ;
+//                                                        [[self->ref child: receiptID ] removeValue ];
+//                                                    }
+//                                    }
+//                                    else if ( intervalPickupDateInt > currentTimeStampInt && intervalPickupDateInt > closeedIntLate ){
+//                                        NSLog( @" [[[[[[[[[[[[   FOUND ORDER BUT NO ONE PICK IN ONE DAY      ]]]]]]]]]]]]]" );
+//                                    }
+//                                    else {
+//                                         NSLog( @" [[[[[[[[[[[[   FOUND ORDER BUT NOT A PICK UP DAY     ]]]]]]]]]]]]]" );
+//                                    }
+            
+            
+        }
+        else if ( futurepickup.length <= 0 ) {
+            NSLog( @" b");
+            
+                        // IF FOUND STATUS EQUAL TO FALSE
+                        if ( [ status isEqual: @"false"] && [ userID isEqual: firebaseUserID ]) {
+                            NSLog( @"FOUND MATCH FALSE ");
+                            
+                            NSLog( @"the one that match false %@ ", x );
+                            
+                            self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
+                            
+                            // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                            NSDictionary *updateDataSet = @ {
+                                @"link":  link,
+                                @"receiptID": receiptID,
+                                @"status": @"true",
+                                @"userID": userID,
+                                @"serviceName": serviceName
+                                
+                                
+                            };
+                            // OVERIDE FIREBASE
+                            [[self->ref child: receiptID ]  setValue: updateDataSet];
+                            
+                            
+                            // AFTER UPDATE THAN REMOVE FROM CLIENT FIREBASE DATABASE NODE BASE ON RECEIPT ID
+                            self.ref = [[[FIRDatabase database] reference] child: @"client"] ;
+                            [[self->ref child: receiptID ] removeValue ];
+                        }
+            
+        }
+        NSLog( @"-----------------------------------------------------------------");
+        
+        
     }
     
     // --- END UPDATE
@@ -293,28 +451,115 @@ return YES;
         NSString * userID =  self->_dictionaryStatus[x][@"userID"];
         NSLog( @" ++ userID ++  :: %@", userID );
 
-                // IF FOUND STATUS EQUAL TO TRUE
-                if ( [ status isEqual: @"true"] && [ userID isEqual: firebaseUserID ]) {
-                NSLog( @"FOUND MATCH FALSE ");
+            NSString * futurepickup =  self->_dictionaryStatus[x][@"futurepickup"];
+            NSLog( @" ++ futurepickup ++  :: %@", futurepickup );
+            
+            NSString * mark =  self->_dictionaryStatus[x][@"mark"];
+            NSLog( @" ++ mark ++  :: %@", mark );
+            
+            NSString * serviceName =  self->_dictionaryStatus[x][@"serviceName"];
+            NSLog( @" ++ serviceName ++  :: %@", futurepickup );
+            
+            NSString * intervalPickupDate =  self->_dictionaryStatus[x][@"intervalPickupDate"];
+            NSLog( @" ++ intervalPickupDate ++  :: %@", intervalPickupDate );
 
-                NSLog( @"the one that match false %@ ", x );
-
-                self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
-
-                            // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
-                            NSDictionary *updateDataSet = @ {
-                                                                @"link":  link,
-                                                                @"receiptID": receiptID,
-                                                                @"status": @"false",
-                                                                @"userID": userID
-                                                            };
-                // OVERIDE FIREBASE
-                [[self->ref child: receiptID ]  setValue: updateDataSet];
-
+      
+            
+            
+            NSLog( @"-----------------------------------------------------------------");
+            // update statusList
+            if ( futurepickup.length > 0 ) {
+                NSLog( @"a");
+                
+                                            //  IF FOUND STATUS EQUAL TO TRUE
+                                            if ( [ status isEqual: @"true"] && [ userID isEqual: firebaseUserID ]) {
+                                                NSLog( @"FOUND MATCH FALSE ");
+                                                
+                                                NSLog( @"the one that match false %@ ", x );
+                                                
+                                                self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
+                                                
+                                                // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                                                NSDictionary *updateDataSet = @ {
+                                                    @"link":  link,
+                                                    @"receiptID": receiptID,
+                                                    @"status": @"false",
+                                                    @"userID": userID,
+                                                    @"futurepickup" : futurepickup,
+                                                    @"mark" : mark,
+                                                    @"serviceName": serviceName,
+                                                    @"intervalPickupDate":intervalPickupDate
+                                                    
+                                                };
+                                                // OVERIDE FIREBASE
+                                                [[self->ref child: receiptID ]  setValue: updateDataSet];
+                                                
+                                                
+                                                // AFTER WALKED OUT PUSH DATA FROM checkSTatus firebase node back to CLIENT
+                                                
+                                                self.ref = [[[FIRDatabase database] reference] child: @"client"] ;
+                                                
+                                                // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                                                NSDictionary *pushBack = @ {
+                                                    @"link":  link,
+                                                    @"receiptID": receiptID,
+                                                    @"status": @"false",
+                                                    @"userID": userID,
+                                                    @"futurepickup" : futurepickup,
+                                                    @"mark" : mark,
+                                                    @"serviceName": serviceName,
+                                                    @"intervalPickupDate":intervalPickupDate
+                                                };
+                                                [[self->ref child: receiptID ]  setValue: pushBack];
+                                            }
                 }
-    }
+                else if (futurepickup.length <= 0 ) {
+                    NSLog( @"b");
+                    
+                    
+                                    //  IF FOUND STATUS EQUAL TO TRUE
+                                    if ( [ status isEqual: @"true"] && [ userID isEqual: firebaseUserID ]) {
+                                        NSLog( @"FOUND MATCH FALSE ");
+                                        
+                                        NSLog( @"the one that match false %@ ", x );
+                                        
+                                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"] ;
+                                        
+                                        // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                                        NSDictionary *updateDataSet = @ {
+                                            @"link":  link,
+                                            @"receiptID": receiptID,
+                                            @"status": @"false",
+                                            @"userID": userID,
+                                            @"serviceName": serviceName
+
+                                        };
+                                        // OVERIDE FIREBASE
+                                        [[self->ref child: receiptID ]  setValue: updateDataSet];
+                                        
+                                        
+                                        // AFTER WALKED OUT PUSH DATA FROM checkSTatus firebase node back to CLIENT
+                                        
+                                        self.ref = [[[FIRDatabase database] reference] child: @"client"] ;
+                                        
+                                        // CREART NEW DATA SET FOR OVERIDE DATABASE WHERE "NODE" EQUAL "RECEIPTID"
+                                        NSDictionary *pushBack = @ {
+                                            @"link":  link,
+                                            @"receiptID": receiptID,
+                                            @"status": @"false",
+                                            @"userID": userID,
+                                            @"serviceName": serviceName
+                              
+                                        };
+                                        [[self->ref child: receiptID ]  setValue: pushBack];
+                                    }
+                }
+                NSLog( @"-----------------------------------------------------------------");
+            
+            
+        }
     
-     // --- END UPDATE
+         // --- END UPDATE
 }
 
 @end

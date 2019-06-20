@@ -33,6 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *setFuturePickupDate;
 - (IBAction)setFuturePickupDate:(id)sender;
 
+
+@property (strong, nonatomic ) NSString* timestamp;
+@property (strong, nonatomic ) NSString* date;
+
 //
 
 @end

@@ -7,20 +7,24 @@
 //
 
 #import "withdrawViewController.h"
+#import "withdrawForContainerViewController.h"
+
 
 @interface withdrawViewController ()
 
 @end
 
 @implementation withdrawViewController
-@synthesize hundred, fifty, twenty, ten, five, fiftyCent, twentyCent, tenCent, total;
+@synthesize hundred, fifty, twenty, ten, five, fiftyCent, twentyCent, tenCent, total, date, timestamp ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // SET PICK UP DATE HIDDEN WHEN SENCE FIRST LOAD
+     _futurePickupTF.hidden = YES ;
     
-    //
+    // DATE PICKER
     datePickerFuture =  [[ UIDatePicker alloc ] init ];
     datePickerFuture.datePickerMode = UIDatePickerModeDate;
     [ self.futurePickupTF setInputView: datePickerFuture ];
@@ -28,6 +32,7 @@
     // call TOOLBAR
     [self theToolBarFuture ];
     
+     // 
      self.hundred.delegate = self;
      self.fifty.delegate = self;
      self.twenty.delegate = self;
@@ -45,15 +50,48 @@
     [self.view addGestureRecognizer:tap];
 }
 
-/*
-#pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    
+    withdrawForContainerViewController *x ;
+    x = [ segue destinationViewController];
+    
+    
+    // store data from textfields in dictionary
+    NSMutableDictionary *dict = [[ NSMutableDictionary alloc ] init ];
+    
+    [ dict setObject: @"3 Bldg A Mueang Canthabuli" forKey:@"address"];
+    [ dict setObject: @"Vientiane, Laos" forKey:@"country"];
+    [ dict setObject: @"+856 21 211 018" forKey:@"phone"];
+    
+    [ dict setObject: date forKey:@"date"];
+    [ dict setObject: timestamp forKey:@"billNumber"];
+    [ dict setObject: timestamp forKey:@"timestamp"];
+    [ dict setObject: self.futurePickupTF.text forKey:@"futurepickup"];
+    
+    [ dict setObject: hundred.text forKey:@"hundred"];
+    [ dict setObject: fifty.text forKey:@"fifty"];
+ 
+    [ dict setObject: twenty.text forKey:@"twenty"];
+    [ dict setObject: ten.text forKey:@"ten"];
+    [ dict setObject: five.text forKey:@"five"];
+    [ dict setObject: fiftyCent.text forKey:@"hasipCent"];
+    [ dict setObject: twentyCent.text forKey:@"saoCent"];
+    [ dict setObject: tenCent.text forKey:@"zipCent"];
+    
+    [ dict setObject: total.text forKey:@"total"];
+
+    
+    // pass data
+    x.dictData = dict;
+    
+    NSLog (@"nsdic = %@", dict);
 }
-*/
+
 
 
 
@@ -76,23 +114,28 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    [ self checkEmpty ];
+  
     
     NSLog( @"viewWillAppear ");
     
 }
 
--(void ) checkEmpty {
-    
-    if ( hundred.text.length > 0 ) {
-        [ self calculateTotal ];
-    }
-}
-
-
 
 
 -(void)calculateTotal {
+    
+    
+    // GET DATE
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"d.M.yyyy";
+    date  = [dateFormat stringFromDate:[NSDate date]];
+    
+    NSLog( @"date date date %@", date );
+    
+    //GET TIMESTAMP
+    NSInteger  timestampLong = [[NSDate date] timeIntervalSince1970]; // snap timstamp when covert method is called
+    NSLog( @" The timestampe value ::: %ld", (long)timestampLong );
+    timestamp =  [ NSString stringWithFormat: @"%ld", (long)timestampLong];
 
     double hundredNum = [ hundred.text doubleValue ];
     double fiftyNum   = [fifty.text doubleValue] ;

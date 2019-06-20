@@ -11,9 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface withdrawWebviewViewController : UIViewController
+@interface withdrawWebviewViewController : UIViewController <UIWebViewDelegate>
+
 @property (strong, nonatomic) IBOutlet WKWebView *webViewWithdraw;
+
 @property (nonatomic, strong ) NSDictionary *dictShowWeb;
+@property (nonatomic, strong ) NSDictionary *dictData;
 
 @end
 

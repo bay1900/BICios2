@@ -217,61 +217,115 @@
                     
                     
                     if  ( futurepickup.length > 0  ) {
-                        // for check future pick up
-                        self.ref = [[[FIRDatabase database] reference] child: @"futurePickup"];
+                                        // for check future pick up
+                                        self.ref = [[[FIRDatabase database] reference] child: @"client"];
                         
-                        NSDictionary *pickup = [[ NSDictionary alloc ] init ];
-                        pickup = @{
-                                   @"userID" : userAuth,
-                                   @"link" : receiptDownloadLink,
-                                   @"receiptID" : receiptKey,
-                                   @"status" : @"false",
-                                   @"futurepickup":futurepickup,
-                                   @"intervalPickupDate": intervalString
-                                   
-                                   };
-                        [[self->_ref child: receiptKey ]  setValue:pickup];
+                                        NSDictionary *pickup = [[ NSDictionary alloc ] init ];
+                                        pickup = @{
+                                                   @"userID" : userAuth,
+                                                   @"link" : receiptDownloadLink,
+                                                   @"receiptID" : receiptKey,
+                                                   @"status" : @"false",
+                                                   @"futurepickup":futurepickup,
+                                                   @"intervalPickupDate": intervalString,
+                                                   @"serviceName": @"statement",
+                                                   @"mark" : @"🔴"
+                                                   
+                                                   };
+                                        [[self->_ref child: receiptKey ]  setValue:pickup];
+                        
+                                        // history
+                                        self.ref = [[[FIRDatabase database] reference] child: @"history"];
+                        
+                                        NSDictionary *history = [[ NSDictionary alloc ] init ];
+                                        history = @{
+                                                    @"userID" : userAuth,
+                                                    @"link" : receiptDownloadLink,
+                                                    @"receiptID" : receiptKey,
+                                                    @"status" : @"false",
+                                                    @"futurepickup":futurepickup,
+                                                    @"intervalPickupDate": intervalString,
+                                                    @"serviceName": @"statement",
+                                                    @"mark" : @"🔴"
+                                                    
+                                                    };
+                                        [[self->_ref child: receiptKey ]  setValue:history];
+                        
+                        
+                                        // for check status
+                                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+                        
+                                        NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
+                                        checkStatus = @{
+                                                        @"userID" : userAuth,
+                                                        @"link" : receiptDownloadLink,
+                                                        @"receiptID" : receiptKey,
+                                                        @"status" : @"false",
+                                                        @"futurepickup":futurepickup,
+                                                        
+                                                        @"intervalPickupDate": intervalString,
+                                                        @"serviceName": @"statement",
+                                                        @"mark" : @"🔴"
+                                                        
+                                                        };
+                                        [[self->_ref child: receiptKey ]  setValue:checkStatus];
                     }
                     
                     else {
+
+                                        // *******
                         
-                        // *******
+                                        self.buttonLinkPDF = receiptDownloadLink; // copy than use for button download link
+                                        // realtime database
+                                        // Realtime datebse
+                                        self.ref = [[[FIRDatabase database] reference] child: @"client"];
                         
-                        self.buttonLinkPDF = receiptDownloadLink; // copy than use for button download link
-                        // realtime database
-                        // Realtime datebse
-                        self.ref = [[[FIRDatabase database] reference] child: @"client"];
-                        
-                        //                    [[ self.ref child: userAuth ] updateChildValues: @{ receiptKey : receiptDownloadLink },
-                        //                                                                     @{ @"receiptNumber": receiptKey},
-                        //                                                                     @{ @"link": receiptDownloadLink}];
-                        
-                        
-                        NSDictionary *userData = [[ NSDictionary alloc ] init ];
-                        
-                        userData = @{
-                                     @"userID" : userAuth,
-                                     @"link" : receiptDownloadLink,
-                                     @"receiptID" : receiptKey,
-                                     @"status" : @"false"
-                                     
-                                     };
-                        [[self->_ref child: receiptKey ]  setValue:userData];
+                                        //                    [[ self.ref child: userAuth ] updateChildValues: @{ receiptKey : receiptDownloadLink },
+                                        //                                                                     @{ @"receiptNumber": receiptKey},
+                                        //                                                                     @{ @"link": receiptDownloadLink}];
                         
                         
-                        // for check status
-                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+                                        NSDictionary *userData = [[ NSDictionary alloc ] init ];
                         
-                        NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
-                        checkStatus = @{
-                                        @"userID" : userAuth,
-                                        @"link" : receiptDownloadLink,
-                                        @"receiptID" : receiptKey,
-                                        @"status" : @"false"
-                                        
-                                        };
-                        [[self->_ref child: receiptKey ]  setValue:checkStatus];
-                    }
+                                        userData = @{
+                                                     @"userID" : userAuth,
+                                                     @"link" : receiptDownloadLink,
+                                                     @"receiptID" : receiptKey,
+                                                     @"status" : @"false",
+                                                     @"serviceName": @"statement"
+                                                     
+                                                     };
+                                        [[self->_ref child: receiptKey ]  setValue:userData];
+                        
+                        
+                                        // for check status
+                                        self.ref = [[[FIRDatabase database] reference] child: @"checkStatus"];
+                        
+                                        NSDictionary *checkStatus = [[ NSDictionary alloc ] init ];
+                                        checkStatus = @{
+                                                        @"userID" : userAuth,
+                                                        @"link" : receiptDownloadLink,
+                                                        @"receiptID" : receiptKey,
+                                                        @"status" : @"false",
+                                                        @"serviceName": @"statement"
+                                                        
+                                                        };
+                                        [[self->_ref child: receiptKey ]  setValue:checkStatus];
+                        
+                                        // history
+                                        self.ref = [[[FIRDatabase database] reference] child: @"history"];
+                        
+                                        NSDictionary *history = [[ NSDictionary alloc ] init ];
+                                        history = @{
+                                                    @"userID" : userAuth,
+                                                    @"link" : receiptDownloadLink,
+                                                    @"receiptID" : receiptKey,
+                                                    @"status" : @"false",
+                                                    @"serviceName": @"statement"
+                                                    
+                                                    };
+                                        [[self->_ref child: receiptKey ]  setValue:history];
+                                }
                 }
             }];
         }

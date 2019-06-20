@@ -25,6 +25,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    _addPickUpDateTF.hidden = YES;
+    
     datePicker =  [[ UIDatePicker alloc ] init ];
     datePicker.datePickerMode = UIDatePickerModeDate;
     [ self.dateSelectionTextField setInputView: datePicker ];
@@ -61,6 +64,7 @@
 
          [ dict setObject: self.dateSelectionTextField.text forKey:@"startStatement"];
          [ dict setObject: self.dateSelectedTextFieldUntil.text forKey:@"endStatement"];
+    
          [ dict setObject: self.addPickUpDateTF.text forKey:@"futurepickup"];
 
     // pass data

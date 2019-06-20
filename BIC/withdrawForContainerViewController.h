@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong ) NSDictionary *dictData;
 
+@property (strong, nonatomic) NSString *buttonLinkPDF;
 
+
+// firebase databse
+// firebase database reference
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 
 @end
 

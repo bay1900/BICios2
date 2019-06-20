@@ -24,6 +24,7 @@
  @property (nonatomic, strong) NSArray *checkStatusArray;
  @property (nonatomic, strong) NSMutableArray *checkStatusArrayMutable;
  @property (nonatomic, strong ) NSDictionary *dictionaryStatus;
+ @property (nonatomic, strong ) NSString * currentTimestamp;
 
 @end
 

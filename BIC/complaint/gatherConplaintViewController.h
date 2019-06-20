@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@import Firebase;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface gatherConplaintViewController : UIViewController
+@interface gatherConplaintViewController : UIViewController <UITextFieldDelegate,UITextViewDelegate>
 
-// user input text field 
-@property (strong, nonatomic) IBOutlet UITextView *complaintTV;
+@property (strong, nonatomic) IBOutlet UITextField *orderIDTF;
+@property (strong, nonatomic) IBOutlet UITextView *conplaintData;
 
+- (IBAction)sendButton:(id)sender;
+
+// firebase databse
+// firebase database reference
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @end
 
 NS_ASSUME_NONNULL_END

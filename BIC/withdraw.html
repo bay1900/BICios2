@@ -31,6 +31,34 @@
                     .alignright {
                         float: right;
                     }
+                    
+                    table {
+                        font-family: arial, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                        margin-bottom: -15px;
+
+                    }
+                    
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: center;
+                        padding: 2px;
+                    }
+                    .totalBG {
+                        background-color: #dddddd;
+
+                    }
+                    .alignleftDateCollect {
+                        float: left;
+                        margin-top: -24px;
+
+                    }
+                    .alignrightDateCollect {
+                        float: right;
+                        margin-top: -24px;
+
+                    }
                     </style>
                     </head>
     <body>
@@ -48,16 +76,54 @@
         
         <center>       <p>---------- STATEMENT ----------</p> </center>
         
-        
-        
-        <p class="alignleft"> 50$ </p>
-        <p class="alignright"> #fifty  </p> <br/>
-        
      
-        
+     
+
+     <table>
+         <tr class="totalBG">
+             <th>NOTE/COIN</th>
+             <th>AMOUNT</th>
+         </tr>
+         <tr>
+             <td> 100$</td>
+             <td> #hundred</td>
+         </tr>
+         <tr>
+             <td> 50$ </td>
+             <td> #fifty</td>
+         </tr>
+         <tr>
+             <td> 20$</td>
+             <td> #twenty</td>
+         </tr>
+         <tr>
+             <td> 10$</td>
+             <td>#ten </td>
+         </tr>
+         <tr>
+             <td> 5$</td>
+             <td> #five</td>
+         </tr>
+         <tr>
+             <td> 50c </td>
+             <td>#hasipCent</td>
+         </tr>
+         <tr>
+             <td> 20c </td>
+             <td> #saoCent</td>
+         </tr>
+         <tr>
+             <td> 10c </td>
+             <td> #zipCent </td>
+         </tr>
+         <tr class="totalBG">
+             <td> TOTAL </td>
+             <td> #total </td>
+         </tr>
+    
+     </table>
         <center>  <h3> #timestamp </h3>  </center>
-        
-        <p class="alignleft"> Date collection  </p>
-        <p class="alignright"> #futurepickup  </p> <br/>
+        <p class="alignleftDateCollect"> Date collection  </p>
+        <p class="alignrightDateCollect"> #futurepickup  </p> <br/>
     </body>
 </html>
